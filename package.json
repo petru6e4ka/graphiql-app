@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
+    "husky": "^9.1.5",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
@@ -37,7 +38,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "eslint-plugin-testing-library": "^6.3.0",
-    "husky": "^9.1.5",
+    "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "typescript": "^5"
   },
@@ -45,13 +46,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx,jsx,css}": [
-      "prettier --write"
-    ],
-    "*.{js,ts,tsx,jsx}": [
-      "next lint --fix"
-    ]
   }
 }

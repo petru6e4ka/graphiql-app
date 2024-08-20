@@ -25,7 +25,8 @@
       }
     ],
     "max-len": ["error", { "code": 150 }],
-    "no-spaced-func": 0
+    "no-spaced-func": 0,
+    "react/jsx-one-expression-per-line": [2, { "allow": "single-child" }]
   },
   "parserOptions": {
     "ecmaVersion": "latest",

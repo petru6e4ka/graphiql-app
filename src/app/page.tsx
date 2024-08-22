@@ -1,13 +1,35 @@
-import Image from 'next/image';
-import styles from './page.module.css';
+import { Button } from 'antd';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div>
-        <h1>Home</h1>
-      </div>
-      <Image className={styles.logo} src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
-    </main>
+    <section>
+      <h1>Welcome! </h1>
+      <Button type="primary">Sign Up</Button>
+      <Button type="primary">Sign In</Button>
+      <h1>Welcome! </h1>
+
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+      <h1>Welcome! </h1>
+    </section>
   );
 }

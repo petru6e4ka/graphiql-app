@@ -1,0 +1,10 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    line-height: 1.2;
+    cursor: pointer;
+}

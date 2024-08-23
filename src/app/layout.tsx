@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react';
-import { Layout, Button } from 'antd';
-import { Header, Footer, Content } from 'antd/lib/layout/layout';
-import { ApiOutlined, GithubOutlined } from '@ant-design/icons';
+import { Layout } from 'antd';
+import { Footer, Content } from 'antd/lib/layout/layout';
+import { GithubOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import './globals.css';
 import RS from '../../public/rss-logo.svg';
 import style from './layout.module.css';
-import SwitchLang from '@/components/switchLang/switchLang';
+import Header from '@/components/header/header';
 
 export const metadata: Metadata = {
   title: 'Rest GraphQL Client',
@@ -24,12 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Layout className={style.layout}>
-          <Header className={`${style.header} issticky`}>
-            <ApiOutlined style={{ fontSize: '150%' }} />
-            <Link href="/">Home</Link>
-            <SwitchLang />
-            <Button>Sign Out </Button>
-          </Header>
+          <Header />
           <Content className={style.content}>{children}</Content>
           <Footer className={style.footer}>
             <Link href="https://rs.school/">
@@ -45,7 +40,7 @@ export default function RootLayout({
                 <GithubOutlined />
                 Anastasiia
               </Link>
-              <Link href="/">
+              <Link href="https://github.com/mindvan">
                 <GithubOutlined />
                 Ivan
               </Link>

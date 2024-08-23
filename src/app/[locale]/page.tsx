@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { LocaleSwitcher } from '@/features/localeSwitcher/ui/LocaleSwitcher';
 import styles from './page.module.css';
-import LocaleSwitcher from '../../components/LocaleSwitcher/LocaleSwitcher';
 
 export default function Home() {
   const t = useTranslations('Main');

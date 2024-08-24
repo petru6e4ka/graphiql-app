@@ -8,7 +8,7 @@ import Link from 'next/link';
 import './globals.css';
 import RS from '../../public/rss-logo.svg';
 import style from './layout.module.css';
-import Header from '@/components/header/header';
+import Header from '../components/header/header';
 
 export const metadata: Metadata = {
   title: 'Rest GraphQL Client',
@@ -28,7 +28,7 @@ export default function RootLayout({
           <Content className={style.content}>{children}</Content>
           <Footer className={style.footer}>
             <Link href="https://rs.school/">
-              <Image src={RS} alt="RSSchool" width={20}></Image>
+              <Image src={RS} alt="RSSchool" width={20} height={20}></Image>
             </Link>
             <span>2024</span>
             <div className={style.github}>

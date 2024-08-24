@@ -28,6 +28,10 @@ function SwitchLang() {
         <input type="radio" name="lang" value="ru" onChange={(e) => setLanguage(e.target.value)}></input>
         Russian
       </label>
+      <label className={style.label}>
+        <input type="radio" name="lang" value="de" onChange={(e) => setLanguage(e.target.value)}></input>
+        Deutsch
+      </label>
     </form>
   );
 }

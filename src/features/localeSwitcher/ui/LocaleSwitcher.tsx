@@ -18,7 +18,7 @@ export function LocaleSwitcher() {
 
   return (
     <div className={styles.languageSwitcher}>
-      <select id="locale-switcher" value={locale} onChange={handleLocaleChange}>
+      <select id="locale-switcher" data-testid="locale-switcher" value={locale} onChange={handleLocaleChange}>
         {locales.map((cur) => (
           <option key={cur} value={cur}>
             {t(`langs.${cur}`)}

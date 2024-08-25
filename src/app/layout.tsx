@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { AuthProvider } from './_providers/auth';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
@@ -16,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AntdRegistry>
+          <AuthProvider>{children}</AuthProvider>
+        </AntdRegistry>
+      </body>
     </html>
   );
 }

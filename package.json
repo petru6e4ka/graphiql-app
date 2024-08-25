@@ -15,9 +15,11 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.1",
     "@vitejs/plugin-react": "^4.3.1",
     "antd": "^5.20.2",
     "classnames": "^2.5.1",
+    "firebase": "^10.13.0",
     "husky": "^9.1.5",
     "next": "14.2.5",
     "react": "^18",

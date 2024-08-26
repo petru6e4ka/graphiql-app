@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    background-color: #eaeae4;
+    background-color: var(--background-start);
     height: 6rem;
     padding: 1rem;
     flex-wrap: wrap;

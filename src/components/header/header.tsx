@@ -1,24 +1,25 @@
 'use client';
-import React from 'react';
-import style from './header.module.css';
+
+import { useEffect, useState } from 'react';
 import { ApiOutlined } from '@ant-design/icons';
 import Link from 'next/link';
-import SwitchLang from '../switchLang/switchLang';
 import { Button } from 'antd';
+import SwitchLang from '../switchLang/switchLang';
+import style from './header.module.css';
 
 function Header() {
-  const [Y, setY] = React.useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
   function onChangeY() {
     const scrollValue = window.scrollY;
-    setY(scrollValue);
+    setScrollY(scrollValue);
   }
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('scroll', onChangeY);
     return () => window.removeEventListener('scroll', onChangeY);
   }, []);
   return (
-    <header className={`${style.header} ${Y > 0 && 'issticky'}`}>
+    <header className={`${style.header} ${scrollY > 0 && 'issticky'}`}>
       <ApiOutlined style={{ fontSize: '150%' }} />
       <Link href="/">Home</Link>
       <SwitchLang />

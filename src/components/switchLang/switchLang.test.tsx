@@ -14,6 +14,7 @@ describe('SwitchLang component', () => {
   });
 
   test('Choose input "Russian" after click', () => {
+    render(<SwitchLang />);
     fireEvent.click(screen.getByLabelText('Russian', { selector: 'input' }));
     expect(screen.getByLabelText('Russian', { selector: 'input' })).toHaveProperty('checked', true);
   });

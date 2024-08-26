@@ -1,4 +1,5 @@
 'use client';
+
 import { create } from 'zustand';
 import style from './switchLang.module.css';
 
@@ -11,27 +12,26 @@ type Action = {
 
 export const useLang = create<State & Action>((set) => ({
   language: 'en',
-  setLanguage: (language) => set(() => ({ language: language })),
+  setLanguage: (language) => set(() => ({ language })),
 }));
 
+const languages = [
+  { name: 'English', value: 'en' },
+  { name: 'Russian', value: 'ru' },
+  { name: 'Deutsch', value: 'de' },
+];
+
 function SwitchLang() {
-  //const language = useLang((state) => state.language);
   const setLanguage = useLang((state) => state.setLanguage);
 
   return (
     <form className={style.form}>
-      <label className={style.label}>
-        <input type="radio" name="lang" defaultChecked={true} value="en" onChange={(e) => setLanguage(e.target.value)}></input>
-        English
-      </label>
-      <label className={style.label}>
-        <input type="radio" name="lang" value="ru" onChange={(e) => setLanguage(e.target.value)}></input>
-        Russian
-      </label>
-      <label className={style.label}>
-        <input type="radio" name="lang" value="de" onChange={(e) => setLanguage(e.target.value)}></input>
-        Deutsch
-      </label>
+      {languages.map((elem, i) => (
+        <label className={style.label} key={elem.value} htmlFor={elem.value}>
+          <input type="radio" name="lang" defaultChecked={i === 0} value={elem.value} onChange={(e) => setLanguage(e.target.value)} id={elem.value} />
+          {elem.name}
+        </label>
+      ))}
     </form>
   );
 }

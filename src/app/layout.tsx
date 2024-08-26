@@ -28,7 +28,7 @@ export default function RootLayout({
           <Content className={style.content}>{children}</Content>
           <Footer className={style.footer}>
             <Link href="https://rs.school/">
-              <Image src={RS} alt="RSSchool" width={20} height={20}></Image>
+              <Image src={RS} alt="RSSchool" width={20} height={20} />
             </Link>
             <span>2024</span>
             <div className={style.github}>

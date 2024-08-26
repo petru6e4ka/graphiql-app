@@ -1,3 +1,7 @@
+:root {
+    --background-start: #eaeae4;
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -16,14 +20,16 @@ a {
     font-size: larger;
 }
 
-button {
-    margin: 1rem;
-
-}
-
 
 header.issticky {
     box-shadow: 0 15px 30px 10px rgba(0, 0, 0, .5);
     background: #d4d3d2;
 
+}
+
+.button_welcome_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem;
 }

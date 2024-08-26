@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
-import LocaleSwitcher from '@/features/localeSwitcher';
 import Logo from '@/shared/ui/Logo';
 import styles from './Header.module.css';
 
-export function Header() {
+export function Header({ children }: { children: ReactNode }) {
   const [scrollY, setScrollY] = useState(0);
 
   function onChangeY() {
@@ -24,8 +23,9 @@ export function Header() {
       <Link href="/">
         <Logo />
       </Link>
-
-      <LocaleSwitcher />
+      <div>
+        {children}
+      </div>
     </div>
   );
 }

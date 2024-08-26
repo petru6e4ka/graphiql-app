@@ -5,6 +5,7 @@ import { getMessages } from 'next-intl/server';
 import './globals.css';
 import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
+import LocaleSwitcher from '@/features/localeSwitcher';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
@@ -25,7 +26,9 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <header>
-            <Header />
+            <Header>
+              <LocaleSwitcher />
+            </Header>
           </header>
           <main>{children}</main>
           <footer>

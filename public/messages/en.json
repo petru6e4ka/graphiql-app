@@ -1,1 +1,83 @@
-{}
+{
+  "Main": {
+    "content": "Home",
+    "welcome-non-auth": "Welcome!",
+    "welcome-auth": "Welcome back, ",
+    "rest": "REST Client",
+    "graphiql": "GraphiQL Client",
+    "history": "History"
+  },
+  "Header": {
+    "sign-up": "Sign Up",
+    "sign-in": "Sign In",
+    "sign-out": "Sign Out",
+    "toggle-lang": "Language Toggle",
+    "langs": {
+      "en": "English",
+      "ru": "Russian",
+      "de": "German"
+    }
+  },
+  "Footer": {
+    "creators": "Created by ",
+    "rss-sign": "© RSSchool 2024"
+  },
+  "SignUp": {
+    "title": "Sign Up",
+    "input-email": "Your email",
+    "input-password": "Your password",
+    "input-password-again": "Your password again",
+    "input-submit": "Sign Up"
+  },
+  "SignIn": {
+    "title": "Sign In",
+    "input-email": "Your email",
+    "input-password": "Your password",
+    "input-submit": "Sign In"
+  },
+  "NoResponse": {
+    "msg": "You haven't executed any requests. It's empty here. Try: ",
+    "rest": "REST Client",
+    "graphiql": "GraphiQL Client"
+  },
+  "REST": {
+    "title": "REST Client",
+    "method": "Method: ",
+    "url": "Endpoint URL: ",
+    "headers": "Headers: ",
+    "header-key": "Header Key: ",
+    "header-value": "Header Value: ",
+    "body": "Body: ",
+    "title-response": "Response: ",
+    "status": "Status: "
+  },
+  "GraphiQL": {
+    "title": "GraphiQL Client",
+    "url": "Endpoint URL: ",
+    "sdl": "SDL URL: ",
+    "headers": "Headers: ",
+    "header-key": "Header Key: ",
+    "header-value": "Header Value: ",
+    "query": "Query: ",
+    "variables": "Variables: ",
+    "body": "Body: ",
+    "title-response": "Response: ",
+    "status": "Status: ",
+    "documentation": "Documentation: "
+  },
+  "History": {
+    "title": "History Requests: "
+  },
+  "Error": {
+    "404": {
+      "title": "Looks like you're lost.",
+      "heading": "This page not found. Perhaps you were looking for something else?",
+      "back": "Back"
+    },
+    "Boundary": {
+      "title": "This is Error Boundary",
+      "heading": "",
+      "back": "Back"
+    }
+  }
+}

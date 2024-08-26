@@ -1,3 +1,13 @@
-import Rest from '@/pages/Rest';
+import { useTranslations } from 'next-intl';
 
-export default Rest;
+import styles from './Rest.module.css';
+
+export default function Rest() {
+  const t = useTranslations('REST');
+
+  return (
+    <div className={styles.Rest}>
+      <h1>{t('title')}</h1>
+    </div>
+  );
+}

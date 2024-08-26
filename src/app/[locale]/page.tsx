@@ -1,3 +1,13 @@
-import Welcome from '@/pages/Welcome';
+import { useTranslations } from 'next-intl';
 
-export default Welcome;
+import styles from './Welcome.module.css';
+
+export default function Welcome() {
+  const t = useTranslations('Main');
+
+  return (
+    <div className={styles.Welcome}>
+      <h1>{t('welcome-non-auth')}</h1>
+    </div>
+  );
+}

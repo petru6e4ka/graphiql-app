@@ -1,0 +1,83 @@
+{
+  "Main": {
+    "content": "Startseite",
+    "welcome-non-auth": "Willkommen!",
+    "welcome-auth": "Willkommen zurück, ",
+    "rest": "REST-Client",
+    "graphiql": "GraphiQL-Client",
+    "history": "Verlauf"
+  },
+  "Header": {
+    "sign-up": "Anmelden",
+    "sign-in": "Einloggen",
+    "sign-out": "Ausloggen",
+    "toggle-lang": "Sprache wechseln",
+    "langs": {
+      "en": "Englisch",
+      "ru": "Russisch",
+      "de": "Deutsch"
+    }
+  },
+  "Footer": {
+    "creators": "Erstellt von",
+    "rss-sign": "© RSSchool 2024"
+  },
+  "SignUp": {
+    "title": "Anmelden",
+    "input-email": "Ihre E-Mail",
+    "input-password": "Ihr Passwort",
+    "input-password-again": "Ihr Passwort erneut",
+    "input-submit": "Anmelden"
+  },
+  "SignIn": {
+    "title": "Einloggen",
+    "input-email": "Ihre E-Mail",
+    "input-password": "Ihr Passwort",
+    "input-submit": "Einloggen"
+  },
+  "NoResponse": {
+    "msg": "Sie haben keine Anfragen ausgeführt. Es ist leer hier. Versuchen Sie: ",
+    "rest": "REST-Client",
+    "graphiql": "GraphiQL-Client"
+  },
+  "REST": {
+    "title": "REST-Client",
+    "method": "Methode: ",
+    "url": "Endpunkt-URL: ",
+    "headers": "Header: ",
+    "header-key": "Header-Schlüssel: ",
+    "header-value": "Header-Wert: ",
+    "body": "Körper: ",
+    "title-response": "Antwort: ",
+    "status": "Status: "
+  },
+  "GraphiQL": {
+    "title": "GraphiQL-Client",
+    "url": "Endpunkt-URL: ",
+    "sdl": "SDL-URL: ",
+    "headers": "Header: ",
+    "header-key": "Header-Schlüssel: ",
+    "header-value": "Header-Wert: ",
+    "query": "Abfrage: ",
+    "variables": "Variablen: ",
+    "body": "Körper: ",
+    "title-response": "Antwort: ",
+    "status": "Status: ",
+    "documentation": "Dokumentation: "
+  },
+  "History": {
+    "title": "Verlauf der Anfragen: "
+  },
+  "Error": {
+    "404": {
+      "title": "Du hast dich verirrt.",
+      "heading": "Seite nicht gefunden. Vielleicht haben Sie nach etwas anderem gesucht?",
+      "back": "Zurückgehen"
+    },
+    "Boundary": {
+      "title": "Das ist Error Boundary",
+      "heading": "",
+      "back": "Zurückgehen"
+    }
+  }
+}

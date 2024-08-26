@@ -1,0 +1,45 @@
+:root {
+  --white: #fff;
+  --header-height: 6rem;
+  --footer-height: 100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+body {
+  background: var(--white);
+  min-height: 100vh;
+  height: 100%;
+}
+
+header {
+  min-height: var(--header-height);
+}
+
+footer {
+  min-height: var(--footer-height);
+}
+
+main {
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
+}
+
+header,
+footer,
+main {
+  padding: 20px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

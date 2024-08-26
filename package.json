@@ -15,15 +15,19 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.1",
+    "@rollup/rollup-darwin-arm64": "^4.21.0",
+    "@testing-library/jest-dom": "^6.5.0",
     "@vitejs/plugin-react": "^4.3.1",
     "antd": "^5.20.2",
     "classnames": "^2.5.1",
     "husky": "^9.1.5",
-    "next": "14.2.5",
+    "next": "^14.2.5",
+    "next-intl": "^3.17.6",
+    "next-router-mock": "^0.9.13",
     "react": "^18",
     "react-dom": "^18",
     "vitest": "^2.0.5",
-    "@testing-library/jest-dom": "^6.5.0",
     "zustand": "^4.5.5"
   },
   "devDependencies": {

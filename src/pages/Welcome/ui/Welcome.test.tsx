@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import Page from './page';
+import { Welcome } from './Welcome';
 
 describe('Page', () => {
   it('Has title', () => {
-    render(<Page />);
+    render(<Welcome />);
 
-    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Welcome')).toBeInTheDocument();
   });
 });

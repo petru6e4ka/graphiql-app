@@ -1,12 +1,18 @@
 .Header {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
   background-color: var(--background-start);
-  padding: 1rem;
+  padding: 20px;
   flex-wrap: wrap;
   position: fixed;
   top: 0;
+  left: 0;
   transition: all 0.5s;
+}
+
+.childs {
+  display: flex;
+  gap: 4rem;
 }

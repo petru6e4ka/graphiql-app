@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
-import AuthButtons from './AuthButtons';
+import { AuthButtons } from './AuthButtons';
 
 describe('AuthButtons component', () => {
   test('buttons renders', () => {

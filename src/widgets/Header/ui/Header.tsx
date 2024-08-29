@@ -2,8 +2,8 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
-import Logo from '@/shared/ui/Logo';
 import cn from 'classnames';
+import { Logo } from '@/shared/ui/Logo';
 import styles from './Header.module.css';
 
 export function Header({ children }: { children: ReactNode }) {
@@ -28,5 +28,3 @@ export function Header({ children }: { children: ReactNode }) {
     </nav>
   );
 }
-
-export default Header;

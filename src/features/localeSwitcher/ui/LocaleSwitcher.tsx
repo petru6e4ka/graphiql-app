@@ -30,5 +30,3 @@ export function LocaleSwitcher() {
     </div>
   );
 }
-
-export default LocaleSwitcher;

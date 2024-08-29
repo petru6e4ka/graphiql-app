@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import styles from './AuthButtons.module.css';
 
-function AuthButtons() {
+export function AuthButtons() {
   const t = useTranslations('Header');
 
   const locale = useLocale();
@@ -21,5 +21,3 @@ function AuthButtons() {
     </div>
   );
 }
-
-export default AuthButtons;

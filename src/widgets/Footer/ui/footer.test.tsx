@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
-import Footer from './Footer';
+import { Footer } from './Footer';
 
 describe('Layout component', () => {
   test('Footer renders', () => {

@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import styles from './authbuttons.module.css';
+import styles from './AuthButtons.module.css';
 
 function AuthButtons() {
   const t = useTranslations('Header');

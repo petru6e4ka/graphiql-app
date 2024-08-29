@@ -16,3 +16,8 @@
   display: flex;
   gap: 4rem;
 }
+
+.issticky {
+  box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+  background: #d4d3d2;
+}

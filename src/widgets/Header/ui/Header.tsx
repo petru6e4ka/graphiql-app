@@ -20,7 +20,7 @@ export function Header({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <nav className={cn(styles.Header, { issticky: scrollY > 0 })}>
+    <nav className={cn(styles.Header, { [styles.issticky]: scrollY > 0 })}>
       <Link href="/">
         <Logo />
       </Link>

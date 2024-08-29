@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import RS from '../../../../public/rss-logo.svg';
-import GHlogo from '../../../../public/logo-github.svg';
-import style from './footer.module.css';
+import RS from '@/shared/assets/icons/rss-logo.svg';
+import GHlogo from '@/shared/assets/icons/logo-github.svg';
+import style from './Footer.module.css';
 
 const dataGitHub = [
   { name: 'Evgeny', url: 'https://github.com/zytsev' },
@@ -11,7 +11,7 @@ const dataGitHub = [
   { name: 'Ivan', url: 'https://github.com/mindvan' },
 ];
 
-function Footer() {
+export function Footer() {
   const t = useTranslations('Footer');
   return (
     <div className={style.footer}>
@@ -31,5 +31,4 @@ function Footer() {
     </div>
   );
 }
-
 export default Footer;

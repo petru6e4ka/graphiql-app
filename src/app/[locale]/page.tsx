@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import AuthButtons from '@/shared/ui/AuthButtons';
+import AuthButtons from '@/shared/ui/AuthButtons/AuthButtons';
 import styles from './Welcome.module.css';
 
 export default function Welcome() {

@@ -15,10 +15,14 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@auth/firebase-adapter": "^2.4.2",
+    "@next-auth/firebase-adapter": "^2.0.1",
     "@vitejs/plugin-react": "^4.3.1",
     "classnames": "^2.5.1",
+    "firebase-admin": "^11.11.1",
     "husky": "^9.1.5",
     "next": "14.2.5",
+    "next-auth": "^4.24.7",
     "next-intl": "^3.17.6",
     "next-router-mock": "^0.9.13",
     "react": "^18",

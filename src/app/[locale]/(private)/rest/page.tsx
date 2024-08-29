@@ -1,8 +1,7 @@
 import { useTranslations } from 'next-intl';
-
 import styles from './Rest.module.css';
 
-export default function Rest() {
+export default async function Rest() {
   const t = useTranslations('REST');
 
   return (

@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
+import cn from 'classnames';
 import { Logo } from '@/shared/ui/Logo';
 import styles from './Header.module.css';
 
@@ -19,15 +20,11 @@ export function Header({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div className={`${styles.Header} ${scrollY > 0 && 'issticky'}`}>
+    <nav className={cn(styles.Header, { [styles.issticky]: scrollY > 0 })}>
       <Link href="/">
         <Logo />
       </Link>
-      <div>
-        {children}
-      </div>
-    </div>
+      <div className={styles.childs}>{children}</div>
+    </nav>
   );
 }
-
-export default Header;

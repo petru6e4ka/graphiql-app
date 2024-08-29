@@ -27,7 +27,8 @@
     "max-len": ["error", { "code": 150 }],
     "no-spaced-func": 0,
     "react/jsx-one-expression-per-line": [2, { "allow": "single-child" }],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/prefer-default-export": "off"
   },
   "parserOptions": {
     "ecmaVersion": "latest",

@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { Title } from '@mantine/core';
+import { Title, Button } from '@/shared/ui';
 
 import styles from './Rest.module.css';
 
@@ -9,6 +9,7 @@ export default function Rest() {
   return (
     <div className={styles.Rest}>
       <Title>{t('title')}</Title>
+      <Button>Hello world</Button>
     </div>
   );
 }

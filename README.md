@@ -10,14 +10,12 @@ FSD - Feature sliced design
 - entities
 - features
 - widgets
-- pages
-- processes
 - app
 
 ## CSS and UI
 
 - Modules
-- Ant Design
+- Mantine
 
 ## Tests
 

@@ -1,12 +1,23 @@
 .Header {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
   background-color: var(--background-start);
-  padding: 1rem;
+  padding: 20px;
   flex-wrap: wrap;
   position: fixed;
   top: 0;
+  left: 0;
   transition: all 0.5s;
+}
+
+.childs {
+  display: flex;
+  gap: 4rem;
+}
+
+.issticky {
+  box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+  background: #d4d3d2;
 }

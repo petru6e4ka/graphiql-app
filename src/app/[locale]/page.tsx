@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { AuthButtons } from '@/shared/ui/AuthButtons/AuthButtons';
 import styles from './Welcome.module.css';
 
 export default function Welcome() {
@@ -8,6 +9,7 @@ export default function Welcome() {
   return (
     <div className={styles.Welcome}>
       <h1>{t('welcome-non-auth')}</h1>
+      <AuthButtons />
     </div>
   );
 }

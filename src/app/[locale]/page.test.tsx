@@ -28,6 +28,7 @@ vi.mock('next/navigation', () => ({
     query: {},
     asPath: '',
   }),
+  usePathname: vi.fn(),
 }));
 
 test('Page', () => {

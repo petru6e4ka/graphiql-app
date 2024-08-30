@@ -1,2 +1,2 @@
-export { Title, Button } from '@mantine/core';
+export { Title, Button, TextInput } from '@mantine/core';
 export { Logo } from './Logo';

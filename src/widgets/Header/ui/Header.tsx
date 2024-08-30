@@ -2,12 +2,23 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
+import { useDisclosure } from '@mantine/hooks';
 import cn from 'classnames';
-import { Logo } from '@/shared/ui/Logo';
+import {
+  Logo, Group, Burger, Drawer, ScrollArea, Divider, rem,
+} from '@/shared/ui';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
 export function Header({ children }: { children: ReactNode }) {
   const [scrollY, setScrollY] = useState(0);
+  const locale = useLocale();
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+  const { data: session } = useSession();
+  const t = useTranslations('Header');
+  const pathname = usePathname();
 
   function onChangeY() {
     const scrollValue = window.scrollY;
@@ -20,11 +31,76 @@ export function Header({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <nav className={cn(styles.Header, { [styles.issticky]: scrollY > 0 })}>
-      <Link href="/">
-        <Logo />
-      </Link>
-      <div className={styles.childs}>{children}</div>
-    </nav>
+    <>
+      <div className={cn(styles.Header, { [styles.Issticky]: scrollY > 0 })}>
+        <Group justify="space-between" h="100%" w="100%">
+          <Link href={`/${locale}`}>
+            <Logo />
+          </Link>
+
+          {session?.user && (
+            <Group h="100%" gap={0} visibleFrom="md" className={styles.Nav}>
+              <Link href={`/${locale}`} className={cn(styles.Link, { [styles.Active]: pathname?.endsWith(`/${locale}`) })}>
+                {t('home')}
+              </Link>
+              <Link href={`/${locale}/history`} className={cn(styles.Link, { [styles.Active]: pathname?.startsWith(`/${locale}/history`) })}>
+                {t('history')}
+              </Link>
+              <Link href={`/${locale}/rest`} className={cn(styles.Link, { [styles.Active]: pathname?.startsWith(`/${locale}/rest`) })}>
+                REST
+              </Link>
+              <Link href={`/${locale}/graphiql`} className={cn(styles.Link, { [styles.Active]: pathname?.startsWith(`/${locale}/graphiql`) })}>
+                GraphiQL
+              </Link>
+            </Group>
+          )}
+
+          <Group visibleFrom="md">{children}</Group>
+
+          <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="md" />
+        </Group>
+      </div>
+
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title={(
+          <Link href={`/${locale}`}>
+            <Logo />
+          </Link>
+        )}
+        hiddenFrom="md"
+        zIndex={1000000}
+      >
+        <ScrollArea h={`calc(100vh - ${rem(100)})`} mx="-md">
+          <Divider my="sm" />
+
+          {session?.user && (
+            <>
+              <Link href={`/${locale}`} className={cn(styles.Link, { [styles.Active]: pathname?.endsWith(`/${locale}`) })}>
+                {t('home')}
+              </Link>
+              <Link href={`/${locale}/history`} className={cn(styles.Link, { [styles.Active]: pathname.startsWith(`/${locale}/history`) })}>
+                {t('history')}
+              </Link>
+              <Link href={`/${locale}/rest`} className={cn(styles.Link, { [styles.Active]: pathname.startsWith(`/${locale}/rest`) })}>
+                Rest
+              </Link>
+              <Link href={`/${locale}/graphiql`} className={cn(styles.Link, { [styles.Active]: pathname.startsWith(`/${locale}/graphiql`) })}>
+                GraphiQL
+              </Link>
+
+              <Divider my="sm" />
+            </>
+          )}
+
+          <Group justify="center" grow pb="xl" px="md">
+            {children}
+          </Group>
+        </ScrollArea>
+      </Drawer>
+    </>
   );
 }

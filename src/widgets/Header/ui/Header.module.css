@@ -2,22 +2,51 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: var(--header-height);
   width: 100%;
-  background-color: var(--background-start);
-  padding: 20px;
-  flex-wrap: wrap;
+  background-color: #fff;
   position: fixed;
   top: 0;
   left: 0;
   transition: all 0.5s;
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  z-index: 10;
 }
 
-.childs {
+.Issticky {
+  border-bottom: rem(1px) solid var(--mantine-color-dark-1);
+  box-shadow: 0 0 5px 1px var(--mantine-color-dark-1);
+}
+
+.Nav {
+  flex-wrap: nowrap;
+}
+
+.Link {
   display: flex;
-  gap: 4rem;
+  align-items: center;
+  height: 100%;
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  text-decoration: none;
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-weight: 500;
+  font-size: var(--mantine-font-size-sm);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    height: rem(42px);
+    width: 100%;
+  }
+
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+  }
 }
 
-.issticky {
-  box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
-  background: #d4d3d2;
+.Active {
+  color: var(--mantine-color-teal-8);
+  background-color: var(--mantine-color-teal-0);
+  pointer-events: none;
 }

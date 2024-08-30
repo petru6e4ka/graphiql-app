@@ -5,7 +5,6 @@ import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
 import LocaleSwitcher from '@/features/localeSwitcher';
 import { AuthSwitcher, SessionWrapper } from '@/features/authSwitcher';
-import { AuthButtons } from '@/shared/ui/AuthButtons/AuthButtons';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import './globals.css';
@@ -39,7 +38,6 @@ export default async function RootLayout({
                 <Header>
                   <LocaleSwitcher />
                   <AuthSwitcher locale={locale} />
-                  <AuthButtons />
                 </Header>
               </header>
               <main>{children}</main>

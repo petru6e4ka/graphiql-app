@@ -1,22 +1,29 @@
 {
   "Main": {
     "content": "Startseite",
-    "welcome-non-auth": "Willkommen!",
-    "welcome-auth": "Willkommen zurück, ",
-    "rest": "REST-Client",
-    "graphiql": "GraphiQL-Client",
+    "welcome-image": "Willkommen",
+    "welcome-title": "Freut mich, Sie kennenzulernen!",
+    "welcome-text": "Bitte melden Sie sich an, um unseren REST- und GraphiQL-Client zu nutzen",
+    "welcome-text-user": "Beginnen wir mit der Anfrage",
+    "hello": "Hallo",
+    "user": "Benutzer",
+    "sign-up": "Anmelden",
+    "sign-in": "Einloggen",
+    "rest": "REST",
+    "graphiql": "GraphiQL",
     "history": "Verlauf"
   },
   "Header": {
-    "sign-up": "Anmelden",
-    "sign-in": "Einloggen",
-    "sign-out": "Ausloggen",
-    "toggle-lang": "Sprache wechseln",
     "langs": {
       "en": "Englisch",
       "ru": "Russisch",
       "de": "Deutsch"
-    }
+    },
+    "home": "Heim",
+    "history": "Geschichte",
+    "sign-up": "Anmelden",
+    "sign-in": "Einloggen",
+    "log-out": "Auswählen"
   },
   "Footer": {
     "creators": "Erstellt von",

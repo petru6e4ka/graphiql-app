@@ -3,7 +3,7 @@ import { Title, Button } from '@/shared/ui';
 
 import styles from './Rest.module.css';
 
-export default async function Rest() {
+export default function Rest() {
   const t = useTranslations('REST');
 
   return (

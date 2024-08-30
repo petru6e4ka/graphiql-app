@@ -1,12 +1,14 @@
 'use client';
 
-import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
-
-import styles from './AuthSwitcher.module.css';
+import { Button, Group } from '@/shared/ui';
+import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export function AuthSwitcher({ locale }: { locale: string }) {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
+  const router = useRouter();
+  const t = useTranslations('Header');
 
   const onSignOut = () => {
     signOut();
@@ -16,20 +18,32 @@ export function AuthSwitcher({ locale }: { locale: string }) {
 
   if (isLoggedIn) {
     return (
-      <div className={styles.AuthSwitcher}>
-        <p>{session?.user?.name}</p>
-        <button type="button" onClick={onSignOut}>
-          Log out
-        </button>
-      </div>
+      <Button size="md" variant="outline" onClick={onSignOut}>
+        {t('log-out')}
+      </Button>
     );
   }
 
   return (
-    <div className={styles.AuthSwitcher}>
-      <Link href={`/${locale}/signin`}>Sign in</Link>
-      <Link href={`/${locale}/signup`}>Sign up</Link>
-    </div>
+    <Group justify="center">
+      <Button
+        size="md"
+        variant="outline"
+        onClick={() => {
+          router.push(`/${locale}/signup`);
+        }}
+      >
+        {t('sign-up')}
+      </Button>
+      <Button
+        size="md"
+        onClick={() => {
+          router.push(`/${locale}/signin`);
+        }}
+      >
+        {t('sign-in')}
+      </Button>
+    </Group>
   );
 }
 

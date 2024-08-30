@@ -11,7 +11,7 @@ export function AuthSwitcher({ locale }: { locale: string }) {
   const t = useTranslations('Header');
 
   const onSignOut = () => {
-    signOut();
+    signOut({ redirect: true, callbackUrl: `/${locale}` });
   };
 
   const isLoggedIn = status === 'authenticated';

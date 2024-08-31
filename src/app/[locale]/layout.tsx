@@ -4,8 +4,9 @@ import { getMessages } from 'next-intl/server';
 import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
 import LocaleSwitcher from '@/features/localeSwitcher';
-import { AuthSwitcher, SessionWrapper } from '@/features/authSwitcher';
+import { AuthSwitcher, SessionWrapper, authOptions } from '@/features/authSwitcher';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { getServerSession } from 'next-auth';
 import '@mantine/core/styles.css';
 import './globals.css';
 
@@ -24,6 +25,7 @@ export default async function RootLayout({
   };
 }>) {
   const messages = await getMessages();
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">
@@ -35,9 +37,9 @@ export default async function RootLayout({
           <MantineProvider>
             <NextIntlClientProvider messages={messages}>
               <header>
-                <Header>
+                <Header locale={locale} session={session}>
                   <LocaleSwitcher />
-                  <AuthSwitcher locale={locale} />
+                  <AuthSwitcher locale={locale} session={session} />
                 </Header>
               </header>
               <main>{children}</main>

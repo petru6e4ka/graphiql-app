@@ -1,4 +1,17 @@
 .SignUp {
   text-align: center;
   margin: 0 auto;
+  padding-top: 50px;
+}
+
+.FormContainer {
+  width: 280px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }

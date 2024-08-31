@@ -51,7 +51,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
             Login with Google
           </Button>
 
-          <Group justify="space-between" mb={5}>
+          <Group justify="center" mb={5}>
             <Text size="sm" fw={500}>
               Not a member?
             </Text>

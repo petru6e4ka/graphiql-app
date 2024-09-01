@@ -1,4 +1,4 @@
-import { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions, User } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { FirestoreAdapter } from '@next-auth/firebase-adapter';
@@ -18,19 +18,26 @@ export const authOptions: NextAuthOptions = {
     }),
     CredentialsProvider({
       name: 'Credentials',
-      credentials: {},
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      async authorize(credentials): Promise<any> {
-        return signInWithEmailAndPassword(auth, (credentials as { email: string }).email || '', (credentials as { password: string }).password || '')
+      credentials: {
+        email: {},
+        password: {},
+      },
+      async authorize(credentials): Promise<User | null> {
+        return signInWithEmailAndPassword(auth, credentials!.email || '', credentials!.password || '')
           .then((userCredential) => {
             if (userCredential.user) {
-              return userCredential.user;
+              return { id: userCredential.user.uid, ...userCredential.user };
             }
+
             return null;
           })
-          .catch((error) => console.log(error))
           .catch((error) => {
             console.log(error);
+            return null;
+          })
+          .catch((error) => {
+            console.log(error);
+            return null;
           });
       },
     }),

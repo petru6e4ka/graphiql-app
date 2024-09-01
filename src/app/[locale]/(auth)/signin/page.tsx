@@ -38,6 +38,8 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
     }
   };
 
+  const signInWithGoogle = () => signIn('google', { callbackUrl: `/${locale}`, redirect: true });
+
   return (
     <div className={styles.signIn}>
       <Logo />
@@ -79,7 +81,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
             {t('signin')}
           </Button>
 
-          <Button variant="outline" size="md" onClick={() => signIn('google', { callbackUrl: `/${locale}`, redirect: true })} type="button">
+          <Button variant="outline" size="md" onClick={signInWithGoogle} type="button">
             {t('sign-in-with-google')}
           </Button>
 

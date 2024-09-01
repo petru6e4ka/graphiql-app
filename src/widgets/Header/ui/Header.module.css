@@ -1,4 +1,4 @@
-.Header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,16 +15,16 @@
   z-index: 10;
 }
 
-.Issticky {
+.isSticky {
   border-bottom: rem(1px) solid var(--mantine-color-dark-1);
   box-shadow: 0 0 5px 1px var(--mantine-color-dark-1);
 }
 
-.Nav {
+.nav {
   flex-wrap: nowrap;
 }
 
-.Link {
+.link {
   display: flex;
   align-items: center;
   height: 100%;
@@ -45,7 +45,7 @@
   }
 }
 
-.Active {
+.active {
   color: var(--mantine-color-teal-8);
   background-color: var(--mantine-color-teal-0);
   pointer-events: none;

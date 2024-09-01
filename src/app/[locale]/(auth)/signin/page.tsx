@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {
-  Anchor, Button, Group, Logo, PasswordInput, Space, Text, TextInput, Title,
+  Anchor, Button, Group, Logo, PasswordInput, Text, TextInput, Title,
 } from '@/shared/ui';
 import { signIn } from 'next-auth/react';
 import { isEmail, useForm } from '@mantine/form';
@@ -39,15 +39,13 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
   };
 
   return (
-    <div className={styles.SignIn}>
+    <div className={styles.signIn}>
       <Logo />
 
-      <Title>{t('signin')}</Title>
+      <Title className={styles.title}>{t('signin')}</Title>
 
-      <Space h="xl" />
-
-      <div className={styles.FormContainer}>
-        <form onSubmit={form.onSubmit(signInUser)} className={styles.Form}>
+      <div className={styles.formContainer}>
+        <form onSubmit={form.onSubmit(signInUser)} className={styles.form}>
           <TextInput
             withAsterisk
             label={t('email')}
@@ -61,7 +59,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
             <Group justify="space-between" mb={5}>
               <Text component="label" htmlFor="your-password" size="sm" fw={500}>
                 {t('password')}
-                <span className={styles.Asterisk}>*</span>
+                <span className={styles.asterisk}>*</span>
               </Text>
 
               <Anchor component={Link} href={`/${locale}/forgot-password`} pt={2} fw={500} fz="xs">

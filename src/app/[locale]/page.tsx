@@ -16,11 +16,11 @@ export default function Welcome({ params: locale }: { params: { locale: string }
   const userName = `${t('hello')}, ${session?.user?.name ? session.user.name : t('user')}!`;
 
   return (
-    <div className={styles.Inner}>
-      <div className={styles.Image}>{t('welcome-image')}</div>
-      <div className={styles.Content}>
-        <Title className={styles.Title}>{session?.user ? userName : t('welcome-title')}</Title>
-        <Text c="dimmed" size="lg" ta="center" className={styles.Description}>
+    <div className={styles.inner}>
+      <div className={styles.image}>{t('welcome-image')}</div>
+      <div className={styles.content}>
+        <Title className={styles.title}>{session?.user ? userName : t('welcome-title')}</Title>
+        <Text c="dimmed" size="lg" ta="center" className={styles.description}>
           {session?.user ? t('welcome-text-user') : t('welcome-text')}
         </Text>
         {session?.user ? (

@@ -1,16 +1,20 @@
-.SignUp {
+.signUp {
   text-align: center;
   margin: 0 auto;
   padding-top: 50px;
 }
 
-.FormContainer {
+.title {
+  margin-bottom: 35px;
+}
+
+.formContainer {
   width: 280px;
   margin: 0 auto;
   text-align: left;
 }
 
-.Form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 25px;

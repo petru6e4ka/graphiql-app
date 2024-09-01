@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/app/firebase';
 import {
-  Logo, TextInput, Button, PasswordWithRequirements, Title, Space,
+  Logo, TextInput, Button, PasswordWithRequirements, Title,
 } from '@/shared/ui';
 import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
@@ -40,15 +40,13 @@ export default function SignUp({ params: { locale } }: { params: { locale: strin
   };
 
   return (
-    <div className={styles.SignUp}>
+    <div className={styles.signUp}>
       <Logo />
 
-      <Title>{t('signup')}</Title>
+      <Title className={styles.title}>{t('signup')}</Title>
 
-      <Space h="xl" />
-
-      <div className={styles.FormContainer}>
-        <form onSubmit={form.onSubmit(registerNewUser)} className={styles.Form}>
+      <div className={styles.formContainer}>
+        <form onSubmit={form.onSubmit(registerNewUser)} className={styles.form}>
           <TextInput
             withAsterisk
             label={t('email')}

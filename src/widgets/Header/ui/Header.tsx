@@ -30,24 +30,24 @@ export function Header({ children, session, locale }: { children: ReactNode; ses
 
   return (
     <>
-      <div className={cn(styles.Header, { [styles.Issticky]: scrollY > 0 })}>
+      <div className={cn(styles.header, { [styles.isSticky]: scrollY > 0 })}>
         <Group justify="space-between" h="100%" w="100%">
           <Link href={`/${locale}`}>
             <Logo />
           </Link>
 
           {session?.user && (
-            <Group h="100%" gap={0} visibleFrom="md" className={styles.Nav}>
-              <Link href={`/${locale}`} className={cn(styles.Link, { [styles.Active]: pathname?.endsWith(`/${locale}`) })}>
+            <Group h="100%" gap={0} visibleFrom="md" className={styles.nav}>
+              <Link href={`/${locale}`} className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
                 {t('home')}
               </Link>
-              <Link href={`/${locale}/history`} className={cn(styles.Link, { [styles.Active]: pathname?.startsWith(`/${locale}/history`) })}>
+              <Link href={`/${locale}/history`} className={cn(styles.link, { [styles.active]: pathname?.startsWith(`/${locale}/history`) })}>
                 {t('history')}
               </Link>
-              <Link href={`/${locale}/rest`} className={cn(styles.Link, { [styles.Active]: pathname?.startsWith(`/${locale}/rest`) })}>
+              <Link href={`/${locale}/rest`} className={cn(styles.link, { [styles.active]: pathname?.startsWith(`/${locale}/rest`) })}>
                 REST
               </Link>
-              <Link href={`/${locale}/graphiql`} className={cn(styles.Link, { [styles.Active]: pathname?.startsWith(`/${locale}/graphiql`) })}>
+              <Link href={`/${locale}/graphiql`} className={cn(styles.link, { [styles.active]: pathname?.startsWith(`/${locale}/graphiql`) })}>
                 GraphiQL
               </Link>
             </Group>
@@ -77,16 +77,16 @@ export function Header({ children, session, locale }: { children: ReactNode; ses
 
           {session?.user && (
             <>
-              <Link href={`/${locale}`} className={cn(styles.Link, { [styles.Active]: pathname?.endsWith(`/${locale}`) })}>
+              <Link href={`/${locale}`} className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
                 {t('home')}
               </Link>
-              <Link href={`/${locale}/history`} className={cn(styles.Link, { [styles.Active]: pathname.startsWith(`/${locale}/history`) })}>
+              <Link href={`/${locale}/history`} className={cn(styles.link, { [styles.active]: pathname.startsWith(`/${locale}/history`) })}>
                 {t('history')}
               </Link>
-              <Link href={`/${locale}/rest`} className={cn(styles.Link, { [styles.Active]: pathname.startsWith(`/${locale}/rest`) })}>
+              <Link href={`/${locale}/rest`} className={cn(styles.link, { [styles.active]: pathname.startsWith(`/${locale}/rest`) })}>
                 Rest
               </Link>
-              <Link href={`/${locale}/graphiql`} className={cn(styles.Link, { [styles.Active]: pathname.startsWith(`/${locale}/graphiql`) })}>
+              <Link href={`/${locale}/graphiql`} className={cn(styles.link, { [styles.active]: pathname.startsWith(`/${locale}/graphiql`) })}>
                 GraphiQL
               </Link>
 

@@ -1,13 +1,13 @@
-.Root {
+.root {
   padding-top: rem(80px);
   padding-bottom: rem(80px);
 }
 
-.Inner {
+.inner {
   position: relative;
 }
 
-.Image {
+.image {
   position: absolute;
   opacity: 0.75;
   color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
@@ -23,13 +23,13 @@
   text-align: center;
 }
 
-.Content {
+.content {
   padding-top: rem(220px);
   position: relative;
   z-index: 1;
 }
 
-.Title {
+.title {
   font-family:
     Greycliff CF,
     var(--mantine-font-family);
@@ -42,7 +42,7 @@
   }
 }
 
-.Description {
+.description {
   max-width: rem(540px);
   margin: auto;
   margin-top: var(--mantine-spacing-xl);

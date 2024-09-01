@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  Logo, Button, Title, Space, TextInput,
+  Logo, Button, Title, TextInput,
 } from '@/shared/ui';
 import { useForm, isEmail } from '@mantine/form';
 import { useTranslations } from 'next-intl';
@@ -31,15 +31,13 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className={styles.ForgotPassword}>
+    <div className={styles.forgotPassword}>
       <Logo />
 
-      <Title>{t('forgot_password')}</Title>
+      <Title className={styles.title}>{t('forgot_password')}</Title>
 
-      <Space h="xl" />
-
-      <div className={styles.FormContainer}>
-        <form onSubmit={form.onSubmit(resetPassword)} className={styles.Form}>
+      <div className={styles.formContainer}>
+        <form onSubmit={form.onSubmit(resetPassword)} className={styles.form}>
           <TextInput
             withAsterisk
             label={t('email')}

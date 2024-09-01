@@ -3,6 +3,7 @@
 import {
   Group, PasswordInput, Text, Box, Center, Progress,
 } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 
 export function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
   return (
@@ -13,12 +14,6 @@ export function PasswordRequirement({ meets, label }: { meets: boolean; label: s
     </Text>
   );
 }
-
-const requirements = [
-  { re: /[0-9]/, label: 'Includes number' },
-  { re: /\p{Letter}/u, label: 'Includes letter' },
-  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: 'Includes special symbol' },
-];
 
 const getColor = (strength: number) => {
   if (strength > 80) {
@@ -31,18 +26,6 @@ const getColor = (strength: number) => {
 
   return 'red';
 };
-
-function getStrength(password: string) {
-  let multiplier = password.length > 7 ? 0 : 1;
-
-  requirements.forEach((requirement) => {
-    if (!requirement.re.test(password)) {
-      multiplier += 1;
-    }
-  });
-
-  return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 0);
-}
 
 type Props = {
   onChange: () => void;
@@ -58,8 +41,29 @@ type Props = {
 export function PasswordWithRequirements({
   onChange, value, defaultValue, checked, error, styles, onFocus, onBlur,
 }: Props) {
+  const t = useTranslations('Forms');
+
+  const requirements = [
+    { re: /[0-9]/, label: t('has_number') },
+    { re: /\p{Letter}/u, label: t('has_letter') },
+    { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: t('has_special_char') },
+  ];
+
+  function getStrength(password: string) {
+    let multiplier = password.length > 7 ? 0 : 1;
+
+    requirements.forEach((requirement) => {
+      if (!requirement.re.test(password)) {
+        multiplier += 1;
+      }
+    });
+
+    return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 0);
+  }
+
   const password = value || '';
   const strength = getStrength(password);
+
   const checks = requirements.map((requirement) => (
     <PasswordRequirement key={requirement.label} label={requirement.label} meets={requirement.re.test(password)} />
   ));
@@ -77,8 +81,8 @@ export function PasswordWithRequirements({
       <PasswordInput
         value={password}
         onChange={onChange}
-        placeholder="Your password"
-        label="Password"
+        placeholder={t('password')}
+        label={t('password')}
         required
         defaultValue={defaultValue}
         checked={checked}
@@ -92,7 +96,7 @@ export function PasswordWithRequirements({
         {bars}
       </Group>
 
-      <PasswordRequirement label="Has at least 8 characters" meets={password.length > 7} />
+      <PasswordRequirement label={t('has_length')} meets={password.length > 7} />
       {checks}
     </div>
   );

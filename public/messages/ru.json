@@ -29,16 +29,24 @@
     "creators": "Создано",
     "rss-sign": "© RSSchool 2024"
   },
-  "SignUp": {
-    "title": "Зарегистрироваться",
-    "input-email": "Ваш email",
-    "input-password": "Ваш пароль",
-    "input-password-again": "Ваш пароль еще раз"
-  },
-  "SignIn": {
-    "title": "Войти",
-    "input-email": "Ваш email",
-    "input-password": "Ваш пароль"
+  "Forms": {
+    "forgot_password": "Восстановить пароль",
+    "invalid_email": "Невалидный email",
+    "email": "Ваш email",
+    "your_email": "ВашEmail@email.com",
+    "submit_reset": "Отправить",
+    "signup": "Зарегистрироваться",
+    "password": "Ваш пароль",
+    "name": "Имя",
+    "signin": "Войти",
+    "forgot_question": "Забыли пароль?",
+    "invalid_password": "Невалидный пароль",
+    "sign_in_with_google": "Войти с помощью Google",
+    "not_member_question": "Не зарегистрированы?",
+    "has_number": "Есть цифра",
+    "has_letter": "Есть буква",
+    "has_special_char": "Есть специальный символ",
+    "has_length": "Имеет длинну минимум 8 символов"
   },
   "NoResponse": {
     "msg": "Вы не выполнили ни одного запроса. Пустота. Попробуйте: ",

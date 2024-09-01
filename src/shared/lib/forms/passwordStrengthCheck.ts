@@ -1,18 +1,18 @@
-export const passwordStrengthCheck = (value: string) => {
+export const passwordStrengthCheck = (invalidMessage: string) => (value: string) => {
   if (value.length < 8) {
-    return 'Invalid password';
+    return invalidMessage;
   }
 
   if (!/[0-9]/.test(value)) {
-    return 'Invalid password';
+    return invalidMessage;
   }
 
   if (!/\p{Letter}/u.test(value)) {
-    return 'Invalid password';
+    return invalidMessage;
   }
 
   if (!/[$&+,:;=?@#|'<>.^*()%!-]/.test(value)) {
-    return 'Invalid password';
+    return invalidMessage;
   }
 
   return null;

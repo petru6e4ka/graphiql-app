@@ -29,18 +29,24 @@
     "creators": "Created by ",
     "rss-sign": "© RSSchool 2024"
   },
-  "SignUp": {
-    "title": "Sign Up",
-    "input-email": "Your email",
-    "input-password": "Your password",
-    "input-password-again": "Your password again",
-    "input-submit": "Sign Up"
-  },
-  "SignIn": {
-    "title": "Sign In",
-    "input-email": "Your email",
-    "input-password": "Your password",
-    "input-submit": "Sign In"
+  "Forms": {
+    "forgot_password": "Forgot password",
+    "invalid_email": "Invalid email",
+    "email": "Your Email",
+    "your_email": "YourEmail@email.com",
+    "submit_reset": "Submit",
+    "signup": "Sign up",
+    "password": "Your password",
+    "name": "Name",
+    "signin": "Sign in",
+    "forgot_question": "Forgot password?",
+    "invalid_password": "Invalid password",
+    "sign_in_with_google": "Sign in with Google",
+    "not_member_question": "Not a member?",
+    "has_number": "Includes number",
+    "has_letter": "Includes letter",
+    "has_special_char": "Includes special symbol",
+    "has_length": "Has at least 8 characters"
   },
   "NoResponse": {
     "msg": "You haven't executed any requests. It's empty here. Try: ",

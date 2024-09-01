@@ -12,7 +12,7 @@ import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithEr
 import styles from './SignIn.module.css';
 
 export default function SignIn({ params: { locale } }: { params: { locale: string } }) {
-  const t = useTranslations('SignIn');
+  const t = useTranslations('Forms');
 
   const form = useForm({
     mode: 'controlled',
@@ -21,8 +21,8 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
       password: '',
     },
     validate: {
-      email: isEmail('Invalid email'),
-      password: passwordStrengthCheck,
+      email: isEmail(t('invalid_email')),
+      password: passwordStrengthCheck(t('invalid_password')),
     },
     validateInputOnBlur: true,
   });
@@ -35,7 +35,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
     <div className={styles.SignIn}>
       <Logo />
 
-      <Title>{t('title')}</Title>
+      <Title>{t('signin')}</Title>
 
       <Space h="xl" />
 
@@ -43,8 +43,8 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
         <form onSubmit={form.onSubmit(signInUser)} className={styles.Form}>
           <TextInput
             withAsterisk
-            label="Email"
-            placeholder="your@email.com"
+            label={t('email')}
+            placeholder={t('your_email')}
             required
             {...form.getInputProps('email')}
             styles={stylesForFieldWithError}
@@ -53,16 +53,16 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
           <div>
             <Group justify="space-between" mb={5}>
               <Text component="label" htmlFor="your-password" size="sm" fw={500}>
-                Your password
+                {t('password')}
                 <span className={styles.Asterisk}>*</span>
               </Text>
 
               <Anchor component={Link} href={`/${locale}/forgot-password`} pt={2} fw={500} fz="xs">
-                Forgot your password?
+                {t('forgot_question')}
               </Anchor>
             </Group>
             <PasswordInput
-              placeholder="Your password"
+              placeholder={t('password')}
               id="your-password"
               required
               {...form.getInputProps('password')}
@@ -71,20 +71,20 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
           </div>
 
           <Button type="submit" size="md">
-            Submit
+            {t('signin')}
           </Button>
 
           <Button variant="outline" size="md" onClick={() => signIn('google', { callbackUrl: `/${locale}`, redirect: true })} type="button">
-            Login with Google
+            {t('sign_in_with_google')}
           </Button>
 
           <Group justify="center" mb={5}>
             <Text size="sm" fw={500}>
-              Not a member?
+              {t('not_member_question')}
             </Text>
 
             <Anchor component={Link} href={`/${locale}/signup`} pt={2} fw={500} fz="xs">
-              Sign up
+              {t('signup')}
             </Anchor>
           </Group>
         </form>

@@ -10,7 +10,7 @@ import { hideErrorMessage, stylesForFieldWithError } from '@/shared/lib/forms/st
 import styles from './SignUp.module.css';
 
 export default function SignUp() {
-  const t = useTranslations('SignUp');
+  const t = useTranslations('Forms');
 
   const form = useForm({
     mode: 'controlled',
@@ -21,7 +21,7 @@ export default function SignUp() {
     },
     validate: {
       email: isEmail('Invalid email'),
-      password: passwordStrengthCheck,
+      password: passwordStrengthCheck(t('invalid_password')),
     },
     validateInputOnBlur: true,
   });
@@ -34,27 +34,27 @@ export default function SignUp() {
     <div className={styles.SignUp}>
       <Logo />
 
-      <Title>{t('title')}</Title>
+      <Title>{t('signup')}</Title>
 
       <Space h="xl" />
 
       <div className={styles.FormContainer}>
         <form onSubmit={form.onSubmit(registerNewUser)} className={styles.Form}>
-          <TextInput label="Name" placeholder="Name" {...form.getInputProps('name')} />
+          <TextInput label={t('name')} placeholder={t('name')} {...form.getInputProps('name')} />
 
           <TextInput
             withAsterisk
-            label="Email"
-            placeholder="your@email.com"
+            label={t('email')}
+            placeholder={t('your_email')}
             required
             {...form.getInputProps('email')}
             styles={stylesForFieldWithError}
           />
 
-          <PasswordWithRequirements {...form.getInputProps('password')} {...form.getInputProps('password')} styles={hideErrorMessage} />
+          <PasswordWithRequirements {...form.getInputProps('password')} styles={hideErrorMessage} />
 
           <Button type="submit" size="md">
-            Submit
+            {t('signup')}
           </Button>
         </form>
       </div>

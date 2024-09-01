@@ -29,18 +29,24 @@
     "creators": "Erstellt von",
     "rss-sign": "© RSSchool 2024"
   },
-  "SignUp": {
-    "title": "Anmelden",
-    "input-email": "Ihre E-Mail",
-    "input-password": "Ihr Passwort",
-    "input-password-again": "Ihr Passwort erneut",
-    "input-submit": "Anmelden"
-  },
-  "SignIn": {
-    "title": "Einloggen",
-    "input-email": "Ihre E-Mail",
-    "input-password": "Ihr Passwort",
-    "input-submit": "Einloggen"
+  "Forms": {
+    "forgot_password": "Passwort vergessen",
+    "invalid_email": "Ungültige E-Mail",
+    "email": "Ihre E-Mail",
+    "your_email": "IhreEMail@email.com",
+    "submit_reset": "Senden",
+    "signup": "Anmelden",
+    "password": "Ihr Passwort",
+    "name": "Name",
+    "signin": "Anmelden",
+    "forgot_question": "Passwort vergessen?",
+    "invalid_password": "Ungültige passwort",
+    "sign_in_with_google": "Mit Google anmelden",
+    "not_member_question": "Noch kein Mitglied?",
+    "has_number": "Inklusive Nummer",
+    "has_letter": "Inklusive Brief",
+    "has_special_char": "Es handelt sich um ein spezielles Symbol",
+    "has_length": "Hat mindestens 8 Zeichen"
   },
   "NoResponse": {
     "msg": "Sie haben keine Anfragen ausgeführt. Es ist leer hier. Versuchen Sie: ",

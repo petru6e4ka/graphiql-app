@@ -4,19 +4,20 @@ import {
   Logo, Button, Title, Space, TextInput,
 } from '@/shared/ui';
 import { useForm, isEmail } from '@mantine/form';
+import { useTranslations } from 'next-intl';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import styles from './ForgotPassword.module.css';
 
-// { params: { locale } }: { params: { locale: string } }
-
 export default function ForgotPassword() {
+  const t = useTranslations('Forms');
+
   const form = useForm({
     mode: 'controlled',
     initialValues: {
       email: '',
     },
     validate: {
-      email: isEmail('Invalid email'),
+      email: isEmail(t('invalid_email')),
     },
     validateInputOnBlur: true,
   });
@@ -29,11 +30,7 @@ export default function ForgotPassword() {
     <div className={styles.ForgotPassword}>
       <Logo />
 
-      <Title>
-        Forgot
-        <Space />
-        password?
-      </Title>
+      <Title>{t('forgot_password')}</Title>
 
       <Space h="xl" />
 
@@ -41,15 +38,15 @@ export default function ForgotPassword() {
         <form onSubmit={form.onSubmit(resetPassword)} className={styles.Form}>
           <TextInput
             withAsterisk
-            label="Email"
-            placeholder="your@email.com"
+            label={t('email')}
+            placeholder={t('your_email')}
             required
             {...form.getInputProps('email')}
             styles={stylesForFieldWithError}
           />
 
           <Button type="submit" size="md">
-            Submit
+            {t('submit_reset')}
           </Button>
         </form>
       </div>

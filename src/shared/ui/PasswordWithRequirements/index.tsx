@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import {
   Group, PasswordInput, Text, Box, Center, Progress,
 } from '@mantine/core';
@@ -45,9 +44,21 @@ function getStrength(password: string) {
   return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 0);
 }
 
-export function PasswordWithRequirements() {
-  const [password, setPassword] = useState('');
+type Props = {
+  onChange: () => void;
+  value?: string;
+  defaultValue?: string;
+  checked?: boolean;
+  error?: string;
+  styles: object;
+  onFocus?: () => void;
+  onBlur?: () => void;
+};
 
+export function PasswordWithRequirements({
+  onChange, value, defaultValue, checked, error, styles, onFocus, onBlur,
+}: Props) {
+  const password = value || '';
   const strength = getStrength(password);
   const checks = requirements.map((requirement) => (
     <PasswordRequirement key={requirement.label} label={requirement.label} meets={requirement.re.test(password)} />
@@ -65,19 +76,23 @@ export function PasswordWithRequirements() {
     <div>
       <PasswordInput
         value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
+        onChange={onChange}
         placeholder="Your password"
         label="Password"
         required
+        defaultValue={defaultValue}
+        checked={checked}
+        error={error}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        styles={styles}
       />
 
       <Group gap={5} grow mt="xs" mb="md">
         {bars}
       </Group>
 
-      <PasswordRequirement label="Has at least 6 characters" meets={password.length > 5} />
+      <PasswordRequirement label="Has at least 8 characters" meets={password.length > 7} />
       {checks}
     </div>
   );

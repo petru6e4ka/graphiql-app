@@ -18,4 +18,6 @@
 
 .Asterisk {
   color: var(--input-asterisk-color, var(--mantine-color-error));
+  display: inline-block;
+  padding-left: 4px;
 }

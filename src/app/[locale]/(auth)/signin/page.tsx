@@ -3,13 +3,33 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {
-  Anchor, Button, EmailInput, Group, Logo, PasswordInput, Space, Text, Title,
+  Anchor, Button, Group, Logo, PasswordInput, Space, Text, TextInput, Title,
 } from '@/shared/ui';
 import { signIn } from 'next-auth/react';
+import { isEmail, useForm } from '@mantine/form';
+import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
+import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import styles from './SignIn.module.css';
 
 export default function SignIn({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('SignIn');
+
+  const form = useForm({
+    mode: 'controlled',
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validate: {
+      email: isEmail('Invalid email'),
+      password: passwordStrengthCheck,
+    },
+    validateInputOnBlur: true,
+  });
+
+  const signInUser = (data: typeof form.values | null) => {
+    console.log(data);
+  };
 
   return (
     <div className={styles.SignIn}>
@@ -20,14 +40,15 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
       <Space h="xl" />
 
       <div className={styles.FormContainer}>
-        <form
-          action="#"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-          className={styles.Form}
-        >
-          <EmailInput />
+        <form onSubmit={form.onSubmit(signInUser)} className={styles.Form}>
+          <TextInput
+            withAsterisk
+            label="Email"
+            placeholder="your@email.com"
+            required
+            {...form.getInputProps('email')}
+            styles={stylesForFieldWithError}
+          />
 
           <div>
             <Group justify="space-between" mb={5}>
@@ -40,7 +61,13 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
                 Forgot your password?
               </Anchor>
             </Group>
-            <PasswordInput placeholder="Your password" id="your-password" required />
+            <PasswordInput
+              placeholder="Your password"
+              id="your-password"
+              required
+              {...form.getInputProps('password')}
+              styles={stylesForFieldWithError}
+            />
           </div>
 
           <Button type="submit" size="md">

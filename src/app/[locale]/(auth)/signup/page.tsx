@@ -2,19 +2,33 @@
 
 import { useTranslations } from 'next-intl';
 import {
-  Logo, PasswordInput, TextInput, Button, PasswordWithRequirements, EmailInput, Title, Space,
+  Logo, TextInput, Button, PasswordWithRequirements, Title, Space,
 } from '@/shared/ui';
+import { isEmail, useForm } from '@mantine/form';
+import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
+import { hideErrorMessage, stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import styles from './SignUp.module.css';
 
 export default function SignUp() {
   const t = useTranslations('SignUp');
-  // Client-side validation should be implemented
-  // (email and
-  // password strength - minimum 8 symbols,
-  // at least one letter,
-  // one digit,
-  // one special character,
-  // Unicode passwords must be supported)
+
+  const form = useForm({
+    mode: 'controlled',
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    validate: {
+      email: isEmail('Invalid email'),
+      password: passwordStrengthCheck,
+    },
+    validateInputOnBlur: true,
+  });
+
+  const registerNewUser = (data: typeof form.values | null) => {
+    console.log(data);
+  };
 
   return (
     <div className={styles.SignUp}>
@@ -25,20 +39,19 @@ export default function SignUp() {
       <Space h="xl" />
 
       <div className={styles.FormContainer}>
-        <form
-          action="#"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-          className={styles.Form}
-        >
-          <TextInput label="Name" placeholder="Name" />
+        <form onSubmit={form.onSubmit(registerNewUser)} className={styles.Form}>
+          <TextInput label="Name" placeholder="Name" {...form.getInputProps('name')} />
 
-          <EmailInput />
+          <TextInput
+            withAsterisk
+            label="Email"
+            placeholder="your@email.com"
+            required
+            {...form.getInputProps('email')}
+            styles={stylesForFieldWithError}
+          />
 
-          <PasswordWithRequirements />
-
-          <PasswordInput placeholder="Repeat password" label="Repeat password" required />
+          <PasswordWithRequirements {...form.getInputProps('password')} {...form.getInputProps('password')} styles={hideErrorMessage} />
 
           <Button type="submit" size="md">
             Submit

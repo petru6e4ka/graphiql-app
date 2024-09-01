@@ -43,6 +43,7 @@ export default function ForgotPassword() {
             required
             {...form.getInputProps('email')}
             styles={stylesForFieldWithError}
+            aria-label={t('email')}
           />
 
           <Button type="submit" size="md">

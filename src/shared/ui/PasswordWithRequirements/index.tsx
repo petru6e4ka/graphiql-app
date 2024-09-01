@@ -44,9 +44,9 @@ export function PasswordWithRequirements({
   const t = useTranslations('Forms');
 
   const requirements = [
-    { re: /[0-9]/, label: t('has_number') },
-    { re: /[A-Za-z\u0400-\u04FF]/, label: t('has_letter') },
-    { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: t('has_special_char') },
+    { re: /[0-9]/, label: t('has-number') },
+    { re: /[A-Za-z\u0400-\u04FF]/, label: t('has-letter') },
+    { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: t('has-special-char') },
   ];
 
   function getStrength(password: string) {
@@ -96,7 +96,7 @@ export function PasswordWithRequirements({
         {bars}
       </Group>
 
-      <PasswordRequirement label={t('has_length')} meets={password.length > 7} />
+      <PasswordRequirement label={t('has-length')} meets={password.length > 7} />
       {checks}
     </div>
   );

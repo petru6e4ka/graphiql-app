@@ -22,7 +22,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
     },
     validate: {
       email: isEmail(t('invalid_email')),
-      password: passwordStrengthCheck(t('invalid_password')),
+      password: passwordStrengthCheck(t('invalid-password')),
     },
     validateInputOnBlur: true,
   });
@@ -30,7 +30,10 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
   const signInUser = (data: typeof form.values | null) => {
     if (data) {
       signIn('credentials', {
-        email: data.email, password: data.password, redirect: true, callbackUrl: '/',
+        email: data.email,
+        password: data.password,
+        redirect: true,
+        callbackUrl: '/',
       });
     }
   };
@@ -48,7 +51,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
           <TextInput
             withAsterisk
             label={t('email')}
-            placeholder={t('your_email')}
+            placeholder={t('your-email')}
             required
             {...form.getInputProps('email')}
             styles={stylesForFieldWithError}
@@ -62,7 +65,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
               </Text>
 
               <Anchor component={Link} href={`/${locale}/forgot-password`} pt={2} fw={500} fz="xs">
-                {t('forgot_question')}
+                {t('forgot-question')}
               </Anchor>
             </Group>
             <PasswordInput
@@ -79,12 +82,12 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
           </Button>
 
           <Button variant="outline" size="md" onClick={() => signIn('google', { callbackUrl: `/${locale}`, redirect: true })} type="button">
-            {t('sign_in_with_google')}
+            {t('sign-in-with-google')}
           </Button>
 
           <Group justify="center" mb={5}>
             <Text size="sm" fw={500}>
-              {t('not_member_question')}
+              {t('not-member-question')}
             </Text>
 
             <Anchor component={Link} href={`/${locale}/signup`} pt={2} fw={500} fz="xs">

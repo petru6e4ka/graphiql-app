@@ -23,8 +23,8 @@ export default function SignUp({ params: { locale } }: { params: { locale: strin
       password: '',
     },
     validate: {
-      email: isEmail('Invalid email'),
-      password: passwordStrengthCheck(t('invalid_password')),
+      email: isEmail(t('invalid_email')),
+      password: passwordStrengthCheck(t('invalid-password')),
     },
     validateInputOnBlur: true,
   });
@@ -52,7 +52,7 @@ export default function SignUp({ params: { locale } }: { params: { locale: strin
           <TextInput
             withAsterisk
             label={t('email')}
-            placeholder={t('your_email')}
+            placeholder={t('your-email')}
             required
             {...form.getInputProps('email')}
             styles={stylesForFieldWithError}

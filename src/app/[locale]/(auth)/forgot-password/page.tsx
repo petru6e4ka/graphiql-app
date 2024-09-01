@@ -43,7 +43,7 @@ export default function ForgotPassword() {
           <TextInput
             withAsterisk
             label={t('email')}
-            placeholder={t('your_email')}
+            placeholder={t('your-email')}
             required
             {...form.getInputProps('email')}
             styles={stylesForFieldWithError}
@@ -51,7 +51,7 @@ export default function ForgotPassword() {
           />
 
           <Button type="submit" size="md">
-            {t('submit_reset')}
+            {t('submit-reset')}
           </Button>
         </form>
       </div>

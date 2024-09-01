@@ -26,12 +26,16 @@
       "title": "Зарегистрироваться",
       "input-email": "Ваш email",
       "input-password": "Ваш пароль",
-      "input-password-again": "Ваш пароль еще раз"
+      "input-password-again": "Ваш пароль еще раз",
+      "input-submit": "Зарегистрироваться",
+      "success": "Вы успешно зарегистрировались!"
     },
     "SignIn": {
       "title": "Войти",
       "input-email": "Ваш email",
-      "input-password": "Ваш пароль"
+      "input-password": "Ваш пароль",
+      "input-submit": "Войти",
+      "success": "Вы успешно вошли в аккаунт!"
     },
     "NoResponse": {
       "msg": "Вы не выполнили ни одного запроса. Пустота. Попробуйте: ",
@@ -67,15 +71,24 @@
       "title": "История запросов: "
     },
     "Error": {
-    "404": {
-      "title": "Похоже, Вы заблудились.",
-      "heading": "Веб-страница не найдена. Возможно, вы искали что-то другое?",
-      "back": "Вернуться"
+        "404": {
+          "title": "Похоже, Вы заблудились.",
+          "heading": "Веб-страница не найдена. Возможно, вы искали что-то другое?",
+          "back": "Вернуться"
+        },
+        "Boundary": {
+          "title": "Это Error Boundary",
+          "heading": "",
+          "back": "Вернуться"
+        }
     },
-    "Boundary": {
-      "title": "Это Error Boundary",
-      "heading": "",
-      "back": "Вернуться"
+    "ErrorNotify": {
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "403": "Forbidden",
+      "500": "Internal Server Error",
+      "502": "Bad Gateway",
+      "503": "Service Unavailable",
+      "504": "Gateway Timeout"
     }
-  }
 }  

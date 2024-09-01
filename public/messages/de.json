@@ -27,13 +27,15 @@
     "input-email": "Ihre E-Mail",
     "input-password": "Ihr Passwort",
     "input-password-again": "Ihr Passwort erneut",
-    "input-submit": "Anmelden"
+    "input-submit": "Anmelden",
+    "success": "Ihre Anmeldung war ein Erfolg!"
   },
   "SignIn": {
     "title": "Einloggen",
     "input-email": "Ihre E-Mail",
     "input-password": "Ihr Passwort",
-    "input-submit": "Einloggen"
+    "input-submit": "Einloggen",
+    "success": "Sie haben sich erfolgreich eingeloggt!"
   },
   "NoResponse": {
     "msg": "Sie haben keine Anfragen ausgeführt. Es ist leer hier. Versuchen Sie: ",
@@ -79,5 +81,14 @@
       "heading": "",
       "back": "Zurückgehen"
     }
-  }
+  },
+  "ErrorNotify": {
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "403": "Forbidden",
+      "500": "Internal Server Error",
+      "502": "Bad Gateway",
+      "503": "Service Unavailable",
+      "504": "Gateway Timeout"
+    }
 }

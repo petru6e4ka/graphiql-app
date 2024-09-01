@@ -1,39 +1,52 @@
 {
   "Main": {
     "content": "Home",
-    "welcome-non-auth": "Welcome!",
-    "welcome-auth": "Welcome back, ",
-    "rest": "REST Client",
-    "graphiql": "GraphiQL Client",
+    "welcome-image": "Welcome",
+    "welcome-title": "Nice to meet you!",
+    "welcome-text": "Lets auth! And feel free to use our REST and GraphiQL client",
+    "welcome-text-user": "Let's start making requests",
+    "hello": "Hello",
+    "user": "User",
+    "sign-up": "Sign up",
+    "sign-in": "Sign in",
+    "rest": "REST",
+    "graphiql": "GraphiQL",
     "history": "History"
   },
   "Header": {
-    "sign-up": "Sign Up",
-    "sign-in": "Sign In",
-    "sign-out": "Sign Out",
-    "toggle-lang": "Language Toggle",
     "langs": {
       "en": "English",
       "ru": "Russian",
       "de": "German"
-    }
+    },
+    "home": "Home",
+    "history": "History",
+    "sign-up": "Sign up",
+    "sign-in": "Sign in",
+    "log-out": "Log out"
   },
   "Footer": {
     "creators": "Created by ",
     "rss-sign": "© RSSchool 2024"
   },
-  "SignUp": {
-    "title": "Sign Up",
-    "input-email": "Your email",
-    "input-password": "Your password",
-    "input-password-again": "Your password again",
-    "input-submit": "Sign Up"
-  },
-  "SignIn": {
-    "title": "Sign In",
-    "input-email": "Your email",
-    "input-password": "Your password",
-    "input-submit": "Sign In"
+  "Forms": {
+    "forgot_password": "Forgot password",
+    "invalid_email": "Invalid email",
+    "email": "Your Email",
+    "your-email": "YourEmail@email.com",
+    "submit-reset": "Submit",
+    "signup": "Sign up",
+    "password": "Your password",
+    "name": "Name",
+    "signin": "Sign in",
+    "forgot-question": "Forgot password?",
+    "invalid-password": "Invalid password",
+    "sign-in-with-google": "Sign in with Google",
+    "not-member-question": "Not a member?",
+    "has-number": "Includes number",
+    "has-letter": "Includes letter",
+    "has-special-char": "Includes special symbol",
+    "has-length": "Has at least 8 characters"
   },
   "NoResponse": {
     "msg": "You haven't executed any requests. It's empty here. Try: ",

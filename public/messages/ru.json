@@ -1,72 +1,87 @@
 {
-    "Main": {
-      "content": "Домой",
-      "welcome-non-auth": "Добро пожаловать!",
-      "welcome-auth": "С возвращением, ",
-      "rest": "REST Клиент",
-      "graphiql": "GraphiQL Клиент",
-      "history": "История"
+  "Main": {
+    "content": "Домой",
+    "welcome-image": "Приветствуем",
+    "welcome-title": "Рады вас видеть!",
+    "welcome-text": "Авторизуйтесь пожалуйста, чтоб использовать наш REST и GraphiQL клиент",
+    "welcome-text-user": "Можно приступать к реквестам",
+    "hello": "Здравствуйте",
+    "user": "Пользователь",
+    "sign-up": "Зарегистрироваться",
+    "sign-in": "Войти",
+    "rest": "REST",
+    "graphiql": "GraphiQL",
+    "history": "История"
+  },
+  "Header": {
+    "langs": {
+      "en": "Английский",
+      "ru": "Русский",
+      "de": "Немецкий"
     },
-    "Header": {
-      "sign-up": "Зарегистрироваться",
-      "sign-in": "Войти",
-      "sign-out": "Выйти",
-      "toggleLang": "Переключение языка",
-      "langs": {
-        "en": "Английский",
-        "ru": "Русский",
-        "de": "Немецкий"
-      }
-    },
-    "Footer": {
-      "creators": "Создано",
-      "rss-sign": "© RSSchool 2024"
-    },
-    "SignUp": {
-      "title": "Зарегистрироваться",
-      "input-email": "Ваш email",
-      "input-password": "Ваш пароль",
-      "input-password-again": "Ваш пароль еще раз"
-    },
-    "SignIn": {
-      "title": "Войти",
-      "input-email": "Ваш email",
-      "input-password": "Ваш пароль"
-    },
-    "NoResponse": {
-      "msg": "Вы не выполнили ни одного запроса. Пустота. Попробуйте: ",
-      "rest": "REST Клиент",
-      "graphiql": "GraphiQL Клиент"
-    },
-    "REST": {
-      "title": "REST Клиент",
-      "method": "Метод: ",
-      "url": "URL конечной точки: ",
-      "headers": "Заголовки: ",
-      "header-key": "Ключ заголовка: ",
-      "header-value": "Значение заголовка: ",
-      "body": "Тело: ",
-      "title-response": "Ответ: ",
-      "status": "Статус: "
-    },
-    "GraphiQL": {
-      "title": "GraphiQL Клиент",
-      "url": "URL конечной точки: ",
-      "sdl": "URL SDL: ",
-      "headers": "Заголовки: ",
-      "header-key": "Ключ заголовка: ",
-      "header-value": "Значение заголовка: ",
-      "query": "Запрос: ",
-      "variables": "Переменные: ",
-      "body": "Тело: ",
-      "title-response": "Ответ: ",
-      "status": "Статус: ",
-      "documentation": "Документация: "
-    },
-    "History": {
-      "title": "История запросов: "
-    },
-    "Error": {
+    "home": "Главная",
+    "history": "История",
+    "sign-up": "Зарегистрироваться",
+    "sign-in": "Войти",
+    "log-out": "Выйти"
+  },
+  "Footer": {
+    "creators": "Создано",
+    "rss-sign": "© RSSchool 2024"
+  },
+  "Forms": {
+    "forgot_password": "Восстановить пароль",
+    "invalid_email": "Невалидный email",
+    "email": "Ваш email",
+    "your-email": "ВашEmail@email.com",
+    "submit-reset": "Отправить",
+    "signup": "Зарегистрироваться",
+    "password": "Ваш пароль",
+    "name": "Имя",
+    "signin": "Войти",
+    "forgot-question": "Забыли пароль?",
+    "invalid-password": "Невалидный пароль",
+    "sign-in-with-google": "Войти с помощью Google",
+    "not-member-question": "Не зарегистрированы?",
+    "has-number": "Есть цифра",
+    "has-letter": "Есть буква",
+    "has-special-char": "Есть специальный символ",
+    "has-length": "Имеет длину минимум 8 символов"
+  },
+  "NoResponse": {
+    "msg": "Вы не выполнили ни одного запроса. Пустота. Попробуйте: ",
+    "rest": "REST Клиент",
+    "graphiql": "GraphiQL Клиент"
+  },
+  "REST": {
+    "title": "REST Клиент",
+    "method": "Метод: ",
+    "url": "URL конечной точки: ",
+    "headers": "Заголовки: ",
+    "header-key": "Ключ заголовка: ",
+    "header-value": "Значение заголовка: ",
+    "body": "Тело: ",
+    "title-response": "Ответ: ",
+    "status": "Статус: "
+  },
+  "GraphiQL": {
+    "title": "GraphiQL Клиент",
+    "url": "URL конечной точки: ",
+    "sdl": "URL SDL: ",
+    "headers": "Заголовки: ",
+    "header-key": "Ключ заголовка: ",
+    "header-value": "Значение заголовка: ",
+    "query": "Запрос: ",
+    "variables": "Переменные: ",
+    "body": "Тело: ",
+    "title-response": "Ответ: ",
+    "status": "Статус: ",
+    "documentation": "Документация: "
+  },
+  "History": {
+    "title": "История запросов: "
+  },
+  "Error": {
     "404": {
       "title": "Похоже, Вы заблудились.",
       "heading": "Веб-страница не найдена. Возможно, вы искали что-то другое?",
@@ -78,4 +93,4 @@
       "back": "Вернуться"
     }
   }
-}  
+}

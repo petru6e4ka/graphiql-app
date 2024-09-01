@@ -13,6 +13,7 @@ const dataGitHub = [
 
 export function Footer() {
   const t = useTranslations('Footer');
+
   return (
     <div className={style.footer}>
       <Link href="https://rs.school/">

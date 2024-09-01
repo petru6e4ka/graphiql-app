@@ -1,15 +1,11 @@
 import { describe, expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { NextIntlClientProvider } from 'next-intl';
+import { screen } from '@testing-library/react';
+import { renderWithLocalization } from '@/shared/lib/tests/withLocalization';
 import { Footer } from './Footer';
 
-describe('Layout component', () => {
-  test('Footer renders', () => {
-    render(
-      <NextIntlClientProvider locale="en">
-        <Footer />
-      </NextIntlClientProvider>,
-    );
+describe('Footer component', () => {
+  test('Footer renders', async () => {
+    await renderWithLocalization(<Footer />);
 
     expect(screen.getByRole('img', { name: 'RSSchool' })).toHaveProperty('alt', 'RSSchool');
     expect(screen.getByText('2024')).toBeInTheDocument();

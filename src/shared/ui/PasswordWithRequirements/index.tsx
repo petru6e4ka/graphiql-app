@@ -45,7 +45,7 @@ export function PasswordWithRequirements({
 
   const requirements = [
     { re: /[0-9]/, label: t('has_number') },
-    { re: /\p{Letter}/u, label: t('has_letter') },
+    { re: /[A-Za-z\u0400-\u04FF]/, label: t('has_letter') },
     { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: t('has_special_char') },
   ];
 

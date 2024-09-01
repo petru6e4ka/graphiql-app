@@ -7,7 +7,7 @@ export const passwordStrengthCheck = (invalidMessage: string) => (value: string)
     return invalidMessage;
   }
 
-  if (!/\p{Letter}/u.test(value)) {
+  if (!/[A-Za-z\u0400-\u04FF]/.test(value)) {
     return invalidMessage;
   }
 

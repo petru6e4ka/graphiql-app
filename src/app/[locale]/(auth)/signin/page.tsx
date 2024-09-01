@@ -28,7 +28,11 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
   });
 
   const signInUser = (data: typeof form.values | null) => {
-    console.log(data);
+    if (data) {
+      signIn('credentials', {
+        email: data.email, password: data.password, redirect: true, callbackUrl: '/',
+      });
+    }
   };
 
   return (

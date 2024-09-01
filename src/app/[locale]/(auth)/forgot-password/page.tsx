@@ -6,6 +6,8 @@ import {
 import { useForm, isEmail } from '@mantine/form';
 import { useTranslations } from 'next-intl';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth } from '@/app/firebase';
 import styles from './ForgotPassword.module.css';
 
 export default function ForgotPassword() {
@@ -23,7 +25,9 @@ export default function ForgotPassword() {
   });
 
   const resetPassword = (data: typeof form.values | null) => {
-    console.log(data);
+    if (data) {
+      sendPasswordResetEmail(auth, data.email);
+    }
   };
 
   return (

@@ -1,6 +1,9 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/app/firebase';
 import {
   Logo, TextInput, Button, PasswordWithRequirements, Title, Space,
 } from '@/shared/ui';
@@ -9,13 +12,13 @@ import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck'
 import { hideErrorMessage, stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import styles from './SignUp.module.css';
 
-export default function SignUp() {
+export default function SignUp({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Forms');
+  const router = useRouter();
 
   const form = useForm({
     mode: 'controlled',
     initialValues: {
-      name: '',
       email: '',
       password: '',
     },
@@ -27,7 +30,13 @@ export default function SignUp() {
   });
 
   const registerNewUser = (data: typeof form.values | null) => {
-    console.log(data);
+    if (data) {
+      createUserWithEmailAndPassword(auth, data.email, data.password)
+        .then(() => {
+          router.push(`/${locale}/signin`);
+        })
+        .catch(console.log);
+    }
   };
 
   return (
@@ -40,8 +49,6 @@ export default function SignUp() {
 
       <div className={styles.FormContainer}>
         <form onSubmit={form.onSubmit(registerNewUser)} className={styles.Form}>
-          <TextInput label={t('name')} placeholder={t('name')} {...form.getInputProps('name')} />
-
           <TextInput
             withAsterisk
             label={t('email')}

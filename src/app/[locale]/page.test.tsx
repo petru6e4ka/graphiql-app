@@ -1,16 +1,22 @@
-import {
-  beforeEach, expect, test, vi,
-} from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
-import { describe } from 'node:test';
+import { afterEach, describe } from 'node:test';
 import Page from './page';
 
-beforeEach(() => {
-  vi.clearAllMocks();
-});
+describe('Welcome page', async () => {
+  const nextRouter = await import('next/navigation');
 
-describe('Welcome page', () => {
+  nextRouter.useRouter = vi.fn().mockReturnValue({
+    push: vi.fn(),
+  });
+
+  const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   test('For not authentificated', async () => {
     vi.mock('next/navigation');
 
@@ -53,14 +59,6 @@ describe('Welcome page', () => {
   });
 
   test('Sign in', async () => {
-    const nextRouter = await import('next/navigation');
-
-    nextRouter.useRouter = vi.fn().mockReturnValue({
-      push: vi.fn(),
-    });
-
-    const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
-
     const auth = await import('next-auth/react');
 
     auth.useSession = vi.fn().mockReturnValue({
@@ -78,14 +76,6 @@ describe('Welcome page', () => {
   });
 
   test('Sign up', async () => {
-    const nextRouter = await import('next/navigation');
-
-    nextRouter.useRouter = vi.fn().mockReturnValue({
-      push: vi.fn(),
-    });
-
-    const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
-
     const auth = await import('next-auth/react');
 
     auth.useSession = vi.fn().mockReturnValue({
@@ -103,14 +93,6 @@ describe('Welcome page', () => {
   });
 
   test('Rest', async () => {
-    const nextRouter = await import('next/navigation');
-
-    nextRouter.useRouter = vi.fn().mockReturnValue({
-      push: vi.fn(),
-    });
-
-    const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
-
     const auth = await import('next-auth/react');
 
     auth.useSession = vi.fn().mockReturnValue({
@@ -133,14 +115,6 @@ describe('Welcome page', () => {
   });
 
   test('graphiql', async () => {
-    const nextRouter = await import('next/navigation');
-
-    nextRouter.useRouter = vi.fn().mockReturnValue({
-      push: vi.fn(),
-    });
-
-    const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
-
     const auth = await import('next-auth/react');
 
     auth.useSession = vi.fn().mockReturnValue({

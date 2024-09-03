@@ -20,7 +20,7 @@ describe('Signin page', () => {
       data: null,
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     expect(screen.getByRole('button', { name: 'Sign in' })).toBeInTheDocument();
   });

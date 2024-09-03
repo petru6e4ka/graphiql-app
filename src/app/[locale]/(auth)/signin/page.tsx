@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { Link } from '@/features/localeSwitcher';
 import {
   Anchor, Button, Group, Logo, PasswordInput, Text, TextInput, Title,
 } from '@/shared/ui';
@@ -12,7 +12,7 @@ import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithEr
 import { useRouter } from 'next/navigation';
 import styles from './SignIn.module.css';
 
-export default function SignIn({ params: { locale } }: { params: { locale: string } }) {
+export default function SignIn() {
   const t = useTranslations('Forms');
   const router = useRouter();
 
@@ -41,7 +41,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
           return;
         }
 
-        router.push(`/${locale}`);
+        router.push('/');
       });
     }
   };
@@ -53,7 +53,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
         return;
       }
 
-      router.push(`/${locale}`);
+      router.push('/');
     });
   };
 
@@ -81,7 +81,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
                 <span className={styles.asterisk}>*</span>
               </Text>
 
-              <Anchor component={Link} href={`/${locale}/forgot-password`} pt={2} fw={500} fz="xs">
+              <Anchor component={Link} href="/forgot-password" pt={2} fw={500} fz="xs">
                 {t('forgot-question')}
               </Anchor>
             </Group>
@@ -107,7 +107,7 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
               {t('not-member-question')}
             </Text>
 
-            <Anchor component={Link} href={`/${locale}/signup`} pt={2} fw={500} fz="xs">
+            <Anchor component={Link} href="/signup" pt={2} fw={500} fz="xs">
               {t('signup')}
             </Anchor>
           </Group>

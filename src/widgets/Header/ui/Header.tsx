@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/features/localeSwitcher';
 import { useLocale, useTranslations } from 'next-intl';
 import { useDisclosure } from '@mantine/hooks';
 import cn from 'classnames';
@@ -34,22 +34,22 @@ export function Header({ children }: { children: ReactNode }) {
     <>
       <div className={cn(styles.header, { [styles.isSticky]: scrollY > 0 })}>
         <Group justify="space-between" h="100%" w="100%">
-          <Link href={`/${locale}`}>
+          <Link href="/">
             <Logo />
           </Link>
 
           {session?.user && (
             <Group h="100%" gap={0} visibleFrom="md" className={styles.nav}>
-              <Link href={`/${locale}`} className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
+              <Link href="/" className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
                 {t('home')}
               </Link>
-              <Link href={`/${locale}/history`} className={cn(styles.link, { [styles.active]: pathname?.startsWith(`/${locale}/history`) })}>
+              <Link href="/history" className={cn(styles.link, { [styles.active]: pathname?.endsWith('/history') })}>
                 {t('history')}
               </Link>
-              <Link href={`/${locale}/rest`} className={cn(styles.link, { [styles.active]: pathname?.startsWith(`/${locale}/rest`) })}>
+              <Link href="/rest" className={cn(styles.link, { [styles.active]: pathname?.endsWith('/rest') })}>
                 REST
               </Link>
-              <Link href={`/${locale}/graphiql`} className={cn(styles.link, { [styles.active]: pathname?.startsWith(`/${locale}/graphiql`) })}>
+              <Link href="/graphiql" className={cn(styles.link, { [styles.active]: pathname?.endsWith('/graphiql') })}>
                 GraphiQL
               </Link>
             </Group>
@@ -67,7 +67,7 @@ export function Header({ children }: { children: ReactNode }) {
         size="100%"
         padding="md"
         title={(
-          <Link href={`/${locale}`}>
+          <Link href="/">
             <Logo />
           </Link>
         )}
@@ -79,16 +79,16 @@ export function Header({ children }: { children: ReactNode }) {
 
           {session?.user && (
             <>
-              <Link href={`/${locale}`} className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
+              <Link href="/" className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
                 {t('home')}
               </Link>
-              <Link href={`/${locale}/history`} className={cn(styles.link, { [styles.active]: pathname.startsWith(`/${locale}/history`) })}>
+              <Link href="/history" className={cn(styles.link, { [styles.active]: pathname.endsWith('/history') })}>
                 {t('history')}
               </Link>
-              <Link href={`/${locale}/rest`} className={cn(styles.link, { [styles.active]: pathname.startsWith(`/${locale}/rest`) })}>
+              <Link href="/rest" className={cn(styles.link, { [styles.active]: pathname.endsWith('/rest') })}>
                 Rest
               </Link>
-              <Link href={`/${locale}/graphiql`} className={cn(styles.link, { [styles.active]: pathname.startsWith(`/${locale}/graphiql`) })}>
+              <Link href="/graphiql" className={cn(styles.link, { [styles.active]: pathname.endsWith('/graphiql') })}>
                 GraphiQL
               </Link>
 

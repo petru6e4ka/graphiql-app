@@ -16,13 +16,15 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
   const messages = await getMessages();
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <ColorSchemeScript />
       </head>

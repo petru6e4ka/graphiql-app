@@ -43,6 +43,7 @@
 }
 
 .description {
+  text-align: center;
   max-width: rem(540px);
   margin: auto;
   margin-top: var(--mantine-spacing-xl);

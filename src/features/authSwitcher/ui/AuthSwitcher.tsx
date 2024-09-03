@@ -1,17 +1,19 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { Button, Group } from '@/shared/ui';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/features/localeSwitcher';
 import { useTranslations } from 'next-intl';
-import { Session } from 'next-auth';
 
-export function AuthSwitcher({ locale, session }: { locale: string; session: Session | null }) {
+export function AuthSwitcher() {
   const router = useRouter();
   const t = useTranslations('Header');
+  const { data: session } = useSession();
 
   const onSignOut = () => {
-    signOut({ redirect: true, callbackUrl: `/${locale}` });
+    signOut({ redirect: false }).then(() => {
+      router.push('/');
+    });
   };
 
   const isLoggedIn = !!session;
@@ -30,7 +32,7 @@ export function AuthSwitcher({ locale, session }: { locale: string; session: Ses
         size="md"
         variant="outline"
         onClick={() => {
-          router.push(`/${locale}/signup`);
+          router.push('/signup');
         }}
       >
         {t('sign-up')}
@@ -38,7 +40,7 @@ export function AuthSwitcher({ locale, session }: { locale: string; session: Ses
       <Button
         size="md"
         onClick={() => {
-          router.push(`/${locale}/signin`);
+          router.push('/signin');
         }}
       >
         {t('sign-in')}

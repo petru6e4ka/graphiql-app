@@ -5,19 +5,26 @@ import { screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
 import { Header } from './Header';
 
-vi.mock('next/navigation', () => ({
-  usePathname: () => 'en/rest',
+vi.mock('@/features/localeSwitcher', () => ({
+  usePathname: () => '/rest',
+  Link: ({ href, children }: { href: string; children: React.ReactNode }) => <a href={href}>{children}</a>,
 }));
 
 describe('Header component', () => {
   test('Header renders', async () => {
+    const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: null,
+    });
+
     await renderWithWrappers(
-      <Header locale="en" session={null}>
+      <Header>
         <div>Mock</div>
       </Header>,
     );
 
-    expect(screen.getByRole('link')).toHaveProperty('href', 'http://localhost:3000/en');
+    expect(screen.getByRole('link')).toHaveProperty('href', 'http://localhost:3000/');
     expect(screen.getByText('Mock')).toBeInTheDocument();
     expect(screen.queryByText('Home')).not.toBeInTheDocument();
     expect(screen.queryByText('History')).not.toBeInTheDocument();
@@ -26,15 +33,26 @@ describe('Header component', () => {
   });
 
   test('Header renders menu for authentificated users', async () => {
+    const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: {
+        user: {
+          name: 'Test',
+          email: 'test@test.test',
+        },
+      },
+    });
+
     await renderWithWrappers(
-      <Header locale="en" session={{ user: { name: 'Test' }, expires: '3600' }}>
+      <Header>
         <div>Mock</div>
       </Header>,
     );
 
-    expect(screen.getByText('Home')).toHaveProperty('href', 'http://localhost:3000/en');
-    expect(screen.getByText('History')).toHaveProperty('href', 'http://localhost:3000/en/history');
-    expect(screen.getByText('REST')).toHaveProperty('href', 'http://localhost:3000/en/rest');
-    expect(screen.getByText('GraphiQL')).toHaveProperty('href', 'http://localhost:3000/en/graphiql');
+    expect(screen.getByText('Home')).toHaveProperty('href', 'http://localhost:3000/');
+    expect(screen.getByText('History')).toHaveProperty('href', 'http://localhost:3000/history');
+    expect(screen.getByText('REST')).toHaveProperty('href', 'http://localhost:3000/rest');
+    expect(screen.getByText('GraphiQL')).toHaveProperty('href', 'http://localhost:3000/graphiql');
   });
 });

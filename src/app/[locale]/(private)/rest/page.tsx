@@ -9,7 +9,7 @@ export default function Rest() {
   return (
     <div className={styles.rest}>
       <Title>{t('title')}</Title>
-      <Button>Hello world</Button>
+      <Button>{t('body')}</Button>
     </div>
   );
 }

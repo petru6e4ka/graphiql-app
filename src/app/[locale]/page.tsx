@@ -5,10 +5,10 @@ import {
   Title, Text, Group, Button,
 } from '@/shared/ui';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/features/localeSwitcher';
 import styles from './Welcome.module.css';
 
-export default function Welcome({ params: locale }: { params: { locale: string } }) {
+export default function Welcome() {
   const t = useTranslations('Main');
   const { data: session } = useSession();
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
             <Button
               size="md"
               onClick={() => {
-                router.push(`${locale.locale}/rest`);
+                router.push('/rest');
               }}
             >
               {t('rest')}
@@ -36,7 +36,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
             <Button
               size="md"
               onClick={() => {
-                router.push(`${locale.locale}/graphiql`);
+                router.push('/graphiql');
               }}
             >
               {t('graphiql')}
@@ -48,7 +48,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
               size="md"
               variant="outline"
               onClick={() => {
-                router.push(`${locale.locale}/signup`);
+                router.push('/signup');
               }}
             >
               {t('sign-up')}
@@ -56,7 +56,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
             <Button
               size="md"
               onClick={() => {
-                router.push(`${locale.locale}/signin`);
+                router.push('/signin');
               }}
             >
               {t('sign-in')}

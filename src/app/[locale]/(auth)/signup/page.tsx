@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/features/localeSwitcher';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/app/firebase';
 import {
@@ -12,7 +12,7 @@ import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck'
 import { hideErrorMessage, stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import styles from './SignUp.module.css';
 
-export default function SignUp({ params: { locale } }: { params: { locale: string } }) {
+export default function SignUp() {
   const t = useTranslations('Forms');
   const router = useRouter();
 
@@ -33,7 +33,7 @@ export default function SignUp({ params: { locale } }: { params: { locale: strin
     if (data) {
       createUserWithEmailAndPassword(auth, data.email, data.password)
         .then(() => {
-          router.push(`/${locale}/signin`);
+          router.push('/signin');
         })
         .catch(console.log);
     }

@@ -13,8 +13,15 @@ beforeEach(() => {
 describe('AuthSwitcher component', () => {
   test('Renders buttons for guest users', async () => {
     vi.mock('next/navigation');
+    vi.mock('@/features/localeSwitcher');
 
-    await renderWithWrappers(<AuthSwitcher locale="en" session={null} />);
+    const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: null,
+    });
+
+    await renderWithWrappers(<AuthSwitcher />);
 
     expect(screen.getByText('Sign in')).toBeInTheDocument();
     expect(screen.getByText('Sign up')).toBeInTheDocument();
@@ -24,15 +31,19 @@ describe('AuthSwitcher component', () => {
   test('Renders buttons for authentificated users', async () => {
     vi.mock('next/navigation');
 
-    const session = {
-      user: {
-        name: 'Test',
-        email: 'test@test.test',
-      },
-      expires: '3600',
-    };
+    const auth = await import('next-auth/react');
 
-    await renderWithWrappers(<AuthSwitcher locale="en" session={session} />);
+    auth.useSession = vi.fn().mockReturnValue({
+      data: {
+        user: {
+          name: 'Test',
+          email: 'test@test.test',
+        },
+        expires: '3600',
+      },
+    });
+
+    await renderWithWrappers(<AuthSwitcher />);
 
     expect(screen.queryByText('Sign in')).not.toBeInTheDocument();
     expect(screen.queryByText('Sign up')).not.toBeInTheDocument();
@@ -42,17 +53,20 @@ describe('AuthSwitcher component', () => {
   test('Logs out', async () => {
     vi.mock('next/navigation');
 
-    const session = {
-      user: {
-        name: 'Test',
-        email: 'test@test.test',
-      },
-      expires: '3600',
-    };
-
-    await renderWithWrappers(<AuthSwitcher locale="en" session={session} />);
-
     const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: {
+        user: {
+          name: 'Test',
+          email: 'test@test.test',
+        },
+        expires: '3600',
+      },
+    });
+
+    await renderWithWrappers(<AuthSwitcher />);
+
     const spy = vi.spyOn(auth, 'signOut');
     const logoutBtn = screen.getByText('Log out');
 
@@ -62,7 +76,7 @@ describe('AuthSwitcher component', () => {
   });
 
   test('Sign in', async () => {
-    const nextRouter = await import('next/navigation');
+    const nextRouter = await import('@/features/localeSwitcher');
 
     nextRouter.useRouter = vi.fn().mockReturnValue({
       push: vi.fn(),
@@ -70,18 +84,24 @@ describe('AuthSwitcher component', () => {
 
     const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
 
-    await renderWithWrappers(<AuthSwitcher locale="en" session={null} />);
+    const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: null,
+    });
+
+    await renderWithWrappers(<AuthSwitcher />);
 
     const loginBtn = screen.getByRole('button', { name: 'Sign in' });
 
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/signin');
+    expect(spyFn).toHaveBeenCalledWith('/signin');
   });
 
   test('Sign up', async () => {
-    const nextRouter = await import('next/navigation');
+    const nextRouter = await import('@/features/localeSwitcher');
 
     nextRouter.useRouter = vi.fn().mockReturnValue({
       push: vi.fn(),
@@ -89,13 +109,19 @@ describe('AuthSwitcher component', () => {
 
     const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
 
-    await renderWithWrappers(<AuthSwitcher locale="en" session={null} />);
+    const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: null,
+    });
+
+    await renderWithWrappers(<AuthSwitcher />);
 
     const signupBtn = screen.getByRole('button', { name: 'Sign up' });
 
     fireEvent.click(signupBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/signup');
+    expect(spyFn).toHaveBeenCalledWith('/signup');
   });
 });

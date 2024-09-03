@@ -45,16 +45,7 @@ export default function SignIn() {
     }
   };
 
-  const signInWithGoogle = () => {
-    signIn('google', { redirect: false }).then((response) => {
-      if (response?.error) {
-        console.log(response?.error);
-        return;
-      }
-
-      router.push('/');
-    });
-  };
+  const signInWithGoogle = () => signIn('google', { callbackUrl: '/', redirect: true });
 
   return (
     <div className={styles.signIn}>

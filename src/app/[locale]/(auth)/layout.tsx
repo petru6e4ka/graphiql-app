@@ -1,20 +1,16 @@
 import { authOptions } from '@/features/authSwitcher';
 import { getServerSession } from 'next-auth';
-import { redirect } from 'next/navigation';
+import { redirect } from '@/features/localeSwitcher';
 
 export default async function WithoutAuth({
   children,
-  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: {
-    locale: string;
-  };
 }>) {
   const data = await getServerSession(authOptions);
 
   if (data) {
-    redirect(`/${locale}`);
+    redirect('/');
   }
 
   return children;

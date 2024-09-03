@@ -9,10 +9,12 @@ import { signIn } from 'next-auth/react';
 import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
+import { useRouter } from 'next/navigation';
 import styles from './SignIn.module.css';
 
 export default function SignIn({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Forms');
+  const router = useRouter();
 
   const form = useForm({
     mode: 'controlled',
@@ -32,13 +34,28 @@ export default function SignIn({ params: { locale } }: { params: { locale: strin
       signIn('credentials', {
         email: data.email,
         password: data.password,
-        redirect: true,
-        callbackUrl: '/',
+        redirect: false,
+      }).then((response) => {
+        if (response?.error) {
+          console.log(response?.error);
+          return;
+        }
+
+        router.push(`/${locale}`);
       });
     }
   };
 
-  const signInWithGoogle = () => signIn('google', { callbackUrl: `/${locale}`, redirect: true });
+  const signInWithGoogle = () => {
+    signIn('google', { redirect: false }).then((response) => {
+      if (response?.error) {
+        console.log(response?.error);
+        return;
+      }
+
+      router.push(`/${locale}`);
+    });
+  };
 
   return (
     <div className={styles.signIn}>

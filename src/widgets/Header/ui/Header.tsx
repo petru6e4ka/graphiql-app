@@ -2,21 +2,23 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useDisclosure } from '@mantine/hooks';
 import cn from 'classnames';
 import {
   Logo, Group, Burger, Drawer, ScrollArea, Divider, rem,
 } from '@/shared/ui';
 import { usePathname } from 'next/navigation';
-import { Session } from 'next-auth';
+import { useSession } from 'next-auth/react';
 import styles from './Header.module.css';
 
-export function Header({ children, session, locale }: { children: ReactNode; session: Session | null; locale: string }) {
+export function Header({ children }: { children: ReactNode }) {
   const [scrollY, setScrollY] = useState(0);
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+  const locale = useLocale();
   const t = useTranslations('Header');
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   function onChangeY() {
     const scrollValue = window.scrollY;

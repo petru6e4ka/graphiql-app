@@ -1,17 +1,20 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { Button, Group } from '@/shared/ui';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { Session } from 'next-auth';
+import { useTranslations, useLocale } from 'next-intl';
 
-export function AuthSwitcher({ locale, session }: { locale: string; session: Session | null }) {
+export function AuthSwitcher() {
   const router = useRouter();
   const t = useTranslations('Header');
+  const locale = useLocale();
+  const { data: session } = useSession();
 
   const onSignOut = () => {
-    signOut({ redirect: true, callbackUrl: `/${locale}` });
+    signOut({ redirect: false }).then(() => {
+      router.push(`/${locale}`);
+    });
   };
 
   const isLoggedIn = !!session;

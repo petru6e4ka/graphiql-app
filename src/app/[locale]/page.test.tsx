@@ -72,7 +72,7 @@ describe('Welcome page', async () => {
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('en/signin');
+    expect(spyFn).toHaveBeenCalledWith('/en/signin');
   });
 
   test('Sign up', async () => {
@@ -89,7 +89,7 @@ describe('Welcome page', async () => {
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('en/signup');
+    expect(spyFn).toHaveBeenCalledWith('/en/signup');
   });
 
   test('Rest', async () => {
@@ -111,7 +111,7 @@ describe('Welcome page', async () => {
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('en/rest');
+    expect(spyFn).toHaveBeenCalledWith('/en/rest');
   });
 
   test('graphiql', async () => {
@@ -133,6 +133,6 @@ describe('Welcome page', async () => {
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('en/graphiql');
+    expect(spyFn).toHaveBeenCalledWith('/en/graphiql');
   });
 });

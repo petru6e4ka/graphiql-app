@@ -11,8 +11,14 @@ vi.mock('next/navigation', () => ({
 
 describe('Header component', () => {
   test('Header renders', async () => {
+    const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: null,
+    });
+
     await renderWithWrappers(
-      <Header locale="en" session={null}>
+      <Header>
         <div>Mock</div>
       </Header>,
     );
@@ -26,8 +32,19 @@ describe('Header component', () => {
   });
 
   test('Header renders menu for authentificated users', async () => {
+    const auth = await import('next-auth/react');
+
+    auth.useSession = vi.fn().mockReturnValue({
+      data: {
+        user: {
+          name: 'Test',
+          email: 'test@test.test',
+        },
+      },
+    });
+
     await renderWithWrappers(
-      <Header locale="en" session={{ user: { name: 'Test' }, expires: '3600' }}>
+      <Header>
         <div>Mock</div>
       </Header>,
     );

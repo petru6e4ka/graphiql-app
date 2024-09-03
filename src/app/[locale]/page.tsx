@@ -28,7 +28,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
             <Button
               size="md"
               onClick={() => {
-                router.push(`${locale.locale}/rest`);
+                router.push(`/${locale.locale}/rest`);
               }}
             >
               {t('rest')}
@@ -36,7 +36,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
             <Button
               size="md"
               onClick={() => {
-                router.push(`${locale.locale}/graphiql`);
+                router.push(`/${locale.locale}/graphiql`);
               }}
             >
               {t('graphiql')}
@@ -48,7 +48,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
               size="md"
               variant="outline"
               onClick={() => {
-                router.push(`${locale.locale}/signup`);
+                router.push(`/${locale.locale}/signup`);
               }}
             >
               {t('sign-up')}
@@ -56,7 +56,7 @@ export default function Welcome({ params: locale }: { params: { locale: string }
             <Button
               size="md"
               onClick={() => {
-                router.push(`${locale.locale}/signin`);
+                router.push(`/${locale.locale}/signin`);
               }}
             >
               {t('sign-in')}

@@ -1,14 +1,13 @@
 'use client';
 
 import { ReactNode, useEffect, useState } from 'react';
-import { Link } from '@/features/localeSwitcher';
+import { Link, usePathname } from '@/features/localeSwitcher';
 import { useLocale, useTranslations } from 'next-intl';
 import { useDisclosure } from '@mantine/hooks';
 import cn from 'classnames';
 import {
   Logo, Group, Burger, Drawer, ScrollArea, Divider, rem,
 } from '@/shared/ui';
-import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import styles from './Header.module.css';
 

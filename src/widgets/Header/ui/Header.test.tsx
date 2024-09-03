@@ -5,8 +5,9 @@ import { screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
 import { Header } from './Header';
 
-vi.mock('next/navigation', () => ({
-  usePathname: () => 'en/rest',
+vi.mock('@/features/localeSwitcher', () => ({
+  usePathname: () => '/rest',
+  Link: ({ href, children }: { href: string; children: React.ReactNode }) => <a href={href}>{children}</a>,
 }));
 
 describe('Header component', () => {
@@ -23,7 +24,7 @@ describe('Header component', () => {
       </Header>,
     );
 
-    expect(screen.getByRole('link')).toHaveProperty('href', 'http://localhost:3000/en');
+    expect(screen.getByRole('link')).toHaveProperty('href', 'http://localhost:3000/');
     expect(screen.getByText('Mock')).toBeInTheDocument();
     expect(screen.queryByText('Home')).not.toBeInTheDocument();
     expect(screen.queryByText('History')).not.toBeInTheDocument();
@@ -49,9 +50,9 @@ describe('Header component', () => {
       </Header>,
     );
 
-    expect(screen.getByText('Home')).toHaveProperty('href', 'http://localhost:3000/en');
-    expect(screen.getByText('History')).toHaveProperty('href', 'http://localhost:3000/en/history');
-    expect(screen.getByText('REST')).toHaveProperty('href', 'http://localhost:3000/en/rest');
-    expect(screen.getByText('GraphiQL')).toHaveProperty('href', 'http://localhost:3000/en/graphiql');
+    expect(screen.getByText('Home')).toHaveProperty('href', 'http://localhost:3000/');
+    expect(screen.getByText('History')).toHaveProperty('href', 'http://localhost:3000/history');
+    expect(screen.getByText('REST')).toHaveProperty('href', 'http://localhost:3000/rest');
+    expect(screen.getByText('GraphiQL')).toHaveProperty('href', 'http://localhost:3000/graphiql');
   });
 });

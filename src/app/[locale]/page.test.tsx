@@ -5,7 +5,7 @@ import { afterEach, describe } from 'node:test';
 import Page from './page';
 
 describe('Welcome page', async () => {
-  const nextRouter = await import('next/navigation');
+  const nextRouter = await import('@/features/localeSwitcher');
 
   nextRouter.useRouter = vi.fn().mockReturnValue({
     push: vi.fn(),
@@ -19,6 +19,7 @@ describe('Welcome page', async () => {
 
   test('For not authentificated', async () => {
     vi.mock('next/navigation');
+    vi.mock('@/features/localeSwitcher');
 
     const auth = await import('next-auth/react');
 
@@ -26,7 +27,7 @@ describe('Welcome page', async () => {
       data: null,
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     expect(screen.getByText('Nice to meet you!')).toBeInTheDocument();
     expect(screen.getByText('Lets auth! And feel free to use our REST and GraphiQL client')).toBeInTheDocument();
@@ -37,6 +38,7 @@ describe('Welcome page', async () => {
 
   test('For authentificated', async () => {
     vi.mock('next/navigation');
+    vi.mock('@/features/localeSwitcher');
 
     const auth = await import('next-auth/react');
 
@@ -49,7 +51,7 @@ describe('Welcome page', async () => {
       },
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     expect(screen.getByText('Hello, Test!')).toBeInTheDocument();
     expect(screen.getByText("Let's start making requests")).toBeInTheDocument();
@@ -65,14 +67,14 @@ describe('Welcome page', async () => {
       data: null,
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     const loginBtn = screen.getByRole('button', { name: 'Sign in' });
 
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/signin');
+    expect(spyFn).toHaveBeenCalledWith('/signin');
   });
 
   test('Sign up', async () => {
@@ -82,14 +84,14 @@ describe('Welcome page', async () => {
       data: null,
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     const loginBtn = screen.getByRole('button', { name: 'Sign up' });
 
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/signup');
+    expect(spyFn).toHaveBeenCalledWith('/signup');
   });
 
   test('Rest', async () => {
@@ -104,14 +106,14 @@ describe('Welcome page', async () => {
       },
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     const loginBtn = screen.getByRole('button', { name: 'REST' });
 
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/rest');
+    expect(spyFn).toHaveBeenCalledWith('/rest');
   });
 
   test('graphiql', async () => {
@@ -126,13 +128,13 @@ describe('Welcome page', async () => {
       },
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     const loginBtn = screen.getByRole('button', { name: 'GraphiQL' });
 
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/graphiql');
+    expect(spyFn).toHaveBeenCalledWith('/graphiql');
   });
 });

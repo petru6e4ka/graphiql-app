@@ -13,6 +13,7 @@ beforeEach(() => {
 describe('AuthSwitcher component', () => {
   test('Renders buttons for guest users', async () => {
     vi.mock('next/navigation');
+    vi.mock('@/features/localeSwitcher');
 
     const auth = await import('next-auth/react');
 
@@ -75,7 +76,7 @@ describe('AuthSwitcher component', () => {
   });
 
   test('Sign in', async () => {
-    const nextRouter = await import('next/navigation');
+    const nextRouter = await import('@/features/localeSwitcher');
 
     nextRouter.useRouter = vi.fn().mockReturnValue({
       push: vi.fn(),
@@ -96,11 +97,11 @@ describe('AuthSwitcher component', () => {
     fireEvent.click(loginBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/signin');
+    expect(spyFn).toHaveBeenCalledWith('/signin');
   });
 
   test('Sign up', async () => {
-    const nextRouter = await import('next/navigation');
+    const nextRouter = await import('@/features/localeSwitcher');
 
     nextRouter.useRouter = vi.fn().mockReturnValue({
       push: vi.fn(),
@@ -121,6 +122,6 @@ describe('AuthSwitcher component', () => {
     fireEvent.click(signupBtn);
 
     expect(spyFn).toHaveBeenCalled();
-    expect(spyFn).toHaveBeenCalledWith('/en/signup');
+    expect(spyFn).toHaveBeenCalledWith('/signup');
   });
 });

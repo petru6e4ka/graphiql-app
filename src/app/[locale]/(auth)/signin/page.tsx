@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Link } from '@/features/localeSwitcher';
+import { Link, useRouter } from '@/features/localeSwitcher';
 import {
   Anchor, Button, Group, Logo, PasswordInput, Text, TextInput, Title,
 } from '@/shared/ui';
@@ -9,7 +9,6 @@ import { signIn } from 'next-auth/react';
 import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
-import { useRouter } from 'next/navigation';
 import styles from './SignIn.module.css';
 
 export default function SignIn() {

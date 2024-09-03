@@ -13,6 +13,7 @@ beforeEach(() => {
 describe('Signup page', () => {
   test('Renders form', async () => {
     vi.mock('next/navigation');
+    vi.mock('@/features/localeSwitcher');
 
     vi.mock('firebase/auth');
     vi.mock('firebase/firestore');
@@ -32,7 +33,7 @@ describe('Signup page', () => {
       data: null,
     });
 
-    await renderWithWrappers(<Page params={{ locale: 'en' }} />);
+    await renderWithWrappers(<Page />);
 
     expect(screen.getByRole('button', { name: 'Sign up' })).toBeInTheDocument();
   });

@@ -13,6 +13,7 @@ beforeEach(() => {
 describe('Signin page', () => {
   test('Renders form', async () => {
     vi.mock('next/navigation');
+    vi.mock('@/features/localeSwitcher');
 
     const auth = await import('next-auth/react');
 

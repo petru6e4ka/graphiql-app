@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import { Link, usePathname } from '@/features/localeSwitcher';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useDisclosure } from '@mantine/hooks';
 import cn from 'classnames';
 import {
@@ -14,7 +14,6 @@ import styles from './Header.module.css';
 export function Header({ children }: { children: ReactNode }) {
   const [scrollY, setScrollY] = useState(0);
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const locale = useLocale();
   const t = useTranslations('Header');
   const pathname = usePathname();
   const { data: session } = useSession();
@@ -39,7 +38,7 @@ export function Header({ children }: { children: ReactNode }) {
 
           {session?.user && (
             <Group h="100%" gap={0} visibleFrom="md" className={styles.nav}>
-              <Link href="/" className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
+              <Link href="/" className={cn(styles.link, { [styles.active]: pathname?.endsWith('/') })}>
                 {t('home')}
               </Link>
               <Link href="/history" className={cn(styles.link, { [styles.active]: pathname?.endsWith('/history') })}>
@@ -78,7 +77,7 @@ export function Header({ children }: { children: ReactNode }) {
 
           {session?.user && (
             <>
-              <Link href="/" className={cn(styles.link, { [styles.active]: pathname?.endsWith(`/${locale}`) })}>
+              <Link href="/" className={cn(styles.link, { [styles.active]: pathname?.endsWith('/') })}>
                 {t('home')}
               </Link>
               <Link href="/history" className={cn(styles.link, { [styles.active]: pathname.endsWith('/history') })}>

@@ -1,4 +1,27 @@
-.SignIn {
+.signIn {
   text-align: center;
   margin: 0 auto;
+  padding-top: 50px;
+}
+
+.title {
+  margin-bottom: 35px;
+}
+
+.formContainer {
+  width: 280px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.asterisk {
+  color: var(--input-asterisk-color, var(--mantine-color-error));
+  display: inline-block;
+  padding-left: 4px;
 }

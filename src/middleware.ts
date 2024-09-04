@@ -1,11 +1,8 @@
 import createMiddleware from 'next-intl/middleware';
-import { locales, defaultLocale } from './features/localeSwitcher/config/locales';
+import { routing } from './features/localeSwitcher';
 
-export default createMiddleware({
-  locales,
-  defaultLocale,
-});
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: ['/', '/(en|de|ru)/:path*'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

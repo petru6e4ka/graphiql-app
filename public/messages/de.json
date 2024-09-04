@@ -1,39 +1,52 @@
 {
   "Main": {
     "content": "Startseite",
-    "welcome-non-auth": "Willkommen!",
-    "welcome-auth": "Willkommen zurück, ",
-    "rest": "REST-Client",
-    "graphiql": "GraphiQL-Client",
+    "welcome-image": "Willkommen",
+    "welcome-title": "Freut mich, Sie kennenzulernen!",
+    "welcome-text": "Bitte melden Sie sich an, um unseren REST- und GraphiQL-Client zu nutzen",
+    "welcome-text-user": "Beginnen wir mit der Anfrage",
+    "hello": "Hallo",
+    "user": "Benutzer",
+    "sign-up": "Anmelden",
+    "sign-in": "Einloggen",
+    "rest": "REST",
+    "graphiql": "GraphiQL",
     "history": "Verlauf"
   },
   "Header": {
-    "sign-up": "Anmelden",
-    "sign-in": "Einloggen",
-    "sign-out": "Ausloggen",
-    "toggle-lang": "Sprache wechseln",
     "langs": {
       "en": "Englisch",
       "ru": "Russisch",
       "de": "Deutsch"
-    }
+    },
+    "home": "Heim",
+    "history": "Geschichte",
+    "sign-up": "Anmelden",
+    "sign-in": "Einloggen",
+    "log-out": "Auswählen"
   },
   "Footer": {
     "creators": "Erstellt von",
     "rss-sign": "© RSSchool 2024"
   },
-  "SignUp": {
-    "title": "Anmelden",
-    "input-email": "Ihre E-Mail",
-    "input-password": "Ihr Passwort",
-    "input-password-again": "Ihr Passwort erneut",
-    "input-submit": "Anmelden"
-  },
-  "SignIn": {
-    "title": "Einloggen",
-    "input-email": "Ihre E-Mail",
-    "input-password": "Ihr Passwort",
-    "input-submit": "Einloggen"
+  "Forms": {
+    "forgot_password": "Passwort vergessen",
+    "invalid_email": "Ungültige E-Mail",
+    "email": "Ihre E-Mail",
+    "your-email": "IhreEMail@email.com",
+    "submit-reset": "Senden",
+    "signup": "Anmelden",
+    "password": "Ihr Passwort",
+    "name": "Name",
+    "signin": "Anmelden",
+    "forgot-question": "Passwort vergessen?",
+    "invalid-password": "Ungültige passwort",
+    "sign-in-with-google": "Mit Google anmelden",
+    "not-member-question": "Noch kein Mitglied?",
+    "has-number": "Inklusive Nummer",
+    "has-letter": "Inklusive Brief",
+    "has-special-char": "Es handelt sich um ein spezielles Symbol",
+    "has-length": "Hat mindestens 8 Zeichen"
   },
   "NoResponse": {
     "msg": "Sie haben keine Anfragen ausgeführt. Es ist leer hier. Versuchen Sie: ",

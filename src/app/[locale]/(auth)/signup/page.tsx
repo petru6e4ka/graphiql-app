@@ -11,6 +11,7 @@ import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
 import { hideErrorMessage, stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import styles from './SignUp.module.css';
+import showToast from '../../../../features/toast/lib/toastUtils';
 
 export default function SignUp() {
   const t = useTranslations('Forms');
@@ -35,7 +36,7 @@ export default function SignUp() {
         .then(() => {
           router.push('/signin');
         })
-        .catch(console.log);
+        .catch((error) => showToast(error, 'error'));
     }
   };
 

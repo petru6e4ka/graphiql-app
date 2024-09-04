@@ -1,6 +1,7 @@
 import { NextAuthOptions, User } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import showToast from '@/features/toast/lib/toastUtils';
 import { FirestoreAdapter } from '@next-auth/firebase-adapter';
 import { cert } from 'firebase-admin/app';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -32,11 +33,11 @@ export const authOptions: NextAuthOptions = {
             return null;
           })
           .catch((error) => {
-            console.log(error);
+            showToast(error, 'error');
             return null;
           })
           .catch((error) => {
-            console.log(error);
+            showToast(error, 'error');
             return null;
           });
       },

@@ -6,6 +6,7 @@ import Footer from '@/widgets/Footer';
 import LocaleSwitcher from '@/features/localeSwitcher';
 import { AuthSwitcher, SessionWrapper } from '@/features/authSwitcher';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import ToastProvider from '../../features/toast/ui/ToastProvider';
 import '@mantine/core/styles.css';
 import './globals.css';
 
@@ -32,16 +33,18 @@ export default async function RootLayout({
         <SessionWrapper>
           <MantineProvider>
             <NextIntlClientProvider messages={messages}>
-              <header>
-                <Header>
-                  <LocaleSwitcher />
-                  <AuthSwitcher />
-                </Header>
-              </header>
-              <main>{children}</main>
-              <footer>
-                <Footer />
-              </footer>
+              <ToastProvider>
+                <header>
+                  <Header>
+                    <LocaleSwitcher />
+                    <AuthSwitcher />
+                  </Header>
+                </header>
+                <main>{children}</main>
+                <footer>
+                  <Footer />
+                </footer>
+              </ToastProvider>
             </NextIntlClientProvider>
           </MantineProvider>
         </SessionWrapper>

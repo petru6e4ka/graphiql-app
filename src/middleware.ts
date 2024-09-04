@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './features/localeSwitcher';
+import { routing } from '@/features/localeSwitcher/config/routing';
 
 export default createMiddleware(routing);
 

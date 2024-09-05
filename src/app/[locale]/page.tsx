@@ -15,11 +15,6 @@ export default function Welcome() {
 
   const userName = `${t('hello')}, ${session?.user?.name ? session.user.name : t('user')}!`;
 
-  // для проверки Error Boundary
-  // const handleError = () => {
-  //   throw new Error ('error');
-  // }
-
   return (
     <div className={styles.inner}>
       <div className={styles.image}>{t('welcome-image')}</div>

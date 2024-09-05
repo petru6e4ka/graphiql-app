@@ -48,21 +48,6 @@
     "has-special-char": "Includes special symbol",
     "has-length": "Has at least 8 characters"
   },
-  "SignUp": {
-    "title": "Sign Up",
-    "input-email": "Your email",
-    "input-password": "Your password",
-    "input-password-again": "Your password again",
-    "input-submit": "Sign Up",
-    "success": "You have successfully signed up!"
-  },
-  "SignIn": {
-    "title": "Sign In",
-    "input-email": "Your email",
-    "input-password": "Your password",
-    "input-submit": "Sign In",
-    "success": "You have successfully signed in!"
-  },
   "NoResponse": {
     "msg": "You haven't executed any requests. It's empty here. Try: ",
     "rest": "REST Client",
@@ -107,14 +92,5 @@
       "heading": "",
       "back": "Back"
     }
-  },
-  "ErrorNotify": {
-    "400": "Bad Request",
-    "401": "Unauthorized",
-    "403": "Forbidden",
-    "500": "Internal Server Error",
-    "502": "Bad Gateway",
-    "503": "Service Unavailable",
-    "504": "Gateway Timeout"
   }
 }

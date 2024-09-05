@@ -6,9 +6,9 @@ import GHlogo from '@/shared/assets/icons/logo-github.svg';
 import style from './Footer.module.css';
 
 const dataGitHub = [
+  { name: 'Ivan', url: 'https://github.com/mindvan' },
   { name: 'Evgeny', url: 'https://github.com/zytsev' },
   { name: 'Anastasiia', url: 'https://github.com/petru6e4ka' },
-  { name: 'Ivan', url: 'https://github.com/mindvan' },
 ];
 
 export function Footer() {

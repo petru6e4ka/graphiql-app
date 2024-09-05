@@ -2,3 +2,11 @@
   text-align: center;
   margin: 0 auto;
 }
+
+.method {
+  width: 110px;
+}
+
+.url {
+  flex: 1;
+}

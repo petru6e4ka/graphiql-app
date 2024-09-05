@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { Title, Button } from '@/shared/ui';
 
-// import HeadersSection from '@/widgets/HeadersSection';
+import HeadersSection from '@/widgets/HeadersSection';
 import styles from './Rest.module.css';
 
 export default function Rest() {
@@ -11,6 +11,7 @@ export default function Rest() {
     <div className={styles.rest}>
       <Title>{t('title')}</Title>
       <Button>{t('body')}</Button>
+      <HeadersSection />
     </div>
   );
 }

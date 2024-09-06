@@ -1,9 +1,8 @@
 import {
-  beforeEach, expect, test, vi,
+  beforeEach, expect, test, vi, describe,
 } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
-import { describe } from 'node:test';
 import Page from './page';
 
 beforeEach(() => {

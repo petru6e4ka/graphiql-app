@@ -1,5 +1,4 @@
-import { expect, test } from 'vitest';
-import { describe } from 'node:test';
+import { expect, test, describe } from 'vitest';
 import { passwordStrengthCheck } from './passwordStrengthCheck';
 
 describe('passwordStrengthCheck', () => {

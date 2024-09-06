@@ -1,9 +1,8 @@
 import {
-  describe, expect, test, vi,
+  describe, expect, test, vi, beforeEach,
 } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
-import { beforeEach } from 'node:test';
 import { AuthSwitcher } from './AuthSwitcher';
 
 beforeEach(() => {
@@ -53,6 +52,12 @@ describe('AuthSwitcher component', () => {
   test('Logs out', async () => {
     vi.mock('next/navigation');
 
+    const nav = await import('@/features/localeSwitcher');
+
+    nav.useRouter = vi.fn().mockReturnValue({
+      push() {},
+    });
+
     const auth = await import('next-auth/react');
 
     auth.useSession = vi.fn().mockReturnValue({
@@ -64,6 +69,8 @@ describe('AuthSwitcher component', () => {
         expires: '3600',
       },
     });
+
+    auth.signOut = vi.fn().mockResolvedValue({});
 
     await renderWithWrappers(<AuthSwitcher />);
 

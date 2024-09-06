@@ -13,8 +13,10 @@ export default function NotFoundPage({ reset }: { reset: () => void }) {
       <div className={styles.inner}>
         <NotFoundIcon className={styles.image} />
         <div className={styles.content}>
-          <Title className={styles.title}>{t('title')}</Title>
-          <Text c="dimmed" size="lg" ta="center" className={styles.description}>
+          <Title className={styles.title} data-testid="NotFoundTitle">
+            {t('title')}
+          </Title>
+          <Text c="dimmed" size="lg" ta="center" className={styles.description} data-testid="NotFoundTitle">
             {t('heading')}
           </Text>
           <Link href="/">

@@ -6,17 +6,17 @@ export enum ToastType {
   error,
 }
 
-export function showToast(message: string, type: ToastType = ToastType.info) {
-  const options: ToastOptions = {
-    position: 'bottom-right',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    theme: 'light',
-    transition: Slide,
-  };
+export const options: ToastOptions = {
+  position: 'bottom-right',
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  theme: 'light',
+  transition: Slide,
+};
 
+export function showToast(message: string, type: ToastType = ToastType.info) {
   switch (type) {
     case ToastType.success:
       toast.success(message, options);

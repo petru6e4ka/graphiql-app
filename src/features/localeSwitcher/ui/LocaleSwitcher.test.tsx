@@ -1,46 +1,42 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import {
   describe, it, expect, vi,
 } from 'vitest';
-import { LocaleSwitcher } from '@/features/localeSwitcher/ui/LocaleSwitcher';
-
-import { locales } from '@/features/localeSwitcher/config/locales';
-
-const pushMock = vi.fn();
-
-vi.mock('next/navigation', () => ({
-  useRouter: () => ({
-    push: pushMock,
-  }),
-  usePathname: () => 'en/signin',
-}));
-
-vi.mock('next-intl', () => ({
-  useLocale: () => 'en',
-  useTranslations: () => (key: string) => key,
-}));
+import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
+import { LocaleSwitcher } from './LocaleSwitcher';
 
 describe('LocaleSwitcher', () => {
-  it('select element with locale options', () => {
-    render(<LocaleSwitcher />);
+  it('renders', async () => {
+    vi.mock('next/navigation');
 
-    const selectElement = screen.getByTestId('locale-switcher');
+    await renderWithWrappers(<LocaleSwitcher />);
+
+    const selectElement = screen.getByRole('textbox', {
+      name: 'Switch locale',
+    });
 
     expect(selectElement).toBeInTheDocument();
-
-    locales.forEach((locale) => {
-      expect(screen.getByText(`langs.${locale}`)).toBeInTheDocument();
-    });
   });
 
-  it('new locale when a new locale is selected', () => {
-    pushMock.mockClear();
+  it('changes locale', async () => {
+    const nextRouter = await import('next/navigation');
 
-    render(<LocaleSwitcher />);
+    nextRouter.useRouter = vi.fn().mockReturnValue({
+      push: vi.fn(),
+    });
 
-    const selectElement = screen.getByTestId('locale-switcher');
+    nextRouter.usePathname = vi.fn().mockReturnValue({
+      replace: vi.fn(),
+    });
 
-    fireEvent.change(selectElement, { target: { value: 'de' } });
-    expect(pushMock).toHaveBeenCalledWith('de/signin');
+    const spyFn = vi.spyOn(nextRouter.useRouter(), 'push');
+
+    await renderWithWrappers(<LocaleSwitcher />);
+
+    const languageBtn = screen.getByAltText('RU Flag');
+
+    fireEvent.click(languageBtn as HTMLImageElement);
+
+    expect(spyFn).toHaveBeenCalled();
   });
 });

@@ -3,8 +3,8 @@
 import { locales } from '@/features/localeSwitcher/config/locales';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { ChangeEvent } from 'react';
-import styles from './LocaleSwitcher.module.css';
+import Flag from 'react-flagkit';
+import { Select, SelectProps, Group } from '@/shared/ui';
 
 export function LocaleSwitcher() {
   const t = useTranslations('Header');
@@ -12,21 +12,42 @@ export function LocaleSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleLocaleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = event.target.value;
-
-    router.push(pathname.replace(locale, newLocale));
+  const handleLocaleChange = (newLocale: string | null) => {
+    if (newLocale) {
+      router.push(pathname.replace(locale, newLocale));
+    }
   };
 
+  const iconProps = {
+    size: 16,
+  };
+
+  const icons: Record<string, React.ReactNode> = {
+    de: <Flag country="DE" {...iconProps} />,
+    en: <Flag country="US" {...iconProps} />,
+    ru: <Flag country="RU" {...iconProps} />,
+  };
+
+  const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
+    <Group flex="1" gap="xs">
+      {icons[option.value]}
+      {option.label}
+    </Group>
+  );
+
   return (
-    <div className={styles.languageSwitcher}>
-      <select id="locale-switcher" data-testid="locale-switcher" value={locale} onChange={handleLocaleChange}>
-        {locales.map((cur) => (
-          <option key={cur} value={cur}>
-            {t(`langs.${cur}`)}
-          </option>
-        ))}
-      </select>
-    </div>
+    <Select
+      aria-label="Switch locale"
+      name="Switch locale"
+      size="md"
+      value={locale}
+      onChange={handleLocaleChange}
+      data={locales.map((cur) => ({
+        value: cur,
+        label: t(`langs.${cur}`),
+      }))}
+      renderOption={renderSelectOption}
+      comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 }, withinPortal: false }}
+    />
   );
 }

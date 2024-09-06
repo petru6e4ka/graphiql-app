@@ -14,6 +14,8 @@ export {
   Progress,
   Anchor,
   Container,
+  Select,
+  type SelectProps,
 } from '@mantine/core';
 export { Logo } from './Logo';
 export { Button } from './Button';

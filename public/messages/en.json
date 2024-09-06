@@ -46,7 +46,9 @@
     "has-number": "Includes number",
     "has-letter": "Includes letter",
     "has-special-char": "Includes special symbol",
-    "has-length": "Has at least 8 characters"
+    "has-length": "Has at least 8 characters",
+    "error-signin": "Oops! Something went wrong. Can't sign in",
+    "error-signup": "Oops! Something went wrong. Can't sign up"
   },
   "NoResponse": {
     "msg": "You haven't executed any requests. It's empty here. Try: ",
@@ -85,11 +87,6 @@
     "404": {
       "title": "Looks like you're lost.",
       "heading": "This page not found. Perhaps you were looking for something else?",
-      "back": "Back"
-    },
-    "Boundary": {
-      "title": "This is Error Boundary",
-      "heading": "",
       "back": "Back"
     }
   }

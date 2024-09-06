@@ -10,6 +10,7 @@ import {
 import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
 import { hideErrorMessage, stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
+import { showToast, ToastType } from '@/features/toast';
 import styles from './SignUp.module.css';
 
 export default function SignUp() {
@@ -35,7 +36,9 @@ export default function SignUp() {
         .then(() => {
           router.push('/signin');
         })
-        .catch(console.log);
+        .catch(() => {
+          showToast(`${t('error-signup')}`, ToastType.error);
+        });
     }
   };
 

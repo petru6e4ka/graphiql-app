@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { ToastProvider } from '@/features/toast';
 import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
 import LocaleSwitcher from '@/features/localeSwitcher';
@@ -32,16 +33,18 @@ export default async function RootLayout({
         <SessionWrapper>
           <MantineProvider>
             <NextIntlClientProvider messages={messages}>
-              <header>
-                <Header>
-                  <LocaleSwitcher />
-                  <AuthSwitcher />
-                </Header>
-              </header>
-              <main>{children}</main>
-              <footer>
-                <Footer />
-              </footer>
+              <ToastProvider>
+                <header>
+                  <Header>
+                    <LocaleSwitcher />
+                    <AuthSwitcher />
+                  </Header>
+                </header>
+                <main>{children}</main>
+                <footer>
+                  <Footer />
+                </footer>
+              </ToastProvider>
             </NextIntlClientProvider>
           </MantineProvider>
         </SessionWrapper>

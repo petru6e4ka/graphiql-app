@@ -34,6 +34,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-firebase-hooks": "^5.1.1",
+    "react-flagkit": "^2.0.4",
+    "react-toastify": "^10.0.5",
     "vitest": "^2.0.5",
     "zustand": "^4.5.5"
   },

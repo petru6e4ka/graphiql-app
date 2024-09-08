@@ -9,6 +9,7 @@ import { signIn } from 'next-auth/react';
 import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
+import { showToast, ToastType } from '@/features/toast';
 import styles from './SignIn.module.css';
 
 export default function SignIn() {
@@ -36,7 +37,8 @@ export default function SignIn() {
         redirect: false,
       }).then((response) => {
         if (response?.error) {
-          console.log(response?.error);
+          showToast(`${response.status}. ${t('error-signin')}`, ToastType.error);
+
           return;
         }
 

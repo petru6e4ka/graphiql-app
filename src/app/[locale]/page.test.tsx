@@ -1,7 +1,8 @@
-import { expect, test, vi } from 'vitest';
+import {
+  expect, test, vi, afterEach, describe,
+} from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
-import { afterEach, describe } from 'node:test';
 import Page from './page';
 
 describe('Welcome page', async () => {

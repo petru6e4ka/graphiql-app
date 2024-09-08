@@ -46,7 +46,9 @@
     "has-number": "Inklusive Nummer",
     "has-letter": "Inklusive Brief",
     "has-special-char": "Es handelt sich um ein spezielles Symbol",
-    "has-length": "Hat mindestens 8 Zeichen"
+    "has-length": "Hat mindestens 8 Zeichen",
+    "error-signin": "Hoppla! Etwas ist schiefgelaufen. Anmeldung nicht möglich",
+    "error-signup": "Hoppla! Etwas ist schiefgelaufen. Anmeldung nicht möglich"
   },
   "NoResponse": {
     "msg": "Sie haben keine Anfragen ausgeführt. Es ist leer hier. Versuchen Sie: ",
@@ -85,11 +87,6 @@
     "404": {
       "title": "Du hast dich verirrt.",
       "heading": "Seite nicht gefunden. Vielleicht haben Sie nach etwas anderem gesucht?",
-      "back": "Zurückgehen"
-    },
-    "Boundary": {
-      "title": "Das ist Error Boundary",
-      "heading": "",
       "back": "Zurückgehen"
     }
   }

@@ -1,13 +1,22 @@
 .footer {
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 .github {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 0;
+  }
 }

@@ -1,0 +1,26 @@
+.container {
+    width: 50vw;
+
+}
+
+.spanwrap,
+.titles,
+.inputswrap {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.inputswrap {
+    margin-bottom: 0.5rem;
+}
+
+.span {
+    width: 10rem;
+    text-align: start;
+}
+
+.IconPlus,
+.IconClose {
+    cursor: pointer;
+}

@@ -1,0 +1,8 @@
+.textinput {
+    width: 10rem;
+}
+
+.container {
+    display: flex;
+    gap: 1rem;
+}

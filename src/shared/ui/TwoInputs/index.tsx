@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { TextInput } from '@mantine/core';
 import { useHeaders } from '@/features/store/store';

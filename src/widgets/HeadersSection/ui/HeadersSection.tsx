@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
 import { useHeaders } from '@/features/store/store';
-import { TwoInputs } from '@/shared/ui/TwoInputs/TwoInputs';
+import { TwoInputs } from '@/shared/ui';
 import IconPlus from '@/shared/assets/icons/plus-circle.svg';
 import IconClose from '@/shared/assets/icons/x-circle.svg';
 import styles from './HeadersSection.module.css';

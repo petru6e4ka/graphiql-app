@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { TextInput } from '@mantine/core';
 import { useHeaders } from '@/features/store/store';
 import styles from './TwoInputs.module.css';
-import { TextInput } from '../index';
 
 interface PropsTwoInputs {
   id: string;

@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
 import { Title, Button } from '@/shared/ui';
-
 import HeadersSection from '@/widgets/HeadersSection';
 import styles from './Rest.module.css';
 

@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { screen, fireEvent } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
-import { TwoInputs } from './TwoInputs';
+import { TwoInputs } from '.';
 
 describe('TwoInputs component', async () => {
   const prop = {

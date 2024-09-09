@@ -15,6 +15,8 @@ export {
   Anchor,
   Container,
   Select,
+  Table,
+  TypographyStylesProvider,
   type SelectProps,
 } from '@mantine/core';
 export { Logo } from './Logo';

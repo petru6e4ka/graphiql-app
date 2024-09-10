@@ -81,7 +81,8 @@
     "documentation": "Documentation: "
   },
   "History": {
-    "title": "History Requests: "
+    "title": "History Requests: ",
+    "not-history": "You haven't executed any requests. It's empty here. Try: "
   },
   "Error": {
     "404": {

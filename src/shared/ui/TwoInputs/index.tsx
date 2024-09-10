@@ -7,10 +7,12 @@ import styles from './TwoInputs.module.css';
 
 interface PropsTwoInputs {
   id: string;
+  ky: string;
+  value: string;
 }
 
-export function TwoInputs({ id }: PropsTwoInputs) {
-  const [state, setState] = useState({ id, Key: '', Value: '' });
+export function TwoInputs({ id, ky, value }: PropsTwoInputs) {
+  const [state, setState] = useState({ id, Key: ky, Value: value });
   const { updateHeaderInStore } = useHeaders();
 
   const handleInputChange = (name: string) => (event: React.FormEvent<HTMLInputElement>) => {

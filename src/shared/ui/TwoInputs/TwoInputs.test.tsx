@@ -6,6 +6,8 @@ import { TwoInputs } from '.';
 describe('TwoInputs component', async () => {
   const prop = {
     id: 'example',
+    ky: '',
+    value: '',
   };
 
   test('Two inputs renders with value=""', async () => {

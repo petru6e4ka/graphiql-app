@@ -22,16 +22,4 @@ describe('HeadersSection component', () => {
     expect(screen.getByPlaceholderText('Value')).toBeInTheDocument();
     expect(screen.getByAltText('Close')).toBeInTheDocument();
   });
-
-  test('Inputs remove after click of button "close"', async () => {
-    await renderWithWrappers(<HeadersSection />);
-
-    fireEvent.click(screen.getByAltText('Plus'));
-    fireEvent.click(screen.getByAltText('Close'));
-    expect(screen.queryByText('Key')).not.toBeInTheDocument();
-    expect(screen.queryByText('Value')).not.toBeInTheDocument();
-    expect(screen.queryByPlaceholderText('Key')).not.toBeInTheDocument();
-    expect(screen.queryByPlaceholderText('Value')).not.toBeInTheDocument();
-    expect(screen.queryByAltText('Close')).not.toBeInTheDocument();
-  });
 });

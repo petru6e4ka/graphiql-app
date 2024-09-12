@@ -65,7 +65,7 @@ export default function GraphiQLClient() {
     const headersObject = getHeadersObject();
     const headersQueryParams = headersToQueryParams(headersObject);
 
-    return `/GRAPHQL/${encodedEndpoint}/${encodedQuery}?${headersQueryParams}`;
+    return `/${encodedEndpoint}/${encodedQuery}?${headersQueryParams}`;
   };
 
   const fetchDocumentation = () => {
@@ -99,7 +99,8 @@ export default function GraphiQLClient() {
 
   const go = () => {
     const generatedUrl = generateUrlWithHeaders();
-    setDocUrl(generatedUrl);
+    const currentPath = window.location.pathname;
+    window.history.pushState({}, '', `${currentPath}${generatedUrl}`);
 
     const headersObject = getHeadersObject();
     makeRequest(query, variables, headersObject).then((result) => {

@@ -9,6 +9,7 @@ import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithEr
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '@/app/firebase';
 import styles from './ForgotPassword.module.css';
+import { GraphiQLClient } from '@/features/graphql/ul/GraphqlClient';
 
 export default function ForgotPassword() {
   const t = useTranslations('Forms');
@@ -53,6 +54,8 @@ export default function ForgotPassword() {
           </Button>
         </form>
       </div>
+
+      <GraphiQLClient />
     </div>
   );
 }

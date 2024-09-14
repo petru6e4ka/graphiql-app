@@ -17,7 +17,7 @@ FSD - Feature sliced design
 ## CSS and UI
 
 - Modules
-- Ant Design
+- Mantine
 
 ## Tests
 

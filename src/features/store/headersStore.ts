@@ -2,26 +2,33 @@ import { create } from 'zustand';
 
 export type Header = {
   id: string;
-  Key: string;
-  Value: string;
+  name: string;
+  value: string;
 };
 
 type State = {
-  Headers: Header[];
+  headers: Header[];
+};
+
+type Actions = {
   addHeaderInStore: (obj: Header) => void;
   updateHeaderInStore: (obj: Header) => void;
   removeHeaderFromStore: (id: string) => void;
+  cleanHeaders: () => void;
 };
 
-export const useHeaders = create<State>()((set, get) => ({
-  Headers: [],
+export const useHeaders = create<State & Actions>()((set, get) => ({
+  headers: [],
   addHeaderInStore: (obj) => {
-    set({ Headers: [...get().Headers, obj] });
+    set({ headers: [...get().headers, obj] });
   },
   updateHeaderInStore: (obj) => {
-    set({ Headers: get().Headers.map((item) => (obj.id === item.id ? obj : item)) });
+    set({ headers: get().headers.map((item) => (obj.id === item.id ? obj : item)) });
   },
   removeHeaderFromStore: (id) => {
-    set({ Headers: get().Headers.filter((item) => item.id !== id) });
+    set({ headers: get().headers.filter((item) => item.id !== id) });
+  },
+  cleanHeaders: () => {
+    set({ headers: [] });
   },
 }));

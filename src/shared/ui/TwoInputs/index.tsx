@@ -1,38 +1,53 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { TextInput } from '@mantine/core';
-import { useHeaders } from '@/features/store/headersStore';
 import styles from './TwoInputs.module.css';
 
-interface PropsTwoInputs {
+export interface Item {
   id: string;
+  name: string;
+  value: string;
 }
 
-export function TwoInputs({ id }: PropsTwoInputs) {
-  const [state, setState] = useState({ id, Key: '', Value: '' });
-  const { updateHeaderInStore } = useHeaders();
+interface Props extends Item {
+  update: (item: Item) => void;
+}
 
-  const handleInputChange = (name: string) => (event: React.FormEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-    setState({ ...state, [name]: target.value });
+export function TwoInputs({
+  id, name, value, update,
+}: Props) {
+  const currentInputs = useMemo(() => ({
+    id,
+    name,
+    value,
+  }), [id, name, value]);
+
+  const [state, setState] = useState<Item>(currentInputs);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState((current) => ({ ...current, [event.target.name]: event.target.value }));
+  };
+
+  const upDateStorage = () => {
+    update(state);
   };
 
   return (
     <div className={styles.container}>
       <TextInput
-        onChange={handleInputChange('Key')}
-        onBlur={() => updateHeaderInStore(state)}
-        value={state.Key}
-        name="Key"
+        onChange={handleInputChange}
+        onBlur={upDateStorage}
+        value={state.name || ''}
+        name="name"
         className={styles.textinput}
         placeholder="Key"
       />
       <TextInput
-        onChange={handleInputChange('Value')}
-        onBlur={() => updateHeaderInStore(state)}
-        value={state.Value}
-        name="Value"
+        onChange={handleInputChange}
+        onBlur={upDateStorage}
+        value={state.value || ''}
+        name="value"
         className={styles.textinput}
         placeholder="Value"
       />

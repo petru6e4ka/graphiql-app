@@ -8,6 +8,7 @@ import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithEr
 import HeadersSection from '@/widgets/HeadersSection';
 import { useHeaders, type Header } from '@/features/store/headersStore';
 import { useQueryParams, type Query } from '@/features/store/queryParamsStore';
+import { useHistoryStore } from '@/features/store/historyStore';
 import styles from './RestForm.module.css';
 
 enum Request {
@@ -32,8 +33,13 @@ export function RestForm() {
     <Textarea placeholder="Body" autosize minRows={6} styles={stylesForFieldWithError} />
   );
 
-  const { addHeaderInStore, removeHeaderFromStore } = useHeaders();
-  const { addQueryInStore, removeQueryFromStore } = useQueryParams();
+  const {
+    headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore,
+  } = useHeaders();
+  const {
+    query, addQueryInStore, removeQueryFromStore, updateQueryInStore,
+  } = useQueryParams();
+  const { addRequest } = useHistoryStore();
 
   const addNewHeader = (item: object) => {
     addHeaderInStore(item as Header);
@@ -41,6 +47,14 @@ export function RestForm() {
 
   const addNewQuery = (item: object) => {
     addQueryInStore(item as Query);
+  };
+
+  const updateHeader = (item: object) => {
+    updateHeaderInStore(item as Header);
+  };
+
+  const updateQuery = (item: object) => {
+    updateQueryInStore(item as Query);
   };
 
   return (
@@ -73,15 +87,32 @@ export function RestForm() {
       </Group>
       <div className={styles.body}>{bodyInput}</div>
 
-      <HeadersSection add={addNewHeader} remove={removeHeaderFromStore}>
+      <HeadersSection add={addNewHeader} remove={removeHeaderFromStore} update={updateHeader} items={headers}>
         <Text>Headers: </Text>
       </HeadersSection>
 
-      <HeadersSection add={addNewQuery} remove={removeQueryFromStore}>
+      <HeadersSection add={addNewQuery} remove={removeQueryFromStore} update={updateQuery} items={query}>
         <Text>Query: </Text>
       </HeadersSection>
 
-      <Button>Send</Button>
+      <Button
+        onClick={() => addRequest({
+          date: new Date().toUTCString(),
+          url: 'https://example.com',
+          method: 'PUT',
+          headers: headers.reduce((prev, curr) => ({
+            ...prev,
+            [curr.name]: curr.value,
+          }), {}),
+          body: '',
+          searchParams: query.reduce((prev, curr) => ({
+            ...prev,
+            [curr.name]: curr.value,
+          }), {}),
+        })}
+      >
+        Send
+      </Button>
     </Stack>
   );
 }

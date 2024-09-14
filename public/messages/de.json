@@ -81,7 +81,10 @@
     "documentation": "Dokumentation: "
   },
   "History": {
-    "title": "Verlauf der Anfragen: "
+    "title": "Verlauf der Anfragen: ",
+    "not-history": "Sie haben keine Anfragen ausgeführt. Hier ist es leer. Versuchen Sie: ",
+    "rest": "REST",
+    "graphiql": "GraphQL"
   },
   "Error": {
     "404": {

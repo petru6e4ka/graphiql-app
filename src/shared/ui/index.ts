@@ -23,5 +23,5 @@ export {
 export { Logo } from './Logo';
 export { Button } from './Button';
 export { PasswordWithRequirements } from './PasswordWithRequirements';
-export { TwoInputs } from './TwoInputs';
+export { TwoInputs, type Item } from './TwoInputs';
 export { NotFoundIcon } from './NotFound';

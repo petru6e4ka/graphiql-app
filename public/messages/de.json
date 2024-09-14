@@ -72,7 +72,10 @@
     "invalid-metod": "ungültige Methode",
     "header-key": "Schlüssel",
     "header-value": "Wert",
-    "status": "Statuscode"
+    "status": "Statuscode",
+    "plus": "Plus",
+    "close": "schließen",
+    "string-to-json-error": "Der Anforderungstext kann nicht in das JSON-Format konvertiert werden"
   },
   "GraphiQL": {
     "title": "GraphiQL-Client",

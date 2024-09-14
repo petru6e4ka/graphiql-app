@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid';
 import { Table, TypographyStylesProvider } from '@mantine/core';
 import { useHeaders } from '@/features/store/headersStore';
 import { useQueryParams } from '@/features/store/queryParamsStore';
+import { useRestRequest } from '@/features/store/restRequestStore';
+import { Method } from '@/shared/types/Method';
 
 interface RestRequest {
   date: string;
@@ -19,6 +21,7 @@ interface Prop {
 export function History({ elements }: Prop) {
   const { cleanHeaders, addHeaderInStore } = useHeaders();
   const { cleanQuery, addQueryInStore } = useQueryParams();
+  const { addBody, addMethod, addUrl } = useRestRequest();
 
   const setCurrentRequest = (obj: RestRequest) => {
     cleanHeaders();
@@ -37,6 +40,10 @@ export function History({ elements }: Prop) {
       const id = nanoid();
       addQueryInStore({ id, name: param, value: obj.searchParams[param] });
     });
+
+    addBody(obj.body);
+    addMethod(obj.method as Method);
+    addUrl(obj.url);
   };
 
   const rows = elements.map((element) => {

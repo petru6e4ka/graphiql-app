@@ -11,7 +11,10 @@ import HeadersSection from '@/widgets/HeadersSection';
 import { useHeaders, type Header } from '@/features/store/headersStore';
 import { useQueryParams, type Query } from '@/features/store/queryParamsStore';
 import { useHistoryStore } from '@/features/store/historyStore';
+import { useRestRequest } from '@/features/store/restRequestStore';
 import { urlCheck } from '@/shared/lib/forms/urlCheck';
+import { isJsonString } from '@/shared/lib/forms/isJsonString';
+import { showToast, ToastType } from '@/features/toast';
 import styles from './RestForm.module.css';
 
 enum Request {
@@ -29,13 +32,17 @@ enum BodyFormat {
 
 export function RestForm() {
   const t = useTranslations('REST');
-  const [bodyFormat, setBodyFormat] = useState(BodyFormat.JSON);
+  const {
+    body, url, method, clearData,
+  } = useRestRequest();
+
+  const [bodyFormat, setBodyFormat] = useState(isJsonString(body) ? BodyFormat.JSON : BodyFormat.String);
 
   const {
-    headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore,
+    headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore, cleanHeaders,
   } = useHeaders();
   const {
-    query, addQueryInStore, removeQueryFromStore, updateQueryInStore,
+    query, addQueryInStore, removeQueryFromStore, updateQueryInStore, cleanQuery,
   } = useQueryParams();
   const { addRequest } = useHistoryStore();
 
@@ -58,9 +65,9 @@ export function RestForm() {
   const form = useForm({
     mode: 'controlled',
     initialValues: {
-      method: '',
-      url: '',
-      body: '',
+      method: method || Request.GET,
+      url: url || '',
+      body: isJsonString(body) ? JSON.parse(body) : body,
     },
     validate: {
       url: urlCheck(t('invalid-url')),
@@ -84,17 +91,13 @@ export function RestForm() {
   );
 
   const makeRequest = (data: typeof form.values | null) => {
-    // console.log(data);
-
     if (data) {
-      const { method, url, body } = data;
-
-      const requestBody = bodyFormat === BodyFormat.JSON ? JSON.stringify(body) : body;
+      const requestBody = bodyFormat === BodyFormat.JSON ? JSON.stringify(data.body) : data.body;
 
       addRequest({
         date: new Date().toUTCString(),
-        url,
-        method: method as Request,
+        url: data.url,
+        method: data.method as Request,
         headers: headers.reduce(
           (prev, curr) => ({
             ...prev,
@@ -111,10 +114,34 @@ export function RestForm() {
           {},
         ),
       });
+
+      cleanHeaders();
+      cleanQuery();
+      clearData();
+      form.setValues({
+        method: 'GET',
+        url: '',
+        body: '',
+      });
     }
 
     // TODO: create endpoint url
     // TODO: make request and show it
+  };
+
+  const changeBodyFormatToStr = () => {
+    setBodyFormat(BodyFormat.String);
+  };
+
+  const changeBodyFormatToJSON = () => {
+    const values = form.getValues();
+
+    if (isJsonString(values.body) || !values.body) {
+      setBodyFormat(BodyFormat.JSON);
+      return;
+    }
+
+    showToast(t('string-to-json-error'), ToastType.error);
   };
 
   return (
@@ -142,10 +169,10 @@ export function RestForm() {
         </Group>
         <Group>
           <Text size="md">{t('body-format')}</Text>
-          <Button variant={bodyFormat === BodyFormat.String ? 'light' : 'subtle'} onClick={() => setBodyFormat(BodyFormat.String)}>
+          <Button variant={bodyFormat === BodyFormat.String ? 'light' : 'subtle'} onClick={changeBodyFormatToStr}>
             {t('string')}
           </Button>
-          <Button variant={bodyFormat === BodyFormat.JSON ? 'light' : 'subtle'} onClick={() => setBodyFormat(BodyFormat.JSON)}>
+          <Button variant={bodyFormat === BodyFormat.JSON ? 'light' : 'subtle'} onClick={changeBodyFormatToJSON}>
             JSON
           </Button>
         </Group>

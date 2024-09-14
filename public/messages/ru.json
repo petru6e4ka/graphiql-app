@@ -72,7 +72,10 @@
     "invalid-metod": "Невалидный метод",
     "header-key": "Ключ",
     "header-value": "Значение",
-    "status": "Статус код"
+    "status": "Статус код",
+    "plus": "Добаить",
+    "close": "Удалить",
+    "string-to-json-error": "Не возможно конверттировать тело запроса в JSON формат"
   },
   "GraphiQL": {
     "title": "GraphiQL Клиент",

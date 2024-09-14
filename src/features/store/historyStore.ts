@@ -1,8 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { devtools, persist } from 'zustand/middleware';
-
-type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+import { Method } from '@/shared/types/Method';
 
 export type RestRequest = {
   date: string;

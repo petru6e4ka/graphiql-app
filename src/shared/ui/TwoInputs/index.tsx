@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 import { TextInput } from '@mantine/core';
 import styles from './TwoInputs.module.css';
@@ -17,11 +18,16 @@ interface Props extends Item {
 export function TwoInputs({
   id, name, value, update,
 }: Props) {
-  const currentInputs = useMemo(() => ({
-    id,
-    name,
-    value,
-  }), [id, name, value]);
+  const t = useTranslations('REST');
+
+  const currentInputs = useMemo(
+    () => ({
+      id,
+      name,
+      value,
+    }),
+    [id, name, value],
+  );
 
   const [state, setState] = useState<Item>(currentInputs);
 
@@ -41,7 +47,7 @@ export function TwoInputs({
         value={state.name || ''}
         name="name"
         className={styles.textinput}
-        placeholder="Key"
+        placeholder={t('header-key')}
       />
       <TextInput
         onChange={handleInputChange}
@@ -49,7 +55,7 @@ export function TwoInputs({
         value={state.value || ''}
         name="value"
         className={styles.textinput}
-        placeholder="Value"
+        placeholder={t('header-value')}
       />
     </div>
   );

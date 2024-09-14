@@ -14,7 +14,7 @@ export default function Rest() {
 
       <div className={styles.content}>
         <Title className={styles.subtitle} order={2}>
-          Request data:
+          {t('request-data')}
         </Title>
 
         <div className={styles.form}>
@@ -23,12 +23,12 @@ export default function Rest() {
 
         <Stack>
           <Title className={styles.subtitle} order={2}>
-            Response:
+            {t('response')}
           </Title>
 
-          <StatusComponent status="" />
+          <StatusComponent status="123" />
 
-          <ResponseBody response="body" />
+          <ResponseBody response="123" />
         </Stack>
       </div>
     </div>

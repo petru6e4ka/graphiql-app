@@ -1,6 +1,6 @@
 export function NotFoundIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 362 145" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 362 145" data-testid="not-found-icon" {...props}>
       <path
         fill="currentColor"
         d="M62.6 142c-2.133 0-3.2-1.067-3.2-3.2V118h-56c-2 0-3-1-3-3V92.8c0-1.333.4-2.733 1.2-4.2L58.2

@@ -14,6 +14,7 @@ import DocumentationComponent from '@/widgets/DocumentationComponent';
 import { useGraphHeaders, type Header } from '@/features/store/graphHeaders';
 import prettier from 'prettier/standalone';
 import parserGraphql from 'prettier/parser-graphql';
+import styles from './graphql.module.css';
 
 const base64Encode = (str: string) => btoa(unescape(encodeURIComponent(str)));
 
@@ -123,8 +124,8 @@ export default function GraphiQLClient() {
   };
 
   return (
-    <div>
-      <Title>{t('title')}</Title>
+    <div className={styles.graphql}>
+      <Title className={styles.header}>{t('title')}</Title>
       <EndpointUrl url={url} setUrl={setUrl} docUrl={docUrl} setDocUrl={setDocUrl} fetchDocumentation={fetchDocumentation} />
 
       <HeadersSection add={addNewHeader} remove={removeHeaderFromStore} update={updateHeader} items={headers}>

@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl';
-import {
-  ScrollArea, Title, Text, Stack, Group,
-} from '@/shared/ui';
+import { Title, Stack } from '@/shared/ui';
 import RestForm from '@/features/restForm';
+import ResponseBody from '@/widgets/ResponseBody';
+import StatusComponent from '@/widgets/StatusComponent';
 import styles from './Rest.module.css';
 
 export default function Rest() {
@@ -26,17 +26,9 @@ export default function Rest() {
             Response:
           </Title>
 
-          <Group mb={15}>
-            <Title className={styles.subtitle} order={4} mb={0}>
-              Status:
-            </Title>
-            <Text>status</Text>
-          </Group>
+          <StatusComponent status="" />
 
-          <Title className={styles.subtitle} order={4}>
-            Body:
-          </Title>
-          <ScrollArea h={250}>body</ScrollArea>
+          <ResponseBody response="body" />
         </Stack>
       </div>
     </div>

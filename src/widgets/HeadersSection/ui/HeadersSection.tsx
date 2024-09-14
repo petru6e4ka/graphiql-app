@@ -3,25 +3,29 @@
 import { useState, ReactNode } from 'react';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
-import { useHeaders } from '@/features/store/store';
 import { TwoInputs } from '@/shared/ui';
 import IconPlus from '@/shared/assets/icons/plus-circle.svg';
 import IconClose from '@/shared/assets/icons/x-circle.svg';
 import styles from './HeadersSection.module.css';
 
-export function HeadersSection({ children }: { children: ReactNode }) {
+type Props = {
+  children: ReactNode;
+  add: (item: object) => void;
+  remove: (id: string) => void;
+};
+
+export function HeadersSection({ children, add, remove }: Props) {
   const [HeadersId, setHeadersId] = useState<string[]>([]);
-  const { addHeaderInStore, removeHeaderFromStore } = useHeaders();
 
   const createHeader = () => {
     const id = nanoid();
     setHeadersId([...HeadersId, id]);
-    addHeaderInStore({ id, Key: '', Value: '' });
+    add({ id, Key: '', Value: '' });
   };
 
   const removeHeader = (id: string) => {
     setHeadersId(HeadersId.filter((elem) => elem !== id));
-    removeHeaderFromStore(id);
+    remove(id);
   };
 
   return (

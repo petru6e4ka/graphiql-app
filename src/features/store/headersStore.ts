@@ -1,18 +1,19 @@
 import { create } from 'zustand';
 
-interface TypeHeader {
+export type Header = {
   id: string;
   Key: string;
   Value: string;
-}
-interface HeadersState {
-  Headers: TypeHeader[];
-  addHeaderInStore: (obj: TypeHeader) => void;
-  updateHeaderInStore: (obj: TypeHeader) => void;
-  removeHeaderFromStore: (id: string) => void;
-}
+};
 
-export const useHeaders = create<HeadersState>()((set, get) => ({
+type State = {
+  Headers: Header[];
+  addHeaderInStore: (obj: Header) => void;
+  updateHeaderInStore: (obj: Header) => void;
+  removeHeaderFromStore: (id: string) => void;
+};
+
+export const useHeaders = create<State>()((set, get) => ({
   Headers: [],
   addHeaderInStore: (obj) => {
     set({ Headers: [...get().Headers, obj] });

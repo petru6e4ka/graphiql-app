@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { TextInput } from '@mantine/core';
-import { useHeaders } from '@/features/store/store';
+import { useHeaders } from '@/features/store/headersStore';
 import styles from './TwoInputs.module.css';
 
 interface PropsTwoInputs {

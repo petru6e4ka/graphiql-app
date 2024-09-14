@@ -6,6 +6,8 @@ import {
 } from '@/shared/ui';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import HeadersSection from '@/widgets/HeadersSection';
+import { useHeaders, type Header } from '@/features/store/headersStore';
+import { useQueryParams, type Query } from '@/features/store/queryParamsStore';
 import styles from './RestForm.module.css';
 
 enum Request {
@@ -29,6 +31,17 @@ export function RestForm() {
   ) : (
     <Textarea placeholder="Body" autosize minRows={6} styles={stylesForFieldWithError} />
   );
+
+  const { addHeaderInStore, removeHeaderFromStore } = useHeaders();
+  const { addQueryInStore, removeQueryFromStore } = useQueryParams();
+
+  const addNewHeader = (item: object) => {
+    addHeaderInStore(item as Header);
+  };
+
+  const addNewQuery = (item: object) => {
+    addQueryInStore(item as Query);
+  };
 
   return (
     <Stack>
@@ -60,11 +73,11 @@ export function RestForm() {
       </Group>
       <div className={styles.body}>{bodyInput}</div>
 
-      <HeadersSection>
+      <HeadersSection add={addNewHeader} remove={removeHeaderFromStore}>
         <Text>Headers: </Text>
       </HeadersSection>
 
-      <HeadersSection>
+      <HeadersSection add={addNewQuery} remove={removeQueryFromStore}>
         <Text>Query: </Text>
       </HeadersSection>
 

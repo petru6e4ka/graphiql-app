@@ -56,15 +56,23 @@
     "graphiql": "GraphiQL-Client"
   },
   "REST": {
+    "invalid-url": "ungültige URL",
     "title": "REST-Client",
-    "method": "Methode: ",
-    "url": "Endpunkt-URL: ",
-    "headers": "Header: ",
-    "header-key": "Header-Schlüssel: ",
-    "header-value": "Header-Wert: ",
-    "body": "Körper: ",
-    "title-response": "Antwort: ",
-    "status": "Status: "
+    "request-data": "Daten anfordern",
+    "response": "Antwort",
+    "body-format": "Textformat",
+    "string": "Zeichenfolge",
+    "headers": "Kopfzeile",
+    "query": "Abfrage",
+    "send": "Senden",
+    "method": "Methode",
+    "url": "Endpunkt-URL",
+    "body": "Körper",
+    "invalid-json": "ungültiges JSON",
+    "invalid-metod": "ungültige Methode",
+    "header-key": "Schlüssel",
+    "header-value": "Wert",
+    "status": "Statuscode"
   },
   "GraphiQL": {
     "title": "GraphiQL-Client",

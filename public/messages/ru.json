@@ -56,15 +56,23 @@
     "graphiql": "GraphiQL Клиент"
   },
   "REST": {
+    "invalid-url": "Невалидный URL",
     "title": "REST Клиент",
-    "method": "Метод: ",
-    "url": "URL конечной точки: ",
-    "headers": "Заголовки: ",
-    "header-key": "Ключ заголовка: ",
-    "header-value": "Значение заголовка: ",
-    "body": "Тело: ",
-    "title-response": "Ответ: ",
-    "status": "Статус: "
+    "request-data": "Данные запроса",
+    "response": "Ответ",
+    "body-format": "Формат тела запроса",
+    "string": "Строка",
+    "headers": "Хедеры",
+    "query": "Параметры поиска",
+    "send": "Отправить",
+    "method": "Метод",
+    "url": "URL",
+    "body": "Тело",
+    "invalid-json": "Невалидный JSON",
+    "invalid-metod": "Невалидный метод",
+    "header-key": "Ключ",
+    "header-value": "Значение",
+    "status": "Статус код"
   },
   "GraphiQL": {
     "title": "GraphiQL Клиент",

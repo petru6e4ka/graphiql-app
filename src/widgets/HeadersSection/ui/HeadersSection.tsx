@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
@@ -19,6 +20,8 @@ type Props = {
 export function HeadersSection({
   children, add, remove, update, items,
 }: Props) {
+  const t = useTranslations('REST');
+
   const createHeader = () => {
     const id = nanoid();
 
@@ -37,8 +40,8 @@ export function HeadersSection({
       </div>
       {items.length > 0 && (
         <div className={styles.spanwrap}>
-          <span className={styles.span}>Key</span>
-          <span className={styles.span}>Value</span>
+          <span className={styles.span}>{t('header-key')}</span>
+          <span className={styles.span}>{t('header-value')}</span>
         </div>
       )}
       {items.map(({ id, name, value }) => (

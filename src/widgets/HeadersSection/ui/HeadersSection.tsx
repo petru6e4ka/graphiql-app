@@ -1,44 +1,49 @@
 'use client';
 
-import { useState } from 'react';
+import { ReactNode } from 'react';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
-import { useHeaders } from '@/features/store/store';
 import { TwoInputs } from '@/shared/ui';
 import IconPlus from '@/shared/assets/icons/plus-circle.svg';
 import IconClose from '@/shared/assets/icons/x-circle.svg';
 import styles from './HeadersSection.module.css';
 
-export function HeadersSection() {
-  const [HeadersId, setHeadersId] = useState<string[]>([]);
-  const { addHeaderInStore, removeHeaderFromStore } = useHeaders();
+type Props = {
+  children: ReactNode;
+  items: Array<Record<string, string>>;
+  add: (item: object) => void;
+  remove: (id: string) => void;
+  update: (item: object) => void;
+};
 
+export function HeadersSection({
+  children, add, remove, update, items,
+}: Props) {
   const createHeader = () => {
     const id = nanoid();
-    setHeadersId([...HeadersId, id]);
-    addHeaderInStore({ id, Key: '', Value: '' });
+
+    add({ id, key: '', value: '' });
   };
 
   const removeHeader = (id: string) => {
-    setHeadersId(HeadersId.filter((elem) => elem !== id));
-    removeHeaderFromStore(id);
+    remove(id);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.titles}>
-        <h3 className={styles.h3}>Headers</h3>
+        <h3 className={styles.h3}>{children}</h3>
         <Image onClick={createHeader} className={styles.IconPlus} src={IconPlus} alt="Plus" width={25} height={25} />
       </div>
-      {HeadersId.length > 0 && (
+      {items.length > 0 && (
         <div className={styles.spanwrap}>
           <span className={styles.span}>Key</span>
           <span className={styles.span}>Value</span>
         </div>
       )}
-      {HeadersId.map((id) => (
+      {items.map(({ id, name, value }) => (
         <div key={id} className={styles.inputswrap}>
-          <TwoInputs id={id} />
+          <TwoInputs id={id} update={update} name={name} value={value} />
           <Image onClick={() => removeHeader(id)} className={styles.IconClose} src={IconClose} alt="Close" width={25} height={25} />
         </div>
       ))}

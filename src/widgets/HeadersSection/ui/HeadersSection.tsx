@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
 import { useHeaders } from '@/features/store/store';
@@ -9,7 +9,7 @@ import IconPlus from '@/shared/assets/icons/plus-circle.svg';
 import IconClose from '@/shared/assets/icons/x-circle.svg';
 import styles from './HeadersSection.module.css';
 
-export function HeadersSection() {
+export function HeadersSection({ children }: { children: ReactNode }) {
   const [HeadersId, setHeadersId] = useState<string[]>([]);
   const { addHeaderInStore, removeHeaderFromStore } = useHeaders();
 
@@ -27,7 +27,7 @@ export function HeadersSection() {
   return (
     <div className={styles.container}>
       <div className={styles.titles}>
-        <h3 className={styles.h3}>Headers</h3>
+        <h3 className={styles.h3}>{children}</h3>
         <Image onClick={createHeader} className={styles.IconPlus} src={IconPlus} alt="Plus" width={25} height={25} />
       </div>
       {HeadersId.length > 0 && (

@@ -5,7 +5,7 @@ import { HeadersSection } from './HeadersSection';
 
 describe('HeadersSection component', () => {
   test('Headers renders', async () => {
-    await renderWithWrappers(<HeadersSection />);
+    await renderWithWrappers(<HeadersSection>Headers</HeadersSection>);
 
     expect(screen.getByAltText('Plus')).toHaveProperty('alt', 'Plus');
     expect(screen.getByText('Headers')).toBeInTheDocument();
@@ -13,7 +13,7 @@ describe('HeadersSection component', () => {
   });
 
   test('Inputs renders after click of button "plus"', async () => {
-    await renderWithWrappers(<HeadersSection />);
+    await renderWithWrappers(<HeadersSection>Headers</HeadersSection>);
 
     fireEvent.click(screen.getByAltText('Plus'));
     expect(screen.getByText('Key')).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('HeadersSection component', () => {
   });
 
   test('Inputs remove after click of button "close"', async () => {
-    await renderWithWrappers(<HeadersSection />);
+    await renderWithWrappers(<HeadersSection>Headers</HeadersSection>);
 
     fireEvent.click(screen.getByAltText('Plus'));
     fireEvent.click(screen.getByAltText('Close'));

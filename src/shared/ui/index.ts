@@ -15,6 +15,9 @@ export {
   Anchor,
   Container,
   Select,
+  Stack,
+  JsonInput,
+  Textarea,
   type SelectProps,
 } from '@mantine/core';
 export { Logo } from './Logo';

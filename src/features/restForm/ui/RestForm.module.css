@@ -1,0 +1,11 @@
+.method {
+  width: 110px;
+}
+
+.url {
+  flex: 1;
+}
+
+.body {
+  margin-bottom: 15px;
+}

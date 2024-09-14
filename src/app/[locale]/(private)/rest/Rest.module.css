@@ -2,3 +2,19 @@
   text-align: center;
   margin: 0 auto;
 }
+
+.header {
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  margin-bottom: 15px;
+}
+
+.content {
+  text-align: left;
+}
+
+.form {
+  margin-bottom: 30px;
+}

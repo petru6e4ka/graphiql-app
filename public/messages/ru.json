@@ -80,16 +80,20 @@
   "GraphiQL": {
     "title": "GraphiQL Клиент",
     "url": "URL конечной точки: ",
+    "fetchDoc": "Получить документацию",
     "sdl": "URL SDL: ",
     "headers": "Заголовки: ",
     "header-key": "Ключ заголовка: ",
     "header-value": "Значение заголовка: ",
     "query": "Запрос: ",
+    "queryPH": "Введите запрос GraphiQL",
     "variables": "Переменные: ",
     "body": "Тело: ",
     "title-response": "Ответ: ",
     "status": "Статус: ",
-    "documentation": "Документация: "
+    "documentation": "Документация: ",
+    "submit": "Запуск",
+    "response": "Ответ"
   },
   "History": {
     "title": "История запросов: ",

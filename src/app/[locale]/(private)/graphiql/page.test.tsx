@@ -11,9 +11,9 @@ describe('GraphiQLClient page', () => {
   test('GraphiQLClient renders', async () => {
     await renderWithWrappers(<GraphiQLClient />);
     expect(screen.getByRole('heading', { name: /GraphiQL Client/i, level: 1 })).toBeInTheDocument();
-    expect(screen.getByLabelText(/Endpoint URL/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Query/i)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Response:/i, level: 2 })).toBeInTheDocument();
+    expect(screen.getByLabelText(/Endpoint URL:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Query:/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Response/i, level: 2 })).toBeInTheDocument();
   });
 
   test('updates URL state', async () => {
@@ -31,39 +31,33 @@ describe('GraphiQLClient page', () => {
     })) as unknown as typeof fetch;
 
     await renderWithWrappers(<GraphiQLClient />);
-    fireEvent.click(screen.getByText(/Fetch Documentation/i));
+    fireEvent.click(screen.getByText(/Fetch documentation/i));
 
-    await waitFor(() => {
-      expect(screen.getByRole('heading', { name: /Documentation/i, level: 3 })).toBeInTheDocument();
-    }, { timeout: 3000 });
+    await waitFor(
+      () => {
+        expect(screen.getByRole('heading', { name: /Documentation/i, level: 3 })).toBeInTheDocument();
+      },
+      { timeout: 3000 },
+    );
   });
 
   test('updates query', async () => {
     await renderWithWrappers(<GraphiQLClient />);
-    const queryInput = screen.getByLabelText(/Query/i) as HTMLInputElement;
+    const queryInput = screen.getByLabelText(/Query:/i) as HTMLInputElement;
     fireEvent.change(queryInput, { target: { value: 'query { character { name } }' } });
     await waitFor(() => {
       expect(normalizeWhitespace(queryInput.value)).toBe(normalizeWhitespace('query { character { name } }'));
     });
   });
 
-  test('updates variables', async () => {
-    await renderWithWrappers(<GraphiQLClient />);
-    const variablesInput = screen.getByLabelText(/Variables/i) as HTMLTextAreaElement;
-    fireEvent.change(variablesInput, { target: { value: '{ "name": "Rick" }' } });
-    await waitFor(() => {
-      expect(normalizeWhitespace(variablesInput.value)).toBe(normalizeWhitespace('{ "name": "Rick" }'));
-    });
-  });
-
   test('updates headers', async () => {
     await renderWithWrappers(<GraphiQLClient />);
 
-    const addButton = screen.getByAltText(/Plus/i);
+    const addButton = screen.getAllByAltText(/Plus/i)[0];
     fireEvent.click(addButton);
 
-    const headerNameInput = screen.getByPlaceholderText(/Key/i);
-    const headerValueInput = screen.getByPlaceholderText(/Value/i);
+    const headerNameInput = screen.getAllByPlaceholderText(/Key/i)[0];
+    const headerValueInput = screen.getAllByPlaceholderText(/Value/i)[0];
 
     fireEvent.change(headerNameInput, { target: { value: 'Authorization' } });
     fireEvent.change(headerValueInput, { target: { value: 'Bearer token' } });
@@ -74,6 +68,27 @@ describe('GraphiQLClient page', () => {
 
     await waitFor(() => {
       expect(headerValueInput).toHaveValue('Bearer token');
+    });
+  });
+
+  test('updates vals', async () => {
+    await renderWithWrappers(<GraphiQLClient />);
+
+    const addButton = screen.getAllByAltText(/Plus/i)[1];
+    fireEvent.click(addButton);
+
+    const headerNameInput = screen.getAllByPlaceholderText(/Key/i)[1];
+    const headerValueInput = screen.getAllByPlaceholderText(/Value/i)[1];
+
+    fireEvent.change(headerNameInput, { target: { value: 'planetID' } });
+    fireEvent.change(headerValueInput, { target: { value: '2' } });
+
+    await waitFor(() => {
+      expect(headerNameInput).toHaveValue('planetID');
+    });
+
+    await waitFor(() => {
+      expect(headerValueInput).toHaveValue('2');
     });
   });
 });

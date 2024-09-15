@@ -80,16 +80,20 @@
   "GraphiQL": {
     "title": "GraphiQL Client",
     "url": "Endpoint URL: ",
+    "fetchDoc": "Fetch documentation",
     "sdl": "SDL URL: ",
     "headers": "Headers: ",
     "header-key": "Header Key: ",
     "header-value": "Header Value: ",
     "query": "Query: ",
-    "variables": "Variables: ",
+    "queryPH": "Enter your query GraphiQL",
+    "variables": "Variables",
     "body": "Body: ",
     "title-response": "Response: ",
     "status": "Status: ",
-    "documentation": "Documentation: "
+    "documentation": "Documentation: ",
+    "submit": "Submit",
+    "response": "Response"
   },
   "History": {
     "title": "History Requests: ",

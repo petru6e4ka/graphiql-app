@@ -81,15 +81,19 @@
     "title": "GraphiQL-Client",
     "url": "Endpunkt-URL: ",
     "sdl": "SDL-URL: ",
+    "fetchDoc": "Dokumentation abrufen",
     "headers": "Header: ",
     "header-key": "Header-Schlüssel: ",
     "header-value": "Header-Wert: ",
     "query": "Abfrage: ",
+    "queryPH": "Geben Sie Ihre Abfrage GraphiQL ein",
     "variables": "Variablen: ",
     "body": "Körper: ",
     "title-response": "Antwort: ",
     "status": "Status: ",
-    "documentation": "Dokumentation: "
+    "documentation": "Dokumentation: ",
+    "submit": "Submit",
+    "response": "Antwort"
   },
   "History": {
     "title": "Verlauf der Anfragen: ",

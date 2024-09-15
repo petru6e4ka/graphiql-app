@@ -1,8 +1,6 @@
 'use client';
 
-import {
-  Logo, Button, Title, TextInput,
-} from '@/shared/ui';
+import { Logo, Button, Title, TextInput } from '@/shared/ui';
 import { useForm, isEmail } from '@mantine/form';
 import { useTranslations } from 'next-intl';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';

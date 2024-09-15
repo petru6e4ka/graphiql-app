@@ -15,9 +15,7 @@ interface Props extends Item {
   update: (item: Item) => void;
 }
 
-export function TwoInputs({
-  id, name, value, update,
-}: Props) {
+export function TwoInputs({ id, name, value, update }: Props) {
   const t = useTranslations('REST');
 
   const currentInputs = useMemo(

@@ -1,6 +1,4 @@
-import {
-  describe, expect, test, vi,
-} from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
 import { Header } from './Header';

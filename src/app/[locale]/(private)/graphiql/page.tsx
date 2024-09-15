@@ -1,9 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  Title, Button, Divider, Stack, Text,
-} from '@/shared/ui';
+import { Title, Button, Divider, Stack, Text } from '@/shared/ui';
 import { useTranslations } from 'next-intl';
 import HeadersSection from '@/widgets/HeadersSection';
 import EndpointUrl from '@/widgets/EndpointUrl';
@@ -29,9 +27,7 @@ export default function GraphiQLClient() {
   const [response, setResponse] = useState('');
   const [status, setStatus] = useState('');
   const [documentation, setDocumentation] = useState('');
-  const {
-    headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore,
-  } = useGraphHeaders();
+  const { headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore } = useGraphHeaders();
 
   const addNewHeader = (item: object) => {
     addHeaderInStore(item as Header);
@@ -49,9 +45,10 @@ export default function GraphiQLClient() {
 
   const getHeadersObject = () => headerObjectToRecord(headers);
 
-  const headersToQueryParams = (allHeaders: Record<string, string>) => Object.entries(allHeaders)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-    .join('&');
+  const headersToQueryParams = (allHeaders: Record<string, string>) =>
+    Object.entries(allHeaders)
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&');
 
   const handleQueryChange = async (newQuery: string) => {
     try {
@@ -92,10 +89,12 @@ export default function GraphiQLClient() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ query: queryInput, variables: parsedVariables }),
-      }).then((res) => res.json().then((data) => ({
-        data,
-        status: res.status,
-      })));
+      }).then((res) =>
+        res.json().then((data) => ({
+          data,
+          status: res.status,
+        })),
+      );
     } catch (error) {
       return Promise.resolve({
         data: { error: 'Invalid variables format' },

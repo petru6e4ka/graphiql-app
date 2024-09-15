@@ -10,9 +10,7 @@ interface Props {
   fetchDocumentation: () => void;
 }
 
-export function EndpointUrl({
-  url, setUrl, docUrl, setDocUrl, fetchDocumentation,
-}: Props) {
+export function EndpointUrl({ url, setUrl, docUrl, setDocUrl, fetchDocumentation }: Props) {
   return (
     <Box mb="md">
       <TextInput label="Endpoint URL" type="text" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Enter GraphQL endpoint URL" />

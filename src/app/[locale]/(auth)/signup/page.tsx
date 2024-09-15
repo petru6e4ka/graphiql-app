@@ -4,9 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@/features/localeSwitcher';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/app/firebase';
-import {
-  Logo, TextInput, Button, PasswordWithRequirements, Title,
-} from '@/shared/ui';
+import { Logo, TextInput, Button, PasswordWithRequirements, Title } from '@/shared/ui';
 import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';
 import { hideErrorMessage, stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';

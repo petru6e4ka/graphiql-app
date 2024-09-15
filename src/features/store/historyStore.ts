@@ -26,10 +26,11 @@ export const useHistoryStore = create<State & Actions>()(
       persist(
         (set) => ({
           requests: [],
-          addRequest: (newRequest: RestRequest) => set((state) => ({
-            ...state,
-            requests: [...state.requests, newRequest],
-          })),
+          addRequest: (newRequest: RestRequest) =>
+            set((state) => ({
+              ...state,
+              requests: [...state.requests, newRequest],
+            })),
         }),
         { name: 'requests' },
       ),

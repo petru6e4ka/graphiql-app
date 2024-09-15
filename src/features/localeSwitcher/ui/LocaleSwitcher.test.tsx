@@ -1,7 +1,5 @@
 import { screen, fireEvent } from '@testing-library/react';
-import {
-  describe, it, expect, vi,
-} from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
 import { LocaleSwitcher } from './LocaleSwitcher';
 

@@ -1,8 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/features/localeSwitcher';
-import {
-  Container, Title, Text, Button, Group, NotFoundIcon,
-} from '@/shared/ui';
+import { Container, Title, Text, Button, Group, NotFoundIcon } from '@/shared/ui';
 import styles from './NotFound.module.css';
 
 export default function NotFoundPage({ reset }: { reset: () => void }) {

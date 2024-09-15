@@ -1,6 +1,4 @@
-import {
-  expect, test, describe, vi,
-} from 'vitest';
+import { expect, test, describe, vi } from 'vitest';
 import { showToast, ToastType, options } from './toastUtils';
 
 describe('showToast', () => {

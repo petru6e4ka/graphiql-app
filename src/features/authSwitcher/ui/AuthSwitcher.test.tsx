@@ -1,6 +1,4 @@
-import {
-  describe, expect, test, vi, beforeEach,
-} from 'vitest';
+import { describe, expect, test, vi, beforeEach } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
 import { AuthSwitcher } from './AuthSwitcher';

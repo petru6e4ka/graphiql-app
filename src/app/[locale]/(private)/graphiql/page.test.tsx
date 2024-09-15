@@ -1,6 +1,4 @@
-import {
-  describe, expect, test, vi,
-} from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
 import GraphiQLClient from './page';
@@ -26,9 +24,11 @@ describe('GraphiQLClient page', () => {
   });
 
   test('fetches documentation', async () => {
-    global.fetch = vi.fn(() => Promise.resolve({
-      text: () => Promise.resolve('Documentation'),
-    })) as unknown as typeof fetch;
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        text: () => Promise.resolve('Documentation'),
+      }),
+    ) as unknown as typeof fetch;
 
     await renderWithWrappers(<GraphiQLClient />);
     fireEvent.click(screen.getByText(/Fetch Documentation/i));

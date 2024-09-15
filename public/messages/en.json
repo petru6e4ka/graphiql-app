@@ -103,8 +103,8 @@
     "rest": "REST",
     "graphiql": "GraphQL",
     "date": "Date",
-    "method":"Method",
-    "url":"URL"
+    "method": "Method",
+    "url": "URL"
   },
   "Error": {
     "404": {

@@ -1,8 +1,6 @@
 'use client';
 
-import {
-  Group, PasswordInput, Text, Box, Center, Progress,
-} from '@mantine/core';
+import { Group, PasswordInput, Text, Box, Center, Progress } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
 export function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
@@ -38,9 +36,7 @@ type Props = {
   onBlur?: () => void;
 };
 
-export function PasswordWithRequirements({
-  onChange, value, defaultValue, checked, error, styles, onFocus, onBlur,
-}: Props) {
+export function PasswordWithRequirements({ onChange, value, defaultValue, checked, error, styles, onFocus, onBlur }: Props) {
   const t = useTranslations('Forms');
 
   const requirements = [

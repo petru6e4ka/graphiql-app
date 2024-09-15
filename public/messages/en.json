@@ -75,7 +75,9 @@
     "status": "Status code",
     "plus": "Plus",
     "close": "Close",
-    "string-to-json-error": "Can't convert the request body to JSON format"
+    "string-to-json-error": "Can't convert the request body to JSON format",
+    "request-fail": "Failed to make a request, please, try later.",
+    "reset": "Reset"
   },
   "GraphiQL": {
     "title": "GraphiQL Client",

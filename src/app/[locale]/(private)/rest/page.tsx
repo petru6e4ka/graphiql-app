@@ -7,6 +7,7 @@ import { Title, Stack, Loader } from '@/shared/ui';
 import RestForm from '@/features/restForm';
 import ResponseBody from '@/widgets/ResponseBody';
 import StatusComponent from '@/widgets/StatusComponent';
+import { showToast, ToastType } from '@/features/toast';
 import styles from './Rest.module.css';
 
 type Response = { status: number; body: string };
@@ -39,16 +40,17 @@ export default function Rest() {
 
       const generatedHeaders = new Headers(headers);
       const generateQuery = new URLSearchParams(query);
-      const generateRequestOptions = method === 'GET'
-        ? {
-          method,
-          headers: generatedHeaders,
-        }
-        : {
-          body,
-          method,
-          headers: generatedHeaders,
-        };
+      const generateRequestOptions =
+        method === 'GET'
+          ? {
+              method,
+              headers: generatedHeaders,
+            }
+          : {
+              body,
+              method,
+              headers: generatedHeaders,
+            };
       const generatedUrl = generateQuery.toString().trim() ? `${url}?${generateQuery}` : url;
 
       const response = await fetch(generatedUrl, generateRequestOptions);
@@ -68,10 +70,7 @@ export default function Rest() {
         body: responseBody,
       });
     } catch (err) {
-      setError({
-        body: 'Something went wrong',
-        status: 0,
-      });
+      showToast(t('request-fail'), ToastType.error);
     } finally {
       setIsLoading(false);
     }

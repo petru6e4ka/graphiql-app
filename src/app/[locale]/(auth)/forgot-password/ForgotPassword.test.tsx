@@ -1,6 +1,4 @@
-import {
-  beforeEach, expect, test, vi, describe,
-} from 'vitest';
+import { beforeEach, expect, test, vi, describe } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithWrappers } from '@/shared/lib/tests/withWrappers';
 import Page from './page';

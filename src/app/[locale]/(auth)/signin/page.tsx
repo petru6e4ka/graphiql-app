@@ -2,9 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/features/localeSwitcher';
-import {
-  Anchor, Button, Group, Logo, PasswordInput, Text, TextInput, Title,
-} from '@/shared/ui';
+import { Anchor, Button, Group, Logo, PasswordInput, Text, TextInput, Title } from '@/shared/ui';
 import { signIn } from 'next-auth/react';
 import { isEmail, useForm } from '@mantine/form';
 import { passwordStrengthCheck } from '@/shared/lib/forms/passwordStrengthCheck';

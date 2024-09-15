@@ -5,9 +5,7 @@ import { Link, usePathname } from '@/features/localeSwitcher';
 import { useTranslations } from 'next-intl';
 import { useDisclosure } from '@mantine/hooks';
 import cn from 'classnames';
-import {
-  Logo, Group, Burger, Drawer, ScrollArea, Divider, rem,
-} from '@/shared/ui';
+import { Logo, Group, Burger, Drawer, ScrollArea, Divider, rem } from '@/shared/ui';
 import { useSession } from 'next-auth/react';
 import styles from './Header.module.css';
 
@@ -64,11 +62,11 @@ export function Header({ children }: { children: ReactNode }) {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title={(
+        title={
           <Link href="/">
             <Logo />
           </Link>
-        )}
+        }
         hiddenFrom="md"
         zIndex={1000000}
       >

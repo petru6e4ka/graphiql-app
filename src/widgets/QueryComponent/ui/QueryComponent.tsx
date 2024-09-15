@@ -9,9 +9,7 @@ interface Props {
   setVariables: (variables: string) => void;
 }
 
-export function QueryComponent({
-  query, setQuery, variables, setVariables,
-}: Props) {
+export function QueryComponent({ query, setQuery, variables, setVariables }: Props) {
   return (
     <Box mb="md">
       <Textarea label="Query" placeholder="Enter GraphQL query" value={query} onChange={(e) => setQuery(e.target.value)} rows={6} />

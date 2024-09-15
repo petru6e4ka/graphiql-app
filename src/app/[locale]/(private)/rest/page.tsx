@@ -77,7 +77,7 @@ export default function Rest() {
     }
   };
 
-  const showLoader = isLoading && !error && !data && <Loader color="teal" />;
+  const showLoader = isLoading && !error && !data && <Loader color="teal" data-testid="loader" />;
 
   const showError = !isLoading && !data && error && (
     <>

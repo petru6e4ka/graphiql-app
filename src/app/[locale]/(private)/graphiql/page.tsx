@@ -14,6 +14,7 @@ import DocumentationComponent from '@/widgets/DocumentationComponent';
 import { useGraphHeaders, type Header } from '@/features/store/graphHeaders';
 import prettier from 'prettier/standalone';
 import parserGraphql from 'prettier/parser-graphql';
+import { headerObjectToRecord } from '@/shared/lib/convert/headerObjToRecord';
 import styles from './graphql.module.css';
 
 const base64Encode = (str: string) => btoa(unescape(encodeURIComponent(str)));
@@ -46,15 +47,7 @@ export default function GraphiQLClient() {
     }
   }, [url]);
 
-  const getHeadersObject = () => headers.reduce(
-    (acc, header) => {
-      if (header.name && header.value) {
-        return { ...acc, [header.name]: header.value };
-      }
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
+  const getHeadersObject = () => headerObjectToRecord(headers);
 
   const headersToQueryParams = (allHeaders: Record<string, string>) => Object.entries(allHeaders)
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)

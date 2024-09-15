@@ -16,6 +16,7 @@ import { urlCheck } from '@/shared/lib/forms/urlCheck';
 import { isJsonString } from '@/shared/lib/forms/isJsonString';
 import { showToast, ToastType } from '@/features/toast';
 import { Method } from '@/shared/types/Method';
+import { headerObjectToRecord } from '@/shared/lib/convert/headerObjToRecord';
 import styles from './RestForm.module.css';
 
 enum Request {
@@ -102,9 +103,17 @@ export function RestForm({ onSubmit }: Props) {
       minRows={6}
       {...form.getInputProps('body')}
       styles={stylesForFieldWithError}
+      data-testid="json-area"
     />
   ) : (
-    <Textarea placeholder={t('body')} autosize minRows={6} {...form.getInputProps('body')} styles={stylesForFieldWithError} />
+    <Textarea
+      placeholder={t('body')}
+      autosize
+      minRows={6}
+      {...form.getInputProps('body')}
+      styles={stylesForFieldWithError}
+      data-testid="string-area"
+    />
   );
 
   const clearAfterSubmit = () => {
@@ -123,21 +132,9 @@ export function RestForm({ onSubmit }: Props) {
       date: new Date().toUTCString(),
       url: data.url,
       method: data.method as Request,
-      headers: headers.reduce(
-        (prev, curr) => ({
-          ...prev,
-          [curr.name]: curr.value,
-        }),
-        {},
-      ),
+      headers: headerObjectToRecord(headers),
       body: requestBody,
-      searchParams: query.reduce(
-        (prev, curr) => ({
-          ...prev,
-          [curr.name]: curr.value,
-        }),
-        {},
-      ),
+      searchParams: headerObjectToRecord(query),
     });
   };
 
@@ -147,20 +144,8 @@ export function RestForm({ onSubmit }: Props) {
 
       addRequestToHistory(data, requestBody);
       onSubmit({
-        headers: headers.reduce(
-          (prev, curr) => ({
-            ...prev,
-            [curr.name]: curr.value,
-          }),
-          {},
-        ),
-        query: query.reduce(
-          (prev, curr) => ({
-            ...prev,
-            [curr.name]: curr.value,
-          }),
-          {},
-        ),
+        headers: headerObjectToRecord(headers),
+        query: headerObjectToRecord(query),
         method: data.method || Request.GET,
         body: requestBody,
         url: data.url,

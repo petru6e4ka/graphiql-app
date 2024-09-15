@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Title, Button, Divider, Stack, Text } from '@/shared/ui';
+import prettier from 'prettier/standalone';
+import parserGraphql from 'prettier/parser-graphql';
 import { useTranslations } from 'next-intl';
+import { Title, Button, Divider, Stack, Text } from '@/shared/ui';
 import HeadersSection from '@/widgets/HeadersSection';
 import EndpointUrl from '@/widgets/EndpointUrl';
 import QueryComponent from '@/widgets/QueryComponent';
@@ -10,8 +12,6 @@ import StatusComponent from '@/widgets/StatusComponent';
 import ResponseBody from '@/widgets/ResponseBody';
 import DocumentationComponent from '@/widgets/DocumentationComponent';
 import { useGraphHeaders, type Header } from '@/features/store/graphHeaders';
-import prettier from 'prettier/standalone';
-import parserGraphql from 'prettier/parser-graphql';
 import { headerObjectToRecord } from '@/shared/lib/convert/headerObjToRecord';
 import styles from './graphql.module.css';
 

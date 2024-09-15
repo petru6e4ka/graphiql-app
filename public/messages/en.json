@@ -101,7 +101,10 @@
     "title": "History Requests: ",
     "not-history": "You haven't executed any requests. It's empty here. Try: ",
     "rest": "REST",
-    "graphiql": "GraphQL"
+    "graphiql": "GraphQL",
+    "date": "Date",
+    "method":"Method",
+    "url":"URL"
   },
   "Error": {
     "404": {

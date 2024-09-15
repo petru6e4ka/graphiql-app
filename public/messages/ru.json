@@ -101,7 +101,10 @@
     "title": "История запросов: ",
     "not-history": "Вы не выполнили ни одного запроса. Здесь пусто. Попробуйте: ",
     "rest": "REST",
-    "graphiql": "GraphQL"
+    "graphiql": "GraphQL",
+    "date": "Дата",
+    "method":"Метод",
+    "url":"Ссылка"
   },
   "Error": {
     "404": {

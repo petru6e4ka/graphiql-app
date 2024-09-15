@@ -101,7 +101,10 @@
     "title": "Verlauf der Anfragen: ",
     "not-history": "Sie haben keine Anfragen ausgeführt. Hier ist es leer. Versuchen Sie: ",
     "rest": "REST",
-    "graphiql": "GraphQL"
+    "graphiql": "GraphQL",
+    "date": "Datum",
+    "method": "Verfahren",
+    "url": "URL"
   },
   "Error": {
     "404": {

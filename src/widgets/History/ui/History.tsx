@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { nanoid } from 'nanoid';
 import { Table, TypographyStylesProvider } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 import { useHeaders } from '@/features/store/headersStore';
 import { useQueryParams } from '@/features/store/queryParamsStore';
 import { useRestRequest } from '@/features/store/restRequestStore';
@@ -19,6 +20,7 @@ interface Prop {
 }
 
 export function History({ elements }: Prop) {
+  const t = useTranslations('History');
   const { cleanHeaders, addHeaderInStore } = useHeaders();
   const { cleanQuery, addQueryInStore } = useQueryParams();
   const { addBody, addMethod, addUrl } = useRestRequest();
@@ -67,9 +69,9 @@ export function History({ elements }: Prop) {
       <Table>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Method</th>
-            <th>URL</th>
+            <th>{t('date')}</th>
+            <th>{t('method')}</th>
+            <th>{t('url')}</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

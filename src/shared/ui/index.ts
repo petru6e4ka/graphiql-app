@@ -18,6 +18,7 @@ export {
   Stack,
   JsonInput,
   Textarea,
+  Loader,
   type SelectProps,
 } from '@mantine/core';
 export { Logo } from './Logo';

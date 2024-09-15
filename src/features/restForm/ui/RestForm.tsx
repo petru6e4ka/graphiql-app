@@ -15,6 +15,8 @@ import { useRestRequest } from '@/features/store/restRequestStore';
 import { urlCheck } from '@/shared/lib/forms/urlCheck';
 import { isJsonString } from '@/shared/lib/forms/isJsonString';
 import { showToast, ToastType } from '@/features/toast';
+import { Method } from '@/shared/types/Method';
+import { headerObjectToRecord } from '@/shared/lib/convert/headerObjToRecord';
 import styles from './RestForm.module.css';
 
 enum Request {
@@ -30,7 +32,23 @@ enum BodyFormat {
   String,
 }
 
-export function RestForm() {
+type Props = {
+  onSubmit: ({
+    headers,
+    query,
+    method,
+    body,
+    url,
+  }: {
+    headers: Record<string, string>;
+    query: Record<string, string>;
+    method: Method;
+    body: string;
+    url: string;
+  }) => void;
+};
+
+export function RestForm({ onSubmit }: Props) {
   const t = useTranslations('REST');
   const {
     body, url, method, clearData,
@@ -85,48 +103,58 @@ export function RestForm() {
       minRows={6}
       {...form.getInputProps('body')}
       styles={stylesForFieldWithError}
+      data-testid="json-area"
     />
   ) : (
-    <Textarea placeholder={t('body')} autosize minRows={6} {...form.getInputProps('body')} styles={stylesForFieldWithError} />
+    <Textarea
+      placeholder={t('body')}
+      autosize
+      minRows={6}
+      {...form.getInputProps('body')}
+      styles={stylesForFieldWithError}
+      data-testid="string-area"
+    />
   );
+
+  const clearAfterSubmit = () => {
+    cleanHeaders();
+    cleanQuery();
+    clearData();
+    form.setValues({
+      method: Request.GET,
+      url: '',
+      body: '',
+    });
+  };
+
+  const addRequestToHistory = (data: typeof form.values, requestBody: string) => {
+    addRequest({
+      date: new Date().toUTCString(),
+      url: data.url,
+      method: data.method as Request,
+      headers: headerObjectToRecord(headers),
+      body: requestBody,
+      searchParams: headerObjectToRecord(query),
+    });
+  };
 
   const makeRequest = (data: typeof form.values | null) => {
     if (data) {
       const requestBody = bodyFormat === BodyFormat.JSON ? JSON.stringify(data.body) : data.body;
 
-      addRequest({
-        date: new Date().toUTCString(),
-        url: data.url,
-        method: data.method as Request,
-        headers: headers.reduce(
-          (prev, curr) => ({
-            ...prev,
-            [curr.name]: curr.value,
-          }),
-          {},
-        ),
+      addRequestToHistory(data, requestBody);
+      onSubmit({
+        headers: headerObjectToRecord(headers),
+        query: headerObjectToRecord(query),
+        method: data.method || Request.GET,
         body: requestBody,
-        searchParams: query.reduce(
-          (prev, curr) => ({
-            ...prev,
-            [curr.name]: curr.value,
-          }),
-          {},
-        ),
+        url: data.url,
       });
 
-      cleanHeaders();
-      cleanQuery();
-      clearData();
-      form.setValues({
-        method: 'GET',
-        url: '',
-        body: '',
-      });
+      clearAfterSubmit();
     }
 
     // TODO: create endpoint url
-    // TODO: make request and show it
   };
 
   const changeBodyFormatToStr = () => {

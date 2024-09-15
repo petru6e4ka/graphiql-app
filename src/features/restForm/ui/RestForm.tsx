@@ -143,6 +143,8 @@ export function RestForm({ onSubmit }: Props) {
         body: requestBody,
         url: data.url,
       });
+
+      clearForm();
     }
 
     // TODO: create endpoint url

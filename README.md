@@ -1,6 +1,6 @@
 # REST GraphQL Client
 
-[Working DEMO](https://dev--rest-graphql-client.netlify.app)
+[Working DEMO](https://comforting-lolly-5cf9cf.netlify.app)
 
 ## Architecture:
 

@@ -33,9 +33,12 @@ describe('GraphiQLClient page', () => {
     await renderWithWrappers(<GraphiQLClient />);
     fireEvent.click(screen.getByText(/Fetch Documentation/i));
 
-    await waitFor(() => {
-      expect(screen.getByRole('heading', { name: /Documentation/i, level: 3 })).toBeInTheDocument();
-    }, { timeout: 3000 });
+    await waitFor(
+      () => {
+        expect(screen.getByRole('heading', { name: /Documentation/i, level: 3 })).toBeInTheDocument();
+      },
+      { timeout: 3000 },
+    );
   });
 
   test('updates query', async () => {

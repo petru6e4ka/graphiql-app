@@ -75,7 +75,9 @@
     "status": "Statuscode",
     "plus": "Plus",
     "close": "schließen",
-    "string-to-json-error": "Der Anforderungstext kann nicht in das JSON-Format konvertiert werden"
+    "string-to-json-error": "Der Anforderungstext kann nicht in das JSON-Format konvertiert werden",
+    "request-fail": "Die Anfrage konnte nicht gestellt werden. Bitte versuchen Sie es später noch einmal.",
+    "reset": "zurücksetzen"
   },
   "GraphiQL": {
     "title": "GraphiQL-Client",

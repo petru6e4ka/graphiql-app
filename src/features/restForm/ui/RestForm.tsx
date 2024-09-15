@@ -3,9 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useForm } from '@mantine/form';
-import {
-  Button, Stack, Group, Select, TextInput, JsonInput, Text, Textarea,
-} from '@/shared/ui';
+import { Button, Stack, Group, Select, TextInput, JsonInput, Text, Textarea } from '@/shared/ui';
 import { stylesForFieldWithError } from '@/shared/lib/forms/stylesForFieldWithError';
 import HeadersSection from '@/widgets/HeadersSection';
 import { useHeaders, type Header } from '@/features/store/headersStore';
@@ -50,18 +48,12 @@ type Props = {
 
 export function RestForm({ onSubmit }: Props) {
   const t = useTranslations('REST');
-  const {
-    body, url, method, clearData,
-  } = useRestRequest();
+  const { body, url, method, clearData } = useRestRequest();
 
   const [bodyFormat, setBodyFormat] = useState(isJsonString(body) ? BodyFormat.JSON : BodyFormat.String);
 
-  const {
-    headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore, cleanHeaders,
-  } = useHeaders();
-  const {
-    query, addQueryInStore, removeQueryFromStore, updateQueryInStore, cleanQuery,
-  } = useQueryParams();
+  const { headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore, cleanHeaders } = useHeaders();
+  const { query, addQueryInStore, removeQueryFromStore, updateQueryInStore, cleanQuery } = useQueryParams();
   const { addRequest } = useHistoryStore();
 
   const addNewHeader = (item: object) => {
@@ -94,29 +86,30 @@ export function RestForm({ onSubmit }: Props) {
     validateInputOnBlur: true,
   });
 
-  const bodyInput = bodyFormat === BodyFormat.JSON ? (
-    <JsonInput
-      placeholder={t('body')}
-      validationError={t('invalid-json')}
-      formatOnBlur
-      autosize
-      minRows={6}
-      {...form.getInputProps('body')}
-      styles={stylesForFieldWithError}
-      data-testid="json-area"
-    />
-  ) : (
-    <Textarea
-      placeholder={t('body')}
-      autosize
-      minRows={6}
-      {...form.getInputProps('body')}
-      styles={stylesForFieldWithError}
-      data-testid="string-area"
-    />
-  );
+  const bodyInput =
+    bodyFormat === BodyFormat.JSON ? (
+      <JsonInput
+        placeholder={t('body')}
+        validationError={t('invalid-json')}
+        formatOnBlur
+        autosize
+        minRows={6}
+        {...form.getInputProps('body')}
+        styles={stylesForFieldWithError}
+        data-testid="json-area"
+      />
+    ) : (
+      <Textarea
+        placeholder={t('body')}
+        autosize
+        minRows={6}
+        {...form.getInputProps('body')}
+        styles={stylesForFieldWithError}
+        data-testid="string-area"
+      />
+    );
 
-  const clearAfterSubmit = () => {
+  const clearForm = () => {
     cleanHeaders();
     cleanQuery();
     clearData();
@@ -151,7 +144,7 @@ export function RestForm({ onSubmit }: Props) {
         url: data.url,
       });
 
-      clearAfterSubmit();
+      clearForm();
     }
 
     // TODO: create endpoint url
@@ -173,7 +166,7 @@ export function RestForm({ onSubmit }: Props) {
   };
 
   return (
-    <form onSubmit={form.onSubmit(makeRequest)}>
+    <form onSubmit={form.onSubmit(makeRequest)} onReset={clearForm}>
       <Stack>
         <Group mb={15}>
           <div className={styles.method}>
@@ -215,6 +208,9 @@ export function RestForm({ onSubmit }: Props) {
         </HeadersSection>
 
         <Button type="submit">{t('send')}</Button>
+        <Button type="reset" variant="subtle">
+          {t('reset')}
+        </Button>
       </Stack>
     </form>
   );

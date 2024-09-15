@@ -11,9 +11,7 @@ interface Props {
   fetchDocumentation: () => void;
 }
 
-export function EndpointUrl({
-  url, setUrl, docUrl, setDocUrl, fetchDocumentation,
-}: Props) {
+export function EndpointUrl({ url, setUrl, docUrl, setDocUrl, fetchDocumentation }: Props) {
   const t = useTranslations('GraphiQL');
 
   return (

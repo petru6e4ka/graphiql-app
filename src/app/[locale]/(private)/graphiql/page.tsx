@@ -1,9 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  Title, Button, Divider, Stack, Text, Box, Textarea,
-} from '@/shared/ui';
+import { Title, Button, Divider, Stack, Text, Box, Textarea } from '@/shared/ui';
 import { useTranslations } from 'next-intl';
 import HeadersSection from '@/widgets/HeadersSection';
 import EndpointUrl from '@/widgets/EndpointUrl';
@@ -27,12 +25,8 @@ export default function GraphiQLClient() {
   const [response, setResponse] = useState('');
   const [status, setStatus] = useState('');
   const [documentation, setDocumentation] = useState('');
-  const {
-    headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore,
-  } = useGraphHeaders();
-  const {
-    query, addQueryInStore, removeQueryFromStore, updateQueryInStore,
-  } = useGraphQueryParams();
+  const { headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore } = useGraphHeaders();
+  const { query, addQueryInStore, removeQueryFromStore, updateQueryInStore } = useGraphQueryParams();
 
   const addNewHeader = (item: object) => {
     addHeaderInStore(item as Header);
@@ -50,19 +44,21 @@ export default function GraphiQLClient() {
     updateHeaderInStore(item as Header);
   };
 
-  const headersToQueryParams = (headerObject: Record<string, string>) => Object.entries(headerObject)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-    .join('&');
+  const headersToQueryParams = (headerObject: Record<string, string>) =>
+    Object.entries(headerObject)
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&');
 
-  const getHeadersObject = () => headers.reduce(
-    (acc, header) => {
-      if (header.name && header.value) {
-        return { ...acc, [header.name]: header.value };
-      }
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
+  const getHeadersObject = () =>
+    headers.reduce(
+      (acc, header) => {
+        if (header.name && header.value) {
+          return { ...acc, [header.name]: header.value };
+        }
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
   const generateUrlWithHeaders = () => {
     const encodedEndpoint = base64Encode(url);
@@ -146,12 +142,15 @@ export default function GraphiQLClient() {
     window.history.pushState({}, '', `${currentPath}${generatedUrl}`);
 
     const headersObject = getHeadersObject();
-    const variablesObject = query.reduce((accumulator, { name, value }) => {
-      if (name && value) {
-        return { ...accumulator, [name]: value };
-      }
-      return accumulator;
-    }, {} as Record<string, string>);
+    const variablesObject = query.reduce(
+      (accumulator, { name, value }) => {
+        if (name && value) {
+          return { ...accumulator, [name]: value };
+        }
+        return accumulator;
+      },
+      {} as Record<string, string>,
+    );
 
     makeRequest(queryData, variablesObject, headersObject).then((result) => {
       setResponse(JSON.stringify(result.data, null, 2));

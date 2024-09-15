@@ -1,9 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import {
-  Title, Text, Group, Button,
-} from '@/shared/ui';
+import { Title, Text, Group, Button } from '@/shared/ui';
 import { useSession } from 'next-auth/react';
 import { useRouter } from '@/features/localeSwitcher';
 import styles from './Welcome.module.css';

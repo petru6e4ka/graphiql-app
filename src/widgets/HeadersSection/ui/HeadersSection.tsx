@@ -16,9 +16,7 @@ type Props = {
   update: (item: object) => void;
 };
 
-export function HeadersSection({
-  children, add, remove, update, items,
-}: Props) {
+export function HeadersSection({ children, add, remove, update, items }: Props) {
   const createHeader = () => {
     const id = nanoid();
 

@@ -27,10 +27,6 @@ FSD - Feature sliced design
 
 - Zustand
 
-## Requests
-
-- React query
-
 ## Project management
 
 - Kanban

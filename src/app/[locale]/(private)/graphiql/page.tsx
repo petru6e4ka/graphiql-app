@@ -12,11 +12,13 @@ import { useGraphHeaders, type Header } from '@/features/store/graphHeaders';
 import { useGraphQueryParams, type Query } from '@/features/store/graphQueryParamsStore';
 import prettier from 'prettier/standalone';
 import parserGraphql from 'prettier/parser-graphql';
+import { useHistoryStore } from '@/features/store/historyStore';
 
 const base64Encode = (str: string) => btoa(unescape(encodeURIComponent(str)));
 
 export default function GraphiQLClient() {
   const t = useTranslations('GraphiQL');
+  const { addRequest } = useHistoryStore();
 
   const [url, setUrl] = useState('https://swapi-graphql.netlify.app/.netlify/functions/index');
   const [docUrl, setDocUrl] = useState('');
@@ -155,6 +157,15 @@ export default function GraphiQLClient() {
     makeRequest(queryData, variablesObject, headersObject).then((result) => {
       setResponse(JSON.stringify(result.data, null, 2));
       setStatus(result.status.toString() || 'Unknown');
+    });
+
+    addRequest({
+      date: new Date().toUTCString(),
+      url,
+      method: 'GRAPHQL',
+      headers: headersObject,
+      queryGraphQL: query,
+      variablesGraphQL: variables,
     });
   };
 

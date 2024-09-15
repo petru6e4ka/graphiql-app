@@ -6,14 +6,18 @@ import { useHeaders } from '@/features/store/headersStore';
 import { useQueryParams } from '@/features/store/queryParamsStore';
 import { useRestRequest } from '@/features/store/restRequestStore';
 import { Method } from '@/shared/types/Method';
+import { useGraphHeaders } from '@/features/store/graphHeaders';
+import { useGraphRequest } from '@/features/store/graphRequest';
 
 interface RestRequest {
   date: string;
   url: string;
-  method: string;
+  method: Method;
   headers: Record<string, string>;
-  body: string;
-  searchParams: Record<string, string>;
+  body?: string;
+  searchParams?: Record<string, string>;
+  queryGraphQL?: string;
+  variablesGraphQL?: string;
 }
 interface Prop {
   elements: RestRequest[];
@@ -24,6 +28,8 @@ export function History({ elements }: Prop) {
   const { cleanHeaders, addHeaderInStore } = useHeaders();
   const { cleanQuery, addQueryInStore } = useQueryParams();
   const { addBody, addMethod, addUrl } = useRestRequest();
+  const { cleanHeadersGQL, addHeaderInStoreGQL } = useGraphHeaders();
+  const { addQueryGraphQL, addVariablesGraphQL, clearGraphRequest } = useGraphRequest();
 
   const setCurrentRequest = (obj: RestRequest) => {
     cleanHeaders();
@@ -36,16 +42,37 @@ export function History({ elements }: Prop) {
       addHeaderInStore({ id, name: header, value: obj.headers[header] });
     });
 
-    const searchParams = Object.keys(obj.searchParams);
+    if (obj.searchParams) {
+      const searchParams = Object.keys(obj.searchParams);
+      searchParams.forEach((param) => {
+        const id = nanoid();
+        if (obj.searchParams) {
+          addQueryInStore({ id, name: param, value: obj.searchParams[param] });
+        }
+      });
+    }
+    if (obj.body) {
+      addBody(obj.body);
+    }
 
-    searchParams.forEach((param) => {
-      const id = nanoid();
-      addQueryInStore({ id, name: param, value: obj.searchParams[param] });
-    });
-
-    addBody(obj.body);
     addMethod(obj.method as Method);
     addUrl(obj.url);
+  };
+
+  const setCurrentRequestGQL = (obj: RestRequest) => {
+    cleanHeadersGQL();
+    clearGraphRequest();
+    const { queryGraphQL, variablesGraphQL } = obj;
+    const headers = Object.keys(obj.headers);
+
+    headers.forEach((header) => {
+      const id = nanoid();
+      addHeaderInStoreGQL({ id, name: header, value: obj.headers[header] });
+    });
+    if (queryGraphQL && variablesGraphQL) {
+      addQueryGraphQL(queryGraphQL);
+      addVariablesGraphQL(variablesGraphQL);
+    }
   };
 
   const rows = elements.map((element) => {
@@ -56,7 +83,10 @@ export function History({ elements }: Prop) {
         <td>{date}</td>
         <td>{method}</td>
         <td>
-          <Link href={method === 'GRAPHQL' ? '/graphiql' : '/rest'} onClick={() => setCurrentRequest(element)}>
+          <Link
+            href={method === 'GRAPHQL' ? '/graphiql' : '/rest'}
+            onClick={() => (method === 'GRAPHQL' ? setCurrentRequestGQL(element) : setCurrentRequest(element))}
+          >
             {url}
           </Link>
         </td>

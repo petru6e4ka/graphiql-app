@@ -1,10 +1,13 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
+
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  Title, Button, Divider, Stack, Text,
-} from '@/shared/ui';
+import parserGraphql from 'prettier/parser-graphql';
+import prettier from 'prettier/standalone';
 import { useTranslations } from 'next-intl';
+import { Title, Button, Divider, Stack, Text } from '@/shared/ui';
 import HeadersSection from '@/widgets/HeadersSection';
 import EndpointUrl from '@/widgets/EndpointUrl';
 import QueryComponent from '@/widgets/QueryComponent';
@@ -12,8 +15,8 @@ import StatusComponent from '@/widgets/StatusComponent';
 import ResponseBody from '@/widgets/ResponseBody';
 import DocumentationComponent from '@/widgets/DocumentationComponent';
 import { useGraphHeaders, type Header } from '@/features/store/graphHeaders';
-import prettier from 'prettier/standalone';
-import parserGraphql from 'prettier/parser-graphql';
+import { useHistoryStore } from '@/features/store/historyStore';
+import { useGraphRequest } from '@/features/store/graphRequest';
 import styles from './graphql.module.css';
 
 const base64Encode = (str: string) => btoa(unescape(encodeURIComponent(str)));
@@ -21,19 +24,20 @@ const base64Encode = (str: string) => btoa(unescape(encodeURIComponent(str)));
 export default function GraphiQLClient() {
   const t = useTranslations('GraphiQL');
 
+  const { queryGraphQL, variablesGraphQL } = useGraphRequest();
+
   const [url, setUrl] = useState('https://swapi-graphql.netlify.app/.netlify/functions/index');
   const [docUrl, setDocUrl] = useState('');
-  const [query, setQuery] = useState('');
-  const [variables, setVariables] = useState('{}');
+  const [query, setQuery] = useState(queryGraphQL);
+  const [variables, setVariables] = useState(variablesGraphQL);
   const [response, setResponse] = useState('');
   const [status, setStatus] = useState('');
   const [documentation, setDocumentation] = useState('');
-  const {
-    headers, addHeaderInStore, removeHeaderFromStore, updateHeaderInStore,
-  } = useGraphHeaders();
+  const { headers, addHeaderInStoreGQL, removeHeaderFromStore, updateHeaderInStore, cleanHeadersGQL } = useGraphHeaders();
+  const { addRequest } = useHistoryStore();
 
   const addNewHeader = (item: object) => {
-    addHeaderInStore(item as Header);
+    addHeaderInStoreGQL(item as Header);
   };
 
   const updateHeader = (item: object) => {
@@ -46,19 +50,21 @@ export default function GraphiQLClient() {
     }
   }, [url]);
 
-  const getHeadersObject = () => headers.reduce(
-    (acc, header) => {
-      if (header.name && header.value) {
-        return { ...acc, [header.name]: header.value };
-      }
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
+  const getHeadersObject = () =>
+    headers.reduce(
+      (acc, header) => {
+        if (header.name && header.value) {
+          return { ...acc, [header.name]: header.value };
+        }
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
-  const headersToQueryParams = (allHeaders: Record<string, string>) => Object.entries(allHeaders)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-    .join('&');
+  const headersToQueryParams = (allHeaders: Record<string, string>) =>
+    Object.entries(allHeaders)
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&');
 
   const handleQueryChange = async (newQuery: string) => {
     try {
@@ -99,10 +105,14 @@ export default function GraphiQLClient() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ query: queryInput, variables: parsedVariables }),
-      }).then((res) => res.json().then((data) => ({
-        data,
-        status: res.status,
-      })));
+      }).then(
+        (res) =>
+          res.json().then((data) => ({
+            data,
+            status: res.status,
+          })),
+        // eslint-disable-next-line function-paren-newline
+      );
     } catch (error) {
       return Promise.resolve({
         data: { error: 'Invalid variables format' },
@@ -121,6 +131,22 @@ export default function GraphiQLClient() {
       setResponse(JSON.stringify(result.data, null, 2));
       setStatus(result.status.toString() || 'Unknown');
     });
+
+    addRequest({
+      date: new Date().toUTCString(),
+      url,
+      method: 'GRAPHQL',
+      headers: headersObject,
+      queryGraphQL: query,
+      variablesGraphQL: variables,
+    });
+  };
+
+  const clearAll = () => {
+    setQuery('');
+    setVariables('');
+    setUrl('');
+    cleanHeadersGQL();
   };
 
   return (
@@ -134,9 +160,14 @@ export default function GraphiQLClient() {
 
       <Divider my="md" />
       <QueryComponent query={query} setQuery={handleQueryChange} variables={variables} setVariables={setVariables} />
-      <Button onClick={go} mb="md">
-        Submit
-      </Button>
+      <div className={styles.buttons}>
+        <Button onClick={go} mb="md">
+          Submit
+        </Button>
+        <Button onClick={clearAll} mb="md">
+          Clear All
+        </Button>
+      </div>
 
       <Stack>
         <Title mb={15} order={2}>

@@ -8,8 +8,10 @@ export type RestRequest = {
   url: string;
   method: Method;
   headers: Record<string, string>;
-  body: string;
-  searchParams: Record<string, string>;
+  body?: string;
+  searchParams?: Record<string, string>;
+  queryGraphQL?: string;
+  variablesGraphQL?: string;
 };
 
 type State = {
@@ -26,10 +28,12 @@ export const useHistoryStore = create<State & Actions>()(
       persist(
         (set) => ({
           requests: [],
-          addRequest: (newRequest: RestRequest) => set((state) => ({
-            ...state,
-            requests: [...state.requests, newRequest],
-          })),
+          addRequest: (newRequest: RestRequest) =>
+            // eslint-disable-next-line implicit-arrow-linebreak
+            set((state) => ({
+              ...state,
+              requests: [...state.requests, newRequest],
+            })),
         }),
         { name: 'requests' },
       ),

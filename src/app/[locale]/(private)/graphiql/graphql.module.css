@@ -6,3 +6,8 @@
 .header {
   margin-bottom: 30px;
 }
+
+.buttons {
+  display: flex;
+  gap: 2rem;
+}

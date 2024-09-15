@@ -11,15 +11,15 @@ type State = {
 };
 
 type Actions = {
-  addHeaderInStore: (obj: Header) => void;
+  addHeaderInStoreGQL: (obj: Header) => void;
   updateHeaderInStore: (obj: Header) => void;
   removeHeaderFromStore: (id: string) => void;
-  cleanHeaders: () => void;
+  cleanHeadersGQL: () => void;
 };
 
 export const useGraphHeaders = create<State & Actions>()((set, get) => ({
   headers: [],
-  addHeaderInStore: (obj) => {
+  addHeaderInStoreGQL: (obj) => {
     set({ headers: [...get().headers, obj] });
   },
   updateHeaderInStore: (obj) => {
@@ -28,7 +28,7 @@ export const useGraphHeaders = create<State & Actions>()((set, get) => ({
   removeHeaderFromStore: (id) => {
     set({ headers: get().headers.filter((item) => item.id !== id) });
   },
-  cleanHeaders: () => {
+  cleanHeadersGQL: () => {
     set({ headers: [] });
   },
 }));
